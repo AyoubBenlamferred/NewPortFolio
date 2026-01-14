@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Veille technologique sur la sécurité des mots de passe dans Active Directory">
+  <meta name="keywords" content="cybersécurité, Active Directory, mots de passe, GPO, BTS SIO, Ayoub Benlamferred">
+  <meta property="og:title" content="Veille Technologique - Sécurité Active Directory">
+  <meta property="og:description" content="Étude approfondie sur la gestion sécurisée des mots de passe">
+  <meta property="og:type" content="website">
+  <title>Veille Technologique - Sécurité AD | Ayoub Benlamferred</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="../fav/favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --primary: #00ffff;
+      --primary-light: rgba(0, 255, 255, 0.1);
+      --primary-dark: #00a8ff;
+      --bg-dark: #001a2a;
+      --bg-card: rgba(0, 40, 70, 0.8);
+      --text-light: #a0c7d9;
+      --text-lighter: #cce7ff;
+      --transition-speed: 0.3s;
+      --secondary: #8a2be2;
+      --accent: #00ff88;
+      --danger: #ff4757;
+      --warning: #ffa502;
+      --success: #2ed573;
+    }
+
+    /* Thème clair */
+    [data-theme="light"] {
+      --primary: #0088cc;
+      --primary-light: rgba(0, 136, 204, 0.1);
+      --primary-dark: #006699;
+      --bg-dark: #f0f8ff;
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --text-light: #333333;
+      --text-lighter: #000000;
+      --secondary: #7b68ee;
+      --accent: #00cc66;
+      --danger: #e63946;
+      --warning: #e76f00;
+      --success: #2a9d8f;
+    }
+
+    /* APPLIQUER LE THÈME AU BODY */
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    [data-theme="light"] body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    /* MAIN - TRANSPARENT COMME DANS LA PREMIÈRE VERSION */
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Transition fluide pour tous les éléments */
+    * {
+      transition: background-color var(--transition-speed), 
+                  color var(--transition-speed),
+                  border-color var(--transition-speed),
+                  box-shadow var(--transition-speed);
+    }
+
+    .nav-brand {
+      position: relative;
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+
+    .nav-brand::after {
+      content: "|";
+      animation: blink 1s step-end infinite;
+      margin-left: 3px;
+      color: var(--primary);
+    }
+
+    /* Navigation thème clair */
+    [data-theme="light"] nav {
+      background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    [data-theme="light"] nav ul li a {
+      color: var(--text-light);
+    }
+
+    [data-theme="light"] nav ul li.active a,
+    [data-theme="light"] nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    [data-theme="light"] #networkCanvas {
+      background: radial-gradient(ellipse at center, #e6f2ff 0%, #d9e8ff 100%);
+      border-top: 1.5px solid var(--primary);
+      border-bottom: 1.5px solid var(--primary);
+      box-shadow: inset 0 0 60px rgba(0, 136, 204, 0.3), 0 0 20px rgba(0, 136, 204, 0.2);
+    }
+
+    @keyframes blink {
+      from, to {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .veille-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(0, 26, 42, 0.9) 0%, rgba(0, 40, 70, 0.9) 100%);
+      border-radius: 15px;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .veille-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        transparent 20%,
+        rgba(0, 255, 255, 0.1) 50%,
+        transparent 80%
+      );
+      animation: shine 3s infinite linear;
+      z-index: 0;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(25deg); }
+      100% { transform: translateX(100%) rotate(25deg); }
+    }
+
+    [data-theme="light"] .veille-header {
+      background: linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+    }
+
+    .veille-header h1 {
+      color: var(--primary);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+
+    .veille-header p {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    [data-theme="light"] .veille-header p {
+      color: var(--text-light);
+    }
+
+    .veille-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      border: 1px solid var(--primary);
+      position: relative;
+      z-index: 1;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    [data-theme="light"] .veille-badge {
+      background: rgba(0, 136, 204, 0.1);
+      border: 1px solid var(--primary);
+    }
+
+    /* ===== SECTIONS VERTICALES ===== */
+    .section-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ===== CARTES DE SECTION - STYLE ORIGINAL ===== */
+    .section-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.8rem;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      transition: all var(--transition-speed) ease;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    [data-theme="light"] .section-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+    }
+
+    .section-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.1), 0 0 30px rgba(0, 255, 255, 0.05);
+    }
+
+    .section-card:hover::before {
+      opacity: 1;
+    }
+
+    [data-theme="light"] .section-card:hover {
+      box-shadow: 0 10px 25px rgba(0, 136, 204, 0.1);
+    }
+
+    .section-card h2 {
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+      font-size: 1.5rem;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      padding-bottom: 0.8rem;
+    }
+
+    [data-theme="light"] .section-card h2 {
+      border-bottom: 1px solid rgba(0, 136, 204, 0.2);
+    }
+
+    .section-card h2 i {
+      font-size: 1.3rem;
+      background: var(--primary-light);
+      padding: 0.8rem;
+      border-radius: 10px;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-card h3 {
+      color: var(--text-lighter);
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-card h3 i {
+      color: var(--primary);
+    }
+
+    .section-card p {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .section-card ul,
+    .section-card ol {
+      color: var(--text-light);
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-card li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+      position: relative;
+      padding-left: 0.5rem;
+    }
+
+    .section-card li::before {
+      content: '▸';
+      color: var(--primary);
+      position: absolute;
+      left: -1.2rem;
+      font-weight: bold;
+    }
+
+    .section-card strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    code,
+    pre {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      padding: 0.3rem 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: #88ccff;
+      tab-size: 2;
+    }
+
+    [data-theme="light"] code,
+    [data-theme="light"] pre {
+      background: rgba(0, 0, 0, 0.05);
+      color: #006699;
+    }
+
+    pre {
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      border-left: 3px solid var(--primary);
+      max-width: 100%;
+    }
+
+    /* ===== TECH STACK ===== */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+    }
+
+    .tech-badge {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .tech-badge:hover {
+      background: rgba(0, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* ===== STATS DISPLAY ===== */
+    .stats-display {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      background: rgba(0, 255, 255, 0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    /* ===== BENEFITS ===== */
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .benefit {
+      background: rgba(0, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 1.5rem;
+      border-left: 4px solid var(--primary);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 30%, rgba(0, 255, 255, 0.03) 100%);
+      z-index: 0;
+    }
+
+    [data-theme="light"] .benefit {
+      background: rgba(0, 136, 204, 0.05);
+    }
+
+    .benefit:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
+    }
+
+    .benefit h4 {
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .benefit p {
+      color: var(--text-light);
+      margin: 0;
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), transparent);
+    }
+
+    .timeline-item {
+      display: flex;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .timeline-date {
+      min-width: 60px;
+      background: var(--primary);
+      color: var(--bg-dark);
+      padding: 0.5rem;
+      border-radius: 4px;
+      text-align: center;
+      font-weight: bold;
+      margin-right: 1.5rem;
+      z-index: 1;
+    }
+
+    .timeline-content {
+      background: rgba(0, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 8px;
+      flex: 1;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      background: rgba(0, 255, 255, 0.08);
+      transform: translateX(5px);
+    }
+
+    [data-theme="light"] .timeline-content {
+      background: rgba(0, 136, 204, 0.05);
+      border: 1px solid rgba(0, 136, 204, 0.1);
+    }
+
+    .timeline-content h4 {
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-content p {
+      color: var(--text-light);
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    /* ===== COMPARISON TABLE ===== */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .comparison-table th {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 1rem;
+      text-align: left;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      font-weight: 600;
+    }
+
+    [data-theme="light"] .comparison-table th {
+      border: 1px solid rgba(0, 136, 204, 0.2);
+    }
+
+    .comparison-table td {
+      color: var(--text-light);
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      transition: background 0.2s ease;
+    }
+
+    [data-theme="light"] .comparison-table td {
+      border: 1px solid rgba(0, 136, 204, 0.1);
+    }
+
+    .comparison-table tr:nth-child(even) {
+      background: rgba(0, 255, 255, 0.02);
+    }
+
+    [data-theme="light"] .comparison-table tr:nth-child(even) {
+      background: rgba(0, 136, 204, 0.02);
+    }
+
+    .comparison-table tr:hover {
+      background: rgba(0, 255, 255, 0.05);
+    }
+
+    [data-theme="light"] .comparison-table tr:hover {
+      background: rgba(0, 136, 204, 0.05);
+    }
+
+    /* ===== PASSWORD STRENGTH SECTION ===== */
+    .password-strength-section {
+      margin: 2rem 0;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(0, 26, 42, 0.9) 0%, rgba(0, 30, 60, 0.9) 100%);
+      border-radius: 15px;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    [data-theme="light"] .password-strength-section {
+      background: linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(230, 240, 255, 0.95) 100%);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+    }
+
+    .password-strength-section h3 {
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      padding-bottom: 0.8rem;
+    }
+
+    .password-example-item {
+      margin-bottom: 1.8rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    }
+
+    .password-example-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .password-strength {
+      display: flex;
+      gap: 0.3rem;
+      margin: 0.8rem 0;
+      position: relative;
+      height: 10px;
+    }
+
+    .strength-bar {
+      height: 100%;
+      flex: 1;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .strength-bar.active {
+      animation: fillBar 1.5s ease-out forwards;
+    }
+
+    @keyframes fillBar {
+      from {
+        width: 0;
+        opacity: 0.5;
+      }
+      to {
+        width: 100%;
+        opacity: 1;
+      }
+    }
+
+    .strength-bar.weak.active { 
+      background: linear-gradient(90deg, var(--danger), #ff6b81);
+      box-shadow: 0 0 8px rgba(255, 71, 87, 0.3);
+    }
+
+    .strength-bar.medium.active { 
+      background: linear-gradient(90deg, var(--warning), #ffbe76);
+      box-shadow: 0 0 8px rgba(255, 165, 2, 0.3);
+    }
+
+    .strength-bar.active:not(.weak):not(.medium) { 
+      background: linear-gradient(90deg, var(--success), #7bed9f);
+      box-shadow: 0 0 8px rgba(46, 213, 115, 0.3);
+    }
+
+    .password-example-item p {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 0;
+      padding: 0.3rem 0;
+      font-size: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .password-example-item strong {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-lighter);
+      font-size: 1rem;
+      background: rgba(0, 255, 255, 0.1);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    .badge-high, .badge-medium, .badge-low {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      animation: pulse 2s infinite;
+    }
+
+    .badge-high {
+      background: linear-gradient(135deg, var(--danger), #d32f2f);
+      color: white;
+      border: 1px solid var(--danger);
+    }
+
+    .badge-medium {
+      background: linear-gradient(135deg, var(--warning), #f57c00);
+      color: white;
+      border: 1px solid var(--warning);
+    }
+
+    .badge-low {
+      background: linear-gradient(135deg, var(--success), #388e3c);
+      color: white;
+      border: 1px solid var(--success);
+    }
+
+    /* ===== ARCHITECTURE VISUELLE ===== */
+    .architecture-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .arch-node {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 2px solid var(--primary);
+      text-align: center;
+      min-width: 180px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .arch-node:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+    }
+
+    .arch-node::after {
+      content: '→';
+      position: absolute;
+      right: -25px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    .arch-node:last-child::after {
+      display: none;
+    }
+
+    /* ===== BOUTONS DE CONTRÔLE ===== */
+    .page-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .control-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--bg-dark);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all var(--transition-speed) ease;
+      box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+    }
+
+    [data-theme="light"] .control-btn {
+      box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+    }
+
+    .control-btn:hover,
+    .control-btn:focus {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 6px 16px rgba(0, 255, 255, 0.4);
+      outline: none;
+    }
+
+    [data-theme="light"] .control-btn:hover {
+      box-shadow: 0 6px 16px rgba(0, 136, 204, 0.4);
+    }
+
+    .theme-toggle {
+      background: var(--bg-dark);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    [data-theme="light"] .theme-toggle {
+      background: var(--bg-dark);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary);
+      color: var(--bg-dark);
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 4px;
+      z-index: 1001;
+      transition: top 0.3s;
+    }
+
+    /* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #001f3f !important;
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+      margin-top: 2rem;
+    }
+    
+    [data-theme="light"] footer {
+      background-color: #001f3f !important;
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .veille-header h1 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .section-container {
+        grid-template-columns: 1fr;
+      }
+
+      .architecture-visual {
+        flex-direction: column;
+      }
+
+      .arch-node::after {
+        content: '↓';
+        right: 50%;
+        transform: translateX(50%);
+        top: auto;
+        bottom: -25px;
+      }
+
+      .page-controls {
+        bottom: 10px;
+        right: 10px;
+      }
+
+      .control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
+      
+      main {
+        padding: 1.5rem;
+        margin: 1rem auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .password-example-item p {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      
+      .benefits {
+        grid-template-columns: 1fr;
+      }
+      
+      main {
+        padding: 1rem;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Skip link pour l'accessibilité -->
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+  <nav aria-label="Navigation principale">
+    <div class="nav-brand" id="animated-name"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <ul id="nav-menu">
+      <li><a href="accueil.html">Accueil</a></li>
+      <li><a href="profil.html">Profil</a></li>
+      <li><a href="bts-sio.html">BTS SIO</a></li>
+      <li><a href="formation.html">Formation</a></li>
+      <li><a href="situation-professionnelle.html">Situation Professionnelle</a></li>
+      <li><a href="certificat.html" data-i18n="nav_gestion">Certificat</a></li>
+      <li class="active"><a href="veille-technologique.html">Veille Technologique</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="mentions-legales.html">Mentions légales</a></li>
+    </ul>
+  </nav>
+
+<canvas id="networkCanvas"></canvas>
+
+  <main id="main-content" role="main" tabindex="-1">
+
+    <!-- En-tête principal -->
+    <header class="veille-header animate-in">
+      <h1><i class="fas fa-shield-alt" aria-hidden="true"></i> Veille Technologique</h1>
+      <p>Sécurité des mots de passe et gestion des identités dans un environnement Active Directory</p>
+      <span class="veille-badge">
+        <i class="fas fa-microchip"></i>
+        BTS SIO – Option SISR | Ayoub Benlamferred
+      </span>
+    </header>
+
+    <!-- Section 0: Qu'est-ce que la veille technologique -->
+    <div class="section-card animate-in">
+      <h2><i class="fas fa-question-circle" aria-hidden="true"></i> C'est quoi la veille technologique ?</h2>
+
+      <div class="benefits">
+        <div class="benefit">
+          <h4><i class="fas fa-search"></i> Définition</h4>
+          <p>
+            La <strong>veille technologique</strong> consiste à suivre l'évolution des technologies afin de
+            comprendre les nouvelles pratiques, anticiper les risques et améliorer les systèmes informatiques.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h4><i class="fas fa-cogs"></i> Objectif</h4>
+          <p>
+            En <strong>BTS SIO option SISR</strong>, la veille permet de rester à jour sur les technologies
+            utilisées en entreprise, notamment en matière de <strong>sécurité</strong> et d'
+            <strong>administration système et réseau</strong>.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h4><i class="fas fa-bullseye"></i> Intérêt professionnel</h4>
+          <p>
+            • Anticiper les menaces informatiques<br>
+            • Adapter les infrastructures existantes<br>
+            • Améliorer la sécurité des utilisateurs et des données
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h4><i class="fas fa-tools"></i> Sources utilisées</h4>
+          <p>
+            • Documentation Microsoft<br>
+            • Recommandations ANSSI<br>
+            • Articles spécialisés en cybersécurité<br>
+            • Vidéos pédagogiques
+          </p>
+        </div>
+      </div>
+
+      <div class="stats-display">
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Pertinence</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Veille continue</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Sources analysées</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1: Introduction -->
+    <div class="section-card animate-in">
+      <h2><i class="fas fa-info-circle" aria-hidden="true"></i> Pourquoi la sécurité des mots de passe est essentielle</h2>
+
+      <p>
+        Les <strong>mots de passe</strong> sont le principal moyen de protection des comptes utilisateurs.
+        Un mot de passe faible peut permettre à un attaquant d'accéder à un système informatique
+        et compromettre l'ensemble du réseau.
+      </p>
+
+      <div class="password-strength-section">
+        <h3><i class="fas fa-lock"></i> Analyse Comparative des Mots de Passe</h3>
+        
+        <div class="password-example-item">
+          <p><strong>"admin123"</strong> <span class="badge-high">Risque Élevé</span></p>
+          <div class="password-strength">
+            <div class="strength-bar weak active"></div>
+            <div class="strength-bar"></div>
+            <div class="strength-bar"></div>
+            <div class="strength-bar"></div>
+            <div class="strength-bar"></div>
+          </div>
+          <p><i class="fas fa-clock"></i> Temps de crack estimé : <strong>3 secondes</strong></p>
+        </div>
+        
+        <div class="password-example-item">
+          <p><strong>"P@ssword2023"</strong> <span class="badge-medium">Risque Moyen</span></p>
+          <div class="password-strength">
+            <div class="strength-bar medium active"></div>
+            <div class="strength-bar medium active"></div>
+            <div class="strength-bar medium active"></div>
+            <div class="strength-bar"></div>
+            <div class="strength-bar"></div>
+          </div>
+          <p><i class="fas fa-clock"></i> Temps de crack estimé : <strong>2 heures</strong></p>
+        </div>
+        
+        <div class="password-example-item">
+          <p><strong>"V3ry$tr0ngP@ss!2024"</strong> <span class="badge-low">Sécurisé</span></p>
+          <div class="password-strength">
+            <div class="strength-bar active"></div>
+            <div class="strength-bar active"></div>
+            <div class="strength-bar active"></div>
+            <div class="strength-bar active"></div>
+            <div class="strength-bar active"></div>
+          </div>
+          <p><i class="fas fa-clock"></i> Temps de crack estimé : <strong>500+ années</strong></p>
+        </div>
+      </div>
+
+      <p>
+        En entreprise, notamment dans un environnement <strong>Active Directory</strong>,
+        la sécurité des mots de passe est un enjeu majeur pour protéger les utilisateurs,
+        les serveurs et les données sensibles.
+      </p>
+
+      <div class="tech-stack">
+        <span class="tech-badge"><i class="fas fa-server"></i> Active Directory</span>
+        <span class="tech-badge"><i class="fas fa-shield-alt"></i> GPO</span>
+        <span class="tech-badge"><i class="fas fa-lock"></i> NTLM</span>
+        <span class="tech-badge"><i class="fas fa-key"></i> Kerberos</span>
+      </div>
+    </div>
+
+    <!-- Section 2: Problématiques -->
+    <div class="section-card animate-in">
+      <h2><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Problèmes liés aux mots de passe faibles</h2>
+
+      <div class="benefits">
+        <div class="benefit">
+          <h4><i class="fas fa-user-secret"></i> Mauvaises pratiques</h4>
+          <p>
+            • Mots de passe trop courts<br>
+            • Réutilisation du même mot de passe<br>
+            • Partage entre utilisateurs
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h4><i class="fas fa-bug"></i> Risques pour l'entreprise</h4>
+          <p>
+            • Accès non autorisé aux ressources<br>
+            • Vol ou perte de données<br>
+            • Propagation de logiciels malveillants
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h4><i class="fas fa-robot"></i> Attaques courantes</h4>
+          <p>
+            • Brute force<br>
+            • Phishing<br>
+            • Credential stuffing
+          </p>
+        </div>
+      </div>
+
+      <div class="stats-display">
+        <div class="stat-item">
+          <div class="stat-number">81%</div>
+          <div class="stat-label">Fuite par mots de passe</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3s</div>
+          <div class="stat-label">Crack d'un mot faible</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">65%</div>
+          <div class="stat-label">Réutilisation de mots de passe</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Active Directory -->
+    <div class="section-card animate-in">
+      <h2><i class="fas fa-network-wired" aria-hidden="true"></i> Gestion des mots de passe avec Active Directory</h2>
+
+      <p>
+        <strong>Active Directory</strong> permet une gestion centralisée des comptes utilisateurs.
+        Grâce aux <strong>stratégies de groupe (GPO)</strong>, l'administrateur peut imposer
+        des règles de sécurité sur l'ensemble du domaine.
+      </p>
+
+      <div class="architecture-visual">
+        <div class="arch-node">
+          <i class="fas fa-users" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;"></i>
+          <h4 style="margin: 0;">Utilisateurs</h4>
+          <p style="font-size: 0.9rem; margin: 0.5rem 0 0;">Comptes AD</p>
+        </div>
+        <div class="arch-node" style="background: rgba(0, 255, 255, 0.1);">
+          <i class="fas fa-server" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;"></i>
+          <h4 style="margin: 0;">Contrôleur de Domaine</h4>
+          <p style="font-size: 0.9rem; margin: 0.5rem 0 0;">Active Directory</p>
+        </div>
+        <div class="arch-node">
+          <i class="fas fa-database" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;"></i>
+          <h4 style="margin: 0;">Ressources</h4>
+          <p style="font-size: 0.9rem; margin: 0.5rem 0 0;">Serveurs & Données</p>
+        </div>
+      </div>
+
+      <h3><i class="fas fa-sliders-h"></i> Paramètres GPO recommandés</h3>
+      <ul>
+        <li><strong>Longueur minimale :</strong> 12 caractères minimum</li>
+        <li><strong>Complexité :</strong> Majuscules, minuscules, chiffres, symboles</li>
+        <li><strong>Expiration :</strong> 90 jours maximum</li>
+        <li><strong>Historique :</strong> 24 mots de passe mémorisés</li>
+        <li><strong>Verrouillage :</strong> 5 tentatives maximum</li>
+        <li><strong>Chiffrement :</strong> NTLMv2 obligatoire</li>
+      </ul>
+
+      <div class="tech-stack">
+        <span class="tech-badge"><i class="fas fa-cogs"></i> GPMC</span>
+        <span class="tech-badge"><i class="fas fa-terminal"></i> PowerShell</span>
+        <span class="tech-badge"><i class="fas fa-tools"></i> RSAT</span>
+        <span class="tech-badge"><i class="fas fa-chart-bar"></i> Audit</span>
+      </div>
+    </div>
+
+    <!-- Section 4: Mise en pratique -->
+    <div class="section-card animate-in">
+      <h2><i class="fas fa-server" aria-hidden="true"></i> Mise en pratique dans un environnement virtualisé</h2>
+
+      <p>
+        Lors de ma formation, j'ai utilisé <strong>VMware Workstation Pro</strong> pour mettre en place
+        un environnement de test comprenant :
+      </p>
+
+      <ul>
+        <li>Un contrôleur de domaine Active Directory (Windows Server 2022)</li>
+        <li>Des postes clients Windows 10/11</li>
+        <li>Les services DNS et DHCP intégrés</li>
+        <li>Des GPO de sécurité avancées</li>
+        <li>Outils de monitoring et d'audit</li>
+      </ul>
+
+      <h3><i class="fas fa-vial"></i> Tests effectués</h3>
+      <ul>
+        <li>Simulation d'attaques brute force avec Hashcat</li>
+        <li>Audit des politiques de mots de passe</li>
+        <li>Tests de conformité ANSSI</li>
+        <li>Implémentation de l'authentification à deux facteurs</li>
+      </ul>
+
+      <div class="tech-stack">
+        <span class="tech-badge"><i class="fas fa-desktop"></i> VMware</span>
+        <span class="tech-badge"><i class="fas fa-windows"></i> Windows Server</span>
+        <span class="tech-badge"><i class="fas fa-network-wired"></i> Hyper-V</span>
+        <span class="tech-badge"><i class="fas fa-code"></i> PowerShell ISE</span>
+      </div>
+
+      <p>
+        La virtualisation m'a permis de tester différentes politiques de mots de passe
+        sans risque pour un environnement réel.
+      </p>
+    </div>
+
+    <!-- Section 5: Bonnes pratiques -->
+    <div class="section-card animate-in">
+      <h2><i class="fas fa-check-circle" aria-hidden="true"></i> Bonnes pratiques en entreprise</h2>
+
+      <div class="benefits">
+        <div class="benefit">
+          <h4><i class="fas fa-user-tie"></i> Administrateur système</h4>
+          <p>
+            • Implémentation stricte des GPO<br>
+            • Séparation des comptes (admin / utilisateur)<br>
+            • Surveillance active des connexions
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h4><i class="fas fa-users"></i> Utilisateurs finaux</h4>
+          <p>
+            • Mots de passe complexes et uniques<br>
+            • Jamais de partage d'identifiants<br>
+            • Sensibilisation continue à la sécurité
+          </p>
+        </div>
+      </div>
+
+      <div class="comparison-table">
+        <thead>
+          <tr>
+            <th>Type de mot de passe</th>
+            <th>Complexité</th>
+            <th>Temps de crack</th>
+            <th>Recommandation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mot de passe simple</td>
+            <td>Faible</td>
+            <td>Quelques secondes</td>
+            <td>❌ À éviter</td>
+          </tr>
+          <tr>
+            <td>Mot de passe complexe</td>
+            <td>Moyenne</td>
+            <td>Quelques heures</td>
+            <td>⚠️ Acceptable</td>
+          </tr>
+          <tr>
+            <td>Passphrase</td>
+            <td>Élevée</td>
+            <td>Années</td>
+            <td>✅ Recommandé</td>
+          </tr>
+        </tbody>
+      </div>
+
+      <div class="stats-display">
+        <div class="stat-item">
+          <div class="stat-number">99%</div>
+          <div class="stat-label">Risques réduits</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24</div>
+          <div class="stat-label">Mots de passe mémorisés</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">90j</div>
+          <div class="stat-label">Expiration</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 6: Conclusion -->
+    <div class="section-card animate-in">
+      <h2><i class="fas fa-flag-checkered" aria-hidden="true"></i> Conclusion</h2>
+
+      <p>
+        La sécurité des mots de passe est un élément <strong>essentiel</strong> de la sécurité informatique.
+        Active Directory et les GPO permettent de mettre en place des règles efficaces
+        pour protéger les comptes utilisateurs et l'ensemble de l'infrastructure.
+      </p>
+
+      <div class="benefits">
+        <div class="benefit">
+          <h4><i class="fas fa-chart-line"></i> Apports de cette veille</h4>
+          <p>Compréhension approfondie des enjeux de sécurité dans AD</p>
+        </div>
+        <div class="benefit">
+          <h4><i class="fas fa-tools"></i> Compétences développées</h4>
+          <p>Maîtrise des GPO, PowerShell, et outils de sécurité</p>
+        </div>
+        <div class="benefit">
+          <h4><i class="fas fa-eye"></i> Perspectives</h4>
+          <p>Évolution vers Zero Trust et authentification biométrique</p>
+        </div>
+      </div>
+
+      <p>
+        Cette veille m'a permis de renforcer mes compétences en <strong>administration système</strong>
+        et de mieux comprendre les enjeux de la sécurité dans un environnement professionnel moderne.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- Contrôles de page -->
+  <div class="page-controls">
+    <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
+      <i class="fas fa-moon"></i>
+      <span class="sr-only">Changer le thème</span>
+    </button>
+    <button class="control-btn" id="backToTop" aria-label="Retour en haut de la page">
+      <i class="fas fa-arrow-up"></i>
+      <span class="sr-only">Retour en haut</span>
+    </button>
+  </div>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Ayoub Benlamferred — Tous droits réservés.</p>
+  </footer>
+
+  <script src="../js/script.js"></script>
+
+  <script>
+     // Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+        // Année dans le footer
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        // =========================
+        // ANIMATION DU NOM (UNE SEULE FOIS)
+        // =========================
+        let nameAnimated = false;
+        function animateName() {
+            if (nameAnimated) return;
+            const fullName = "Ayoub Benlamferred";
+            const nameElement = document.getElementById('animated-name');
+            if (!nameElement) return;
+            let i = 0;
+            function typeWriter() {
+                if (i < fullName.length) {
+                    nameElement.textContent = fullName.substring(0, i + 1);
+                    i++;
+                    setTimeout(typeWriter, 250);
+                }
+            }
+            setTimeout(typeWriter, 250);
+            nameAnimated = true;
+        }
+        
+        // APPEL DE LA FONCTION
+        animateName();
+
+        // Menu burger
+        const toggleBtn = document.querySelector('.nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        if (toggleBtn && navMenu) {
+            toggleBtn.addEventListener('click', () => {
+                const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+                navMenu.classList.toggle('active');
+                toggleBtn.setAttribute('aria-expanded', !isExpanded);
+            });
+        }
+
+        // Animation au survol des cartes
+        document.querySelectorAll('.section-card, .tool-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // =========================
+        // GESTION DU THÈME CLAIR/SOMBRE
+        // =========================
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Vérifier le thème sauvegardé ou préféré
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.body.setAttribute('data-theme', savedTheme);
+
+        // Mettre à jour l'icône
+        if (savedTheme === 'light') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            themeToggle.setAttribute('aria-label', 'Passer en mode sombre');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+            themeToggle.setAttribute('aria-label', 'Passer en mode clair');
+        }
+
+        // Basculer le thème au clic
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            // Changer l'attribut sur le body
+            document.body.setAttribute('data-theme', newTheme);
+            
+            // Sauvegarder dans localStorage
+            localStorage.setItem('theme', newTheme);
+            
+            // Changer l'icône et le label
+            if (newTheme === 'light') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                themeToggle.setAttribute('aria-label', 'Passer en mode sombre');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                themeToggle.setAttribute('aria-label', 'Passer en mode clair');
+            }
+        });
+
+        // =========================
+        // BOUTON RETOUR EN HAUT
+        // =========================
+        const backToTopBtn = document.getElementById('backToTop');
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Afficher/masquer le bouton au scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.style.opacity = '1';
+                backToTopBtn.style.visibility = 'visible';
+            } else {
+                backToTopBtn.style.opacity = '0';
+                backToTopBtn.style.visibility = 'hidden';
+            }
+        });
+
+        // Initialiser le bouton
+        backToTopBtn.style.opacity = '0';
+        backToTopBtn.style.visibility = 'hidden';
+    });
+  </script>
+</body>
+</html>

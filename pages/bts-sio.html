@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ayoub Benlamferred - BTS SIO</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="../fav/favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome pour icônes -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+<style>
+    /* Animation du nom dans la navbar */
+    .nav-brand {
+      position: relative;
+      white-space: nowrap;
+    }
+    .nav-brand::after {
+      content: "|";
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    }
+    @keyframes blink {
+      from, to { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Menu mobile */
+    @media (max-width: 768px) {
+      #nav-menu {
+        display: none;
+      }
+      #nav-menu.active {
+        display: block;
+      }
+    }
+
+    /* ===== VARIABLES CSS POUR THÈME CLAIR/SOMBRE ===== */
+    :root {
+      --primary: #00ffff;
+      --primary-light: rgba(0, 255, 255, 0.1);
+      --primary-dark: #00a8ff;
+      --bg-dark: #001a2a;
+      --bg-card: rgba(0, 40, 70, 0.8);
+      --text-light: #a0c7d9;
+      --text-lighter: #cce7ff;
+      --transition-speed: 0.3s;
+      --sisr-color: #00ffff;
+      --slam-color: #00ff88;
+    }
+
+    [data-theme="light"] {
+      --primary: #0088cc;
+      --primary-light: rgba(0, 136, 204, 0.1);
+      --primary-dark: #006699;
+      --bg-dark: #f8faff;
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --text-light: #333333;
+      --text-lighter: #000000;
+      --sisr-color: #0088cc;
+      --slam-color: #009900;
+    }
+
+    /* Application du thème clair */
+    [data-theme="light"] body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    [data-theme="light"] nav {
+      background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    [data-theme="light"] .nav-brand {
+      color: var(--primary);
+    }
+
+    [data-theme="light"] nav ul li a {
+      color: var(--text-light);
+    }
+
+    [data-theme="light"] nav ul li.active a,
+    [data-theme="light"] nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    [data-theme="light"] #networkCanvas {
+      background: radial-gradient(ellipse at center, #e6f2ff 0%, #d9e8ff 100%);
+      border-top: 1.5px solid var(--primary);
+      border-bottom: 1.5px solid var(--primary);
+      box-shadow: inset 0 0 60px rgba(0, 136, 204, 0.3), 0 0 20px rgba(0, 136, 204, 0.2);
+    }
+
+    /* Conteneur principal */
+    .bts-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header stylisé */
+    .bts-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(0, 31, 63, 0.9), rgba(0, 60, 120, 0.9));
+      border-radius: 20px;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .bts-header {
+      background: linear-gradient(135deg, rgba(230, 242, 255, 0.95), rgba(214, 234, 255, 0.95));
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 30px rgba(0, 136, 204, 0.3);
+    }
+
+    .bts-header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+      animation: pulse 8s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .bts-header h2 {
+      color: var(--primary);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 15px var(--primary);
+      position: relative;
+    }
+
+    .bts-header p {
+      color: var(--text-lighter);
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    [data-theme="light"] .bts-header p {
+      color: var(--text-light);
+    }
+
+    /* Cartes stylisées */
+    .bts-card {
+      background: linear-gradient(145deg, #001f3f, #002b55);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 2px solid var(--primary);
+      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .bts-card {
+      background: linear-gradient(145deg, #e6f2ff, #ffffff);
+      border: 2px solid var(--primary);
+      box-shadow: 0 10px 30px rgba(0, 136, 204, 0.2);
+    }
+
+    .bts-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 255, 255, 0.3);
+      border-color: var(--primary-dark);
+    }
+
+    [data-theme="light"] .bts-card:hover {
+      box-shadow: 0 20px 40px rgba(0, 136, 204, 0.3);
+    }
+
+    .bts-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+      transition: left 0.7s ease;
+    }
+
+    .bts-card:hover::before {
+      left: 100%;
+    }
+
+    .bts-card h3 {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+      padding-bottom: 0.8rem;
+    }
+
+    [data-theme="light"] .bts-card h3 {
+      border-bottom: 2px solid rgba(0, 136, 204, 0.3);
+    }
+
+    .bts-card h3 i {
+      color: var(--primary);
+    }
+
+    /* Grille améliorée */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .skill-item {
+      background: rgba(0, 40, 80, 0.6);
+      border-radius: 12px;
+      padding: 1.2rem;
+      border-left: 4px solid var(--primary);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    [data-theme="light"] .skill-item {
+      background: rgba(230, 242, 255, 0.8);
+      border-left: 4px solid var(--primary);
+    }
+
+    .skill-item:hover {
+      background: rgba(0, 255, 255, 0.1);
+      transform: translateX(10px);
+      border-left-color: var(--primary-dark);
+    }
+
+    [data-theme="light"] .skill-item:hover {
+      background: rgba(0, 136, 204, 0.1);
+    }
+
+    .skill-icon {
+      color: var(--primary);
+      font-size: 1.3rem;
+      min-width: 30px;
+    }
+
+    .skill-text {
+      color: var(--text-lighter);
+      font-weight: 500;
+    }
+
+    [data-theme="light"] .skill-text {
+      color: var(--text-light);
+    }
+
+    /* Options SIO */
+    .options-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .options-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .option-card {
+      background: linear-gradient(145deg, #001a33, #002244);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 2px solid;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    [data-theme="light"] .option-card {
+      background: linear-gradient(145deg, #e6f2ff, #ffffff);
+    }
+
+    .option-card.sisr {
+      border-color: var(--sisr-color);
+      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
+    }
+
+    [data-theme="light"] .option-card.sisr {
+      box-shadow: 0 10px 25px rgba(0, 136, 204, 0.2);
+    }
+
+    .option-card.slam {
+      border-color: var(--slam-color);
+      box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
+    }
+
+    [data-theme="light"] .option-card.slam {
+      box-shadow: 0 10px 25px rgba(0, 153, 0, 0.2);
+    }
+
+    .option-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .option-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 1.5rem;
+    }
+
+    .option-icon {
+      font-size: 2.5rem;
+      color: var(--sisr-color);
+    }
+
+    .option-icon.slam {
+      color: var(--slam-color);
+    }
+
+    .option-title {
+      font-size: 1.6rem;
+      color: var(--sisr-color);
+      margin: 0;
+    }
+
+    .option-title.slam {
+      color: var(--slam-color);
+    }
+
+    .option-desc {
+      color: var(--text-lighter);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    [data-theme="light"] .option-desc {
+      color: var(--text-light);
+    }
+
+    /* Statistiques */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .stat-item {
+      background: rgba(0, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    [data-theme="light"] .stat-item {
+      background: rgba(0, 136, 204, 0.1);
+      border: 1px solid rgba(0, 136, 204, 0.3);
+    }
+
+    .stat-item:hover {
+      transform: scale(1.05);
+      background: rgba(0, 255, 255, 0.15);
+    }
+
+    [data-theme="light"] .stat-item:hover {
+      background: rgba(0, 136, 204, 0.15);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: var(--text-lighter);
+      font-size: 1rem;
+    }
+
+    [data-theme="light"] .stat-label {
+      color: var(--text-light);
+    }
+
+    /* Parcours timeline */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 3rem auto;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      margin-bottom: 3rem;
+      position: relative;
+      width: 45%;
+    }
+
+    .timeline-item:nth-child(odd) {
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    .timeline-item:nth-child(even) {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .timeline-content {
+      background: rgba(0, 40, 80, 0.8);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 2px solid var(--primary);
+      position: relative;
+    }
+
+    [data-theme="light"] .timeline-content {
+      background: rgba(230, 242, 255, 0.9);
+      border: 2px solid var(--primary);
+    }
+
+    .timeline-content::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      width: 20px;
+      height: 20px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 3px solid #001f3f;
+    }
+
+    [data-theme="light"] .timeline-content::before {
+      border: 3px solid #ffffff;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content::before {
+      right: -46px;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content::before {
+      left: -46px;
+    }
+
+    .timeline-date {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timeline-text {
+      color: var(--text-lighter);
+      line-height: 1.6;
+    }
+
+    [data-theme="light"] .timeline-text {
+      color: var(--text-light);
+    }
+
+    /* Call to action */
+    .cta-box {
+      text-align: center;
+      padding: 3rem;
+      background: linear-gradient(135deg, rgba(0, 31, 63, 0.9), rgba(0, 60, 120, 0.9));
+      border-radius: 20px;
+      border: 2px solid var(--primary);
+      margin-top: 3rem;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+    }
+
+    [data-theme="light"] .cta-box {
+      background: linear-gradient(135deg, rgba(230, 242, 255, 0.95), rgba(214, 234, 255, 0.95));
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 40px rgba(0, 136, 204, 0.3);
+    }
+
+    .cta-box h3 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-box p {
+      color: var(--text-lighter);
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+      line-height: 1.6;
+    }
+
+    [data-theme="light"] .cta-box p {
+      color: var(--text-light);
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      color: #001f3f;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0, 255, 255, 0.4);
+    }
+
+    [data-theme="light"] .cta-button {
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      color: #ffffff;
+      box-shadow: 0 5px 20px rgba(0, 136, 204, 0.4);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.6);
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+    }
+
+    [data-theme="light"] .cta-button:hover {
+      box-shadow: 0 10px 30px rgba(0, 136, 204, 0.6);
+    }
+
+    /* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #001f3f !important; /* Force le thème sombre */
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+      margin-top: 2rem;
+    }
+    
+    /* EMPÊCHE LE THÈME CLAIR DE MODIFIER LE FOOTER */
+    [data-theme="light"] footer {
+      /* Aucune modification - reste en thème sombre */
+      background-color: #001f3f !important;
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <nav>
+    <div class="nav-brand" id="animated-name"></div>
+
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+      ☰
+    </button>
+
+    <ul id="nav-menu">
+      <li><a href="accueil.html">Accueil</a></li>
+      <li><a href="profil.html">Profil</a></li>
+      <li class="active"><a href="bts-sio.html">BTS SIO</a></li>
+        <li><a href="formation.html">Formation</a></li>
+      <li><a href="situation-professionnelle.html">Situation Professionnelle</a></li>
+       <li><a href="certificat.html" data-i18n="nav_gestion">Certificat</a></li>
+      <li><a href="veille-technologique.html">Veille Technologique</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="mentions-legales.html">Mentions légales</a></li>
+    </ul>
+  </nav>
+
+  <canvas id="networkCanvas"></canvas>
+
+  <div class="bts-container">
+    <!-- Header avec animation -->
+    <div class="bts-header">
+      <h2><i class="fas fa-laptop-code"></i> BTS Services Informatiques aux Organisations</h2>
+      <p>Diplôme de niveau Bac+2 préparant aux métiers de l'infrastructure système et réseau. Formation technique complète avec deux spécialisation SISR et SLAM.</p>
+    </div>
+
+    <!-- Statistiques -->
+    <div class="stats-container">
+      <div class="stat-item">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Années de formation</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">60%</span>
+        <span class="stat-label">Pratique & Lab</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Spécialisations</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">12</span>
+        <span class="stat-label">Semaines de stage en deux ans</span>
+      </div>
+    </div>
+
+    <!-- Présentation des options -->
+    <div class="bts-card">
+      <h3><i class="fas fa-road"></i> Les deux parcours du BTS SIO</h3>
+      <p>Le BTS SIO offre deux spécialisations distinctes pour répondre aux différents besoins du marché de l'informatique.</p>
+      
+      <div class="options-container">
+        <div class="option-card sisr">
+          <div class="option-header">
+            <div class="option-icon"><i class="fas fa-server"></i></div>
+            <h3 class="option-title">SISR</h3>
+          </div>
+          <p class="option-desc">
+            <strong>Solutions d'Infrastructure, Systèmes et Réseaux</strong><br>
+            Spécialisation infrastructure, administration système, réseaux, sécurité et virtualisation. Pour ceux qui veulent gérer et sécuriser les infrastructures informatiques.
+          </p>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
+              <div class="skill-text">Cybersécurité</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+              <div class="skill-text">Réseaux TCP/IP</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+              <div class="skill-text">Virtualisation</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="option-card slam">
+          <div class="option-header">
+            <div class="option-icon slam"><i class="fas fa-code"></i></div>
+            <h3 class="option-title slam">SLAM</h3>
+          </div>
+          <p class="option-desc">
+            <strong>Solutions Logicielles et Applications Métiers</strong><br>
+            Spécialisation développement, programmation, bases de données et applications web. Pour ceux qui préfèrent créer des solutions logicielles.
+          </p>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+              <div class="skill-text">Développement Web</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon"><i class="fas fa-database"></i></div>
+              <div class="skill-text">Bases de données</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+              <div class="skill-text">Applications</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pourquoi SISR -->
+    <div class="bts-card">
+      <h3><i class="fas fa-bullseye"></i> Mon choix : l'option SISR</h3>
+      <p>J'ai choisi la spécialisation SISR car elle correspond parfaitement à mes aspirations professionnelles et à mes compétences naturelles.</p>
+      
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-brain"></i></div>
+          <div class="skill-text">Passion pour les réseaux et l'infrastructure</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+          <div class="skill-text">Intérêt pour la cybersécurité en croissance</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-hands-helping"></i></div>
+          <div class="skill-text">Aptitude pour le support et la résolution de problèmes</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-infinity"></i></div>
+          <div class="skill-text">Évolution continue des technologies infrastructure</div>
+        </div>
+      </div>
+    </div>
+
+   <!-- Compétences en développement -->
+<div class="bts-card">
+  <h3><i class="fas fa-tools"></i> Compétences en cours d'acquisition</h3>
+  <p>Dans le cadre de ma formation SISR, je développe actuellement des compétences pratiques en administration système et réseau :</p>
+  
+  <div class="skills-grid">
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fab fa-windows"></i></div>
+      <div class="skill-text">
+        <strong>Windows Server</strong>
+        <span class="skill-level">Découverte</span>
+        <small>Installation & configuration de base</small>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fab fa-linux"></i></div>
+      <div class="skill-text">
+        <strong>Linux</strong>
+        <span class="skill-level">Apprentissage</span>
+        <small>Commandes de base, gestion utilisateurs</small>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+      <div class="skill-text">
+        <strong>Réseaux</strong>
+        <span class="skill-level">Initiation</span>
+        <small>TCP/IP, adressage, sous-réseaux</small>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
+      <div class="skill-text">
+        <strong>Sécurité</strong>
+        <span class="skill-level">Concepts</span>
+        <small>Bonnes pratiques, sensibilisation</small>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fas fa-terminal"></i></div>
+      <div class="skill-text">
+        <strong>Scripting</strong>
+        <span class="skill-level">Débutant</span>
+        <small>Bases PowerShell & Bash</small>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fas fa-server"></i></div>
+      <div class="skill-text">
+        <strong>Virtualisation</strong>
+        <span class="skill-level">Exploration</span>
+        <small>Découverte Hyper-V, machines virtuelles</small>
+      </div>
+    </div>
+  </div>
+  
+  <div class="learning-status">
+    <i class="fas fa-graduation-cap"></i>
+    <span>Ces compétences sont en cours de développement via les projets AP et la formation théorique.</span>
+  </div>
+</div>
+
+    <!-- Cybersécurité -->
+    <div class="bts-card">
+      <h3><i class="fas fa-user-shield"></i> Focus Cybersécurité</h3>
+      <p>La sécurité informatique est un pilier essentiel de la formation SISR. Voici les outils et techniques abordés.</p>
+      
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-user-lock"></i></div>
+          <div class="skill-text">Politiques de sécurité et conformité RGPD</div>
+        </div>
+        
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-filter"></i></div>
+          <div class="skill-text">Configuration de pare-feu et filtrage</div>
+        </div>
+        
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-history"></i></div>
+          <div class="skill-text">Sauvegarde et plan de reprise d'activité</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-key"></i></div>
+          <div class="skill-text">Gestion des accès et authentification</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline parcours -->
+   <div class="bts-card">
+  <h3><i class="fas fa-calendar-alt"></i> Mon parcours en BTS SIO (2024-2026)</h3>
+  <div class="timeline">
+    <!-- 1re année -->
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-date"><i class="fas fa-calendar"></i> 1re année (2024-2025)</div>
+        <div class="timeline-text">
+          Début de la formation BTS SIO option SISR : bases réseaux et systèmes, premiers projets pratiques (installation de serveurs, configuration Active Directory, virtualisation) et stage de 6 semaines en entreprise.
+        </div>
+      </div>
+    </div>
+    <!-- 2e année -->
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-date"><i class="fas fa-calendar"></i> 2e année (2025-2026)</div>
+        <div class="timeline-text">
+          Approfondissement cybersécurité, projets complexes, stage de 6 semaines, préparation aux certifications et obtention du diplôme.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Call to action -->
+    <div class="cta-box">
+      <h3><i class="fas fa-rocket"></i> Prêt pour l'avenir</h3>
+      <p>Le BTS SIO option SISR m'a préparé aux défis techniques du monde professionnel. Je suis désormais équipé pour contribuer à la gestion et à la sécurisation des infrastructures informatiques modernes.</p>
+      <a href="situation-professionnelle.html" class="cta-button">
+        <i class="fas fa-arrow-right"></i> Voir ma situation professionnelle
+      </a>
+    </div>
+  </div>
+<!-- BOUTONS DE CONTRÔLE DE PAGE -->
+<div class="page-controls">
+  <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
+    <i class="fas fa-moon"></i>
+    <span class="sr-only">Changer le thème</span>
+  </button>
+  <button class="control-btn" id="backToTop" aria-label="Retour en haut de la page">
+    <i class="fas fa-arrow-up"></i>
+    <span class="sr-only">Retour en haut</span>
+  </button>
+</div>
+  <footer>
+    <p>&copy; <span id="year"></span> Ayoub Benlamferred — Tous droits réservés.</p>
+  </footer>
+
+  <script src="../js/script.js"></script>
+
+  <script>
+    // Animation du nom
+    function animateName() {
+      const fullName = "Ayoub Benlamferred";
+      const nameElement = document.getElementById('animated-name');
+      let i = 0;
+
+      function typeWriter() {
+        if (i < fullName.length) {
+          nameElement.textContent = fullName.substring(0, i + 1);
+          i++;
+          setTimeout(typeWriter, 250);
+        }
+      }
+      setTimeout(typeWriter, 250);
+    }
+
+    // Menu mobile
+    function setupMenu() {
+      const toggleBtn = document.querySelector('.nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+
+      toggleBtn.addEventListener('click', () => {
+        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+        navMenu.classList.toggle('active');
+        toggleBtn.setAttribute('aria-expanded', !isExpanded);
+      });
+    }
+
+    // Effet d'apparition des cartes
+    function animateCards() {
+      const cards = document.querySelectorAll('.bts-card, .stat-item, .option-card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      animateName();
+      setupMenu();
+      animateCards();
+      
+      // Année automatique
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+
+</body>
+</html>

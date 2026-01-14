@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="title">Ayoub Benlamferred - Portfolio</title>
+  <meta name="description" data-i18n="meta_desc" content="Portfolio web d'Ayoub Benlamferred : découvrez son parcours, compétences, projets et certifications.">
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="../fav/favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --primary: #00ffff;
+      --primary-light: rgba(0, 255, 255, 0.1);
+      --primary-dark: #00a8ff;
+      --bg-dark: #001a2a;
+      --bg-card: rgba(0, 40, 70, 0.8);
+      --text-light: #a0c7d9;
+      --text-lighter: #cce7ff;
+      --transition-speed: 0.3s;
+    }
+
+    [data-theme="light"] {
+      --primary: #0088cc;
+      --primary-light: rgba(0, 136, 204, 0.1);
+      --primary-dark: #006699;
+      --bg-dark: #f8faff;
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --text-light: #333333;
+      --text-lighter: #000000;
+    }
+
+    /* Application du thème clair au body */
+    [data-theme="light"] body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    /* Navigation thème clair */
+    [data-theme="light"] nav {
+      background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    [data-theme="light"] .nav-brand {
+      color: var(--primary);
+    }
+
+    [data-theme="light"] nav ul li a {
+      color: var(--text-light);
+    }
+
+    [data-theme="light"] nav ul li.active a,
+    [data-theme="light"] nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    /* Canvas thème clair */
+    [data-theme="light"] #networkCanvas {
+      background: radial-gradient(ellipse at center, #e6f2ff 0%, #d9e8ff 100%);
+      border-top: 1.5px solid var(--primary);
+      border-bottom: 1.5px solid var(--primary);
+      box-shadow: inset 0 0 60px rgba(0, 136, 204, 0.3), 0 0 20px rgba(0, 136, 204, 0.2);
+    }
+
+    /* Styles améliorés pour l'accueil */
+    #hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, rgba(0, 26, 42, 0.9) 0%, rgba(0, 40, 70, 0.9) 100%);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 1rem;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+    }
+    
+    .nav-brand::after {
+      content: "|";
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    } 
+    
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #00ffff, transparent);
+    }
+    
+    #hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: bold;
+    }
+    
+    #hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      color: var(--text-light);
+    }
+    
+    .hero-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin: 0.5rem 0;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    .cta-container {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid var(--primary);
+      transition: all 0.3s ease;
+    }
+    
+    .cta-btn:hover {
+      background: var(--primary);
+      color: #001a2a;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+    }
+    
+    .cta-btn.primary {
+      background: var(--primary);
+      color: #001a2a;
+    }
+    
+    .cta-btn.primary:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+    }
+    
+    /* Section styling améliorée */
+    main > section {
+      background: var(--bg-card);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    
+    main > section:hover {
+      border-color: rgba(0, 255, 255, 0.3);
+      transform: translateY(-3px);
+    }
+    
+    main > section h2 {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      color: var(--primary);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      padding-bottom: 0.5rem;
+    }
+    
+    main > section h2 i {
+      color: var(--primary);
+    }
+    
+    /* Amélioration des grilles */
+    .projets-grid, .certifications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+    
+    .projet-card, .cert-card {
+      background: var(--bg-card);
+      color: var(--primary);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .projet-card:hover, .cert-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
+      border-color: var(--primary);
+    }
+    
+    .projet-card i, .cert-card i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .projet-card h3, .cert-card h3 {
+      color: var(--primary);
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+    }
+    
+    .projet-card p, .cert-card p {
+      font-size: 0.9rem;
+      color: #88ccff;
+      margin-top: 0.5rem;
+      line-height: 1.4;
+    }
+    
+    /* Compétences améliorées */
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .skill-badge {
+      background: var(--primary-light);
+      padding: 0.8rem 1.2rem;
+      border-radius: 25px;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.3s ease;
+    }
+    
+    .skill-badge:hover {
+      background: rgba(0, 255, 255, 0.2);
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+    
+    .skill-badge i {
+      color: var(--primary);
+    }
+    
+    /* Timeline améliorée */
+    #timeline ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    #timeline li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 1.2rem;
+      color: var(--text-light);
+    }
+    
+    #timeline li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 10px var(--primary);
+    }
+    
+    #timeline li::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1.5rem;
+      width: 2px;
+      height: calc(100% + 0.5rem);
+      background: rgba(0, 255, 255, 0.3);
+    }
+    
+    #timeline li:last-child::after {
+      display: none;
+    }
+    
+    /* Citation améliorée */
+    #citation blockquote {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--text-light);
+      text-align: center;
+      padding: 1.5rem;
+      border-left: 3px solid var(--primary);
+      background: var(--primary-light);
+      border-radius: 10px;
+      margin: 0;
+    }
+    
+    /* Interêts améliorés */
+    #interets ul {
+      list-style: none;
+      padding-left: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    
+    #interets li {
+      background: var(--bg-card);
+      padding: 1rem;
+      border-radius: 10px;
+      border-left: 3px solid var(--primary);
+      color: var(--text-light);
+      transition: all 0.3s ease;
+    }
+    
+    #interets li:hover {
+      background: rgba(0, 40, 70, 0.8);
+      transform: translateX(5px);
+    }
+    
+    /* Objectifs améliorés */
+    #objectifs p {
+      color: var(--text-light);
+      line-height: 1.7;
+      padding: 1rem;
+      background: var(--primary-light);
+      border-radius: 10px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #objectifs strong {
+      color: var(--primary);
+    }
+    
+    /* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #001f3f !important; /* Force le thème sombre */
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+      margin-top: 2rem;
+    }
+    
+    /* EMPÊCHE LE THÈME CLAIR DE MODIFIER LE FOOTER */
+    [data-theme="light"] footer {
+      /* Aucune modification - reste en thème sombre */
+      background-color: #001f3f !important;
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+    }
+    
+    /* Thème clair pour sections */
+    [data-theme="light"] main > section {
+      background: var(--bg-card);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+    }
+    
+    [data-theme="light"] main > section:hover {
+      border-color: rgba(0, 136, 204, 0.4);
+    }
+    
+    [data-theme="light"] main > section h2 {
+      border-bottom: 1px solid rgba(0, 136, 204, 0.2);
+    }
+    
+    [data-theme="light"] #hero {
+      background: linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+    }
+    
+    [data-theme="light"] .hero-badge {
+      background: rgba(0, 136, 204, 0.1);
+      border: 1px solid #0088cc;
+      color: #0088cc;
+    }
+    
+    [data-theme="light"] .skill-badge {
+      border: 1px solid rgba(0, 136, 204, 0.3);
+    }
+    
+    [data-theme="light"] #interets li {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-light);
+    }
+    
+    /* Animation d'apparition */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    main > section {
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+    }
+    
+    main > section:nth-child(2) { animation-delay: 0.1s; }
+    main > section:nth-child(3) { animation-delay: 0.2s; }
+    main > section:nth-child(4) { animation-delay: 0.3s; }
+    main > section:nth-child(5) { animation-delay: 0.4s; }
+    main > section:nth-child(6) { animation-delay: 0.5s; }
+    main > section:nth-child(7) { animation-delay: 0.6s; }
+    main > section:nth-child(8) { animation-delay: 0.7s; }
+    main > section:nth-child(9) { animation-delay: 0.8s; }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      #hero h2 {
+        font-size: 2rem;
+      }
+      
+      .projets-grid, .certifications-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      #interets ul {
+        grid-template-columns: 1fr;
+      }
+      
+      .cta-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cta-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+ 
+
+
+
+
+  <nav>
+    <div class="nav-brand" id="animated-name"></div>
+
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul id="nav-menu">
+      <li class="active"><a href="accueil.html" data-i18n="nav_accueil">Accueil</a></li>
+      <li><a href="profil.html" data-i18n="nav_profil">Profil</a></li>
+      <li><a href="bts-sio.html" data-i18n="nav_bts">BTS SIO</a></li>
+       <li><a href="formation.html">Formation</a></li>
+      <li><a href="situation-professionnelle.html" data-i18n="nav_situation">Situation Professionnelle</a></li>
+      <li><a href="certificat.html" data-i18n="nav_gestion">Certificat</a></li>
+      <li><a href="veille-technologique.html" data-i18n="nav_veille">Veille Technologique</a></li>
+      <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+      <li><a href="mentions-legales.html" data-i18n="nav_mentions">Mentions légales</a></li>
+    </ul>
+  </nav>
+
+  <canvas id="networkCanvas"></canvas>
+
+  <main>
+    <!-- Section Introduction -->
+    <section id="accueil" class="visible">
+      <h2><i class="fas fa-home"></i> <span data-i18n="accueil_titre">Accueil</span></h2>
+      <p data-i18n="accueil_texte">
+        Bienvenue sur mon portfolio web. Découvrez mon parcours, mes compétences et mes projets réalisés dans le cadre de mon BTS Services Informatiques aux Organisations. Naviguez à travers les différentes sections pour en apprendre davantage sur mon profil professionnel.
+      </p>
+    </section>
+
+    <!-- Hero animé amélioré -->
+    <section id="hero" class="visible">
+      <h2 data-i18n="hero_titre">Salut, je suis Ayoub Benlamferred</h2>
+      <p data-i18n="hero_texte">Étudiant & passionné de nouvelles technologies</p>
+      <div class="hero-badge">Étudiant BTS SIO SISR </div>
+      
+    </section>
+
+    <!-- Citation / devise améliorée -->
+    <section id="citation" class="visible">
+      <blockquote data-i18n="citation_texte">
+        "L'apprentissage ne s'arrête jamais, et chaque projet est une opportunité d'évoluer. La technologie est un langage universel qui connecte les idées aux solutions."
+      </blockquote>
+    </section>
+
+    <!-- Mini-timeline parcours améliorée -->
+    <section id="timeline" class="visible">
+      <h2><i class="fas fa-briefcase"></i> <span data-i18n="timeline_titre">Mon parcours Scolaire BTS</span></h2>
+      <ul data-i18n="timeline_liste">
+        <li><strong>2024-2026</strong> - BTS SIO SISR (en cours)</li>
+        <li><strong>2025-2026</strong> - Stage de 6 semaines - Projet infrastructure réseau </li>
+        <li><strong>2024-2025</strong> - Stage de 6 semaines - Administration réseau & support PME</li>
+      </ul>
+    </section>
+
+  
+
+    <!-- Compétences techniques simplifiées -->
+<section id="competences" class="visible">
+  <h2><i class="fas fa-cogs"></i> <span data-i18n="competences_titre">Mes compétences techniques</span></h2>
+  <div class="skills-container">
+   
+    
+    <div class="skill-badge">
+      <i class="fas fa-network-wired"></i> Réseaux TCP/IP & Pfsense
+    </div>
+    <div class="skill-badge">
+      <i class="fas fa-terminal"></i> Commandes de base Windows & Linux
+    </div>
+    <div class="skill-badge">
+      <i class="fas fa-cloud"></i> Virtualisation (VMware)
+    </div>
+  
+  </div>
+</section>
+
+
+   <!-- Intérêts / passions simplifiés -->
+<section id="interets" class="visible">
+  <h2><i class="fas fa-heart"></i> <span data-i18n="interets_titre">Mes passions & centres d'intérêt</span></h2>
+  <ul data-i18n="interets_liste">
+    <li>Cybersécurité et protection des données</li>
+    <li>Réseaux et infrastructure informatique</li>
+    <li>Virtualisation & machines virtuelles</li>
+  </ul>
+</section>
+
+
+
+    <!-- Objectifs professionnels améliorés -->
+    <section id="objectifs" class="visible">
+      <h2><i class="fas fa-bullseye"></i> <span data-i18n="objectifs_titre">Mes objectifs professionnels</span></h2>
+      <p style="color: #a0c7d9; line-height: 1.6;">
+        À moyen terme : devenir <strong>administrateur systèmes et réseaux</strong> avec une spécialisation en cybersécurité et cloud computing.<br><br>
+        À long terme : évoluer vers un poste d'<strong>architecte réseau</strong> ou <strong>expert en sécurité informatique</strong>.
+      </p>
+    </section>
+  </main>
+
+<!-- BOUTONS DE CONTRÔLE DE PAGE -->
+<div class="page-controls">
+  <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
+    <i class="fas fa-moon"></i>
+    <span class="sr-only">Changer le thème</span>
+  </button>
+  <button class="control-btn" id="backToTop" aria-label="Retour en haut de la page">
+    <i class="fas fa-arrow-up"></i>
+    <span class="sr-only">Retour en haut</span>
+  </button>
+</div>
+  <footer>
+    <p>&copy; <span id="year"></span> Ayoub Benlamferred — <span data-i18n="footer">Tous droits réservés.</span></p>
+    
+    
+    </p>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script>
+    // =========================
+    // INITIALISATION DE L'ANNEE
+    // =========================
+    document.addEventListener('DOMContentLoaded', () => {
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    });
+
+    // =========================
+    // ANIMATION DU NOM (UNE SEULE FOIS)
+    // =========================
+    let nameAnimated = false;
+    function animateName() {
+      if (nameAnimated) return;
+      const fullName = "Ayoub Benlamferred";
+      const nameElement = document.getElementById('animated-name');
+      if (!nameElement) return;
+      let i = 0;
+      function typeWriter() {
+        if (i < fullName.length) {
+          nameElement.textContent = fullName.substring(0, i + 1);
+          i++;
+          setTimeout(typeWriter, 250);
+        }
+      }
+      setTimeout(typeWriter, 250);
+      nameAnimated = true;
+    }
+
+    // =========================
+    // MENU BURGER
+    // =========================
+    function setupMenu() {
+      const toggleBtn = document.querySelector('.nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      if (!toggleBtn || !navMenu) return;
+      toggleBtn.addEventListener('click', () => {
+        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+        navMenu.classList.toggle('active');
+        toggleBtn.setAttribute('aria-expanded', !isExpanded);
+      });
+    }
+
+    // =========================
+    // ANIMATION AU DÉFILEMENT
+    // =========================
+    function setupScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Observer toutes les sections
+      document.querySelectorAll('main > section').forEach(section => {
+        observer.observe(section);
+      });
+    }
+
+    // =========================
+    // INITIALISATION
+    // =========================
+    document.addEventListener('DOMContentLoaded', () => {
+      animateName();
+      setupMenu();
+      setupScrollAnimations();
+
+      // Initialisation de l'année
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+      
+      // Animation au clic sur les cartes
+      document.querySelectorAll('.projet-card, .cert-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+          if (!e.target.closest('a')) {
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+              this.style.transform = '';
+            }, 150);
+          }
+        });
+      });
+    });
+
+
+
+    
+  </script>
+</body>
+</html>

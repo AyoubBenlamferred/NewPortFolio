@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ayoub Benlamferred — Documentation</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../fav/favicon.ico" type="image/x-icon">
+
+ <style>
+    /* ===== VARIABLES CSS POUR THÈME CLAIR/SOMBRE ===== */
+    :root {
+      --primary: #00ffff;
+      --primary-light: rgba(0, 255, 255, 0.1);
+      --primary-dark: #00a8ff;
+      --bg-dark: #000913;
+      --bg-card: linear-gradient(145deg, #001f3f, #002b55);
+      --text-light: #a0c7d9;
+      --text-lighter: #cce7ff;
+      --transition-speed: 0.3s;
+    }
+
+    [data-theme="light"] {
+      --primary: #0088cc;
+      --primary-light: rgba(0, 136, 204, 0.1);
+      --primary-dark: #006699;
+      --bg-dark: #f8faff;
+      --bg-card: linear-gradient(145deg, #e6f2ff, #ffffff);
+      --text-light: #333333;
+      --text-lighter: #000000;
+    }
+
+    /* Application du thème clair */
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+    
+    .nav-brand::after {
+      content: "|";
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      from, to { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Navigation thème clair */
+    [data-theme="light"] nav {
+      background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    [data-theme="light"] .nav-brand {
+      color: var(--primary);
+    }
+
+    [data-theme="light"] nav ul li a {
+      color: var(--text-light);
+    }
+
+    [data-theme="light"] nav ul li.active a,
+    [data-theme="light"] nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      #nav-menu { 
+        display: none; 
+        flex-direction: column; 
+        gap: 0.5rem; 
+        background: var(--bg-dark); 
+        position: absolute; 
+        top: 100%; 
+        left: 0; 
+        width: 100%; 
+        padding: 1rem 0; 
+        border-bottom: 2px solid var(--primary);
+      }
+      #nav-menu.active { display: flex; }
+    }
+
+    /* CANVAS */
+    #networkCanvas {
+      display: block;
+      width: 100%;
+      height: 280px;
+      margin-top: 56px;
+      background: radial-gradient(ellipse at center, #001a2a 0%, #000913 100%);
+      border-top: 1.5px solid var(--primary);
+      border-bottom: 1.5px solid var(--primary);
+      box-shadow: inset 0 0 60px rgba(0, 255, 255, 0.3), 0 0 20px rgba(0, 255, 255, 0.2);
+      image-rendering: crisp-edges;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -webkit-optimize-contrast;
+      animation: canvasPulse 8s infinite alternate;
+    }
+
+    [data-theme="light"] #networkCanvas {
+      background: radial-gradient(ellipse at center, #e6f2ff 0%, #d9e8ff 100%);
+      border-top: 1.5px solid var(--primary);
+      border-bottom: 1.5px solid var(--primary);
+      box-shadow: inset 0 0 60px rgba(0, 136, 204, 0.3), 0 0 20px rgba(0, 136, 204, 0.2);
+    }
+    
+    @keyframes canvasPulse {
+      0% { opacity: 0.95; box-shadow: inset 0 0 60px rgba(0, 255, 255, 0.3); }
+      100% { opacity: 1; box-shadow: inset 0 0 90px rgba(0, 255, 255, 0.5); }
+    }
+    
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      #networkCanvas {
+        border-width: 1px;
+        box-shadow: inset 0 0 80px rgba(0, 255, 255, 0.3);
+      }
+    }
+
+    /* FORMATION CONTAINER */
+    .formation-container { 
+      max-width: 1200px; 
+      margin: 2rem auto; 
+      padding: 0 1rem; 
+      box-sizing: border-box;
+    }
+    .formation-header { 
+      text-align: center; 
+      margin-bottom: 2rem; 
+    }
+    .formation-header h2 { 
+      color: var(--primary); 
+      font-size: 2.2rem; 
+      margin-bottom: 0.5rem; 
+      text-shadow: 0 0 10px var(--primary); 
+    }
+    .formation-header p { 
+      font-size: 1.2rem; 
+      max-width: 800px; 
+      margin: 0 auto; 
+      line-height: 1.5; 
+      color: var(--text-light);
+    }
+
+    /* CARDS */
+    .formation-card {
+      background: var(--bg-card);
+      border: 2px solid var(--primary);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    [data-theme="light"] .formation-card {
+      box-shadow: 0 8px 20px rgba(0, 136, 204, 0.2);
+    }
+
+    .formation-card:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 12px 30px rgba(0, 255, 255, 0.3); 
+    }
+
+    [data-theme="light"] .formation-card:hover { 
+      box-shadow: 0 12px 30px rgba(0, 136, 204, 0.3); 
+    }
+
+    .formation-card h3 { 
+      color: var(--primary); 
+      font-size: 1.5rem; 
+      margin-bottom: 1rem; 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+    }
+    .formation-card h3 i { 
+      color: var(--primary-dark); 
+    }
+
+    /* TABLE CERTIFICATIONS */
+    .certif-table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      margin-top: 1rem; 
+    }
+    .certif-table th, .certif-table td { 
+      padding: 0.8rem 1rem; 
+      text-align: left; 
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2); 
+    }
+
+    [data-theme="light"] .certif-table th, 
+    [data-theme="light"] .certif-table td { 
+      border-bottom: 1px solid rgba(0, 136, 204, 0.2); 
+    }
+
+    .certif-table th { 
+      background: var(--primary-light); 
+      color: var(--primary); 
+      font-weight: 600; 
+    }
+    .certif-table tbody tr:hover { 
+      background: rgba(0, 255, 255, 0.08); 
+    }
+
+    [data-theme="light"] .certif-table tbody tr:hover { 
+      background: rgba(0, 136, 204, 0.08); 
+    }
+
+    .status-badge { 
+      display: inline-block; 
+      padding: 0.2rem 0.8rem; 
+      border-radius: 20px; 
+      font-size: 0.9rem; 
+      font-weight: 600; 
+    }
+    .status-obtenu { 
+      background: rgba(0, 255, 0, 0.15); 
+      color: #00ff00; 
+      border: 1px solid #00ff0055; 
+    }
+    .status-en-cours { 
+      background: rgba(255, 255, 0, 0.15); 
+      color: #ffff00; 
+      border: 1px solid #ffff0055; 
+    }
+    .status-prevu { 
+      background: rgba(0, 150, 255, 0.15); 
+      color: var(--primary-dark); 
+      border: 1px solid rgba(0, 150, 255, 0.3); 
+    }
+
+    /* COMPETENCES GRID */
+    .skills-grid { 
+      display: grid; 
+      grid-template-columns: repeat(4, 1fr); 
+      gap: 1rem; 
+    }
+    @media (max-width: 1024px) { 
+      .skills-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+      } 
+    }
+    @media (max-width: 600px) { 
+      .skills-grid { 
+        grid-template-columns: 1fr; 
+      } 
+    }
+
+    .skill-category {
+      background: rgba(0, 40, 80, 0.5);
+      border-radius: 10px;
+      padding: 1rem;
+      border-left: 4px solid var(--primary);
+      box-sizing: border-box;
+    }
+
+    [data-theme="light"] .skill-category {
+      background: rgba(230, 242, 255, 0.8);
+      border-left: 4px solid var(--primary);
+    }
+
+    .skill-category h4 { 
+      color: var(--primary-dark); 
+      margin-bottom: 0.8rem; 
+      font-size: 1.2rem; 
+    }
+    .skill-category ul { 
+      list-style: none; 
+      padding: 0; 
+      margin: 0; 
+    }
+    .skill-category li { 
+      padding: 0.3rem 0; 
+      position: relative; 
+      padding-left: 1.2rem;
+      color: var(--text-light);
+    }
+
+    [data-theme="light"] .skill-category li {
+      color: var(--text-light);
+    }
+
+    .skill-category li::before { 
+      content: "▸"; 
+      color: var(--primary); 
+      position: absolute; 
+      left: 0; 
+    }
+
+    /* DOCUMENTS */
+    .doc-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+      gap: 1rem; 
+      margin-top: 1rem; 
+    }
+    .doc-item {
+      background: rgba(0, 40, 80, 0.4);
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+
+    [data-theme="light"] .doc-item {
+      background: rgba(230, 242, 255, 0.6);
+    }
+
+    .doc-item:hover { 
+      background: rgba(0, 255, 255, 0.1); 
+      border-color: rgba(0, 255, 255, 0.3); 
+      transform: translateX(5px) scale(1.02); 
+    }
+
+    [data-theme="light"] .doc-item:hover { 
+      background: rgba(0, 136, 204, 0.1); 
+      border-color: rgba(0, 136, 204, 0.3); 
+    }
+
+    .doc-icon { 
+      color: var(--primary); 
+      font-size: 1.5rem; 
+      min-width: 40px; 
+      text-align: center;
+    }
+    .doc-info h4 { 
+      margin: 0; 
+      font-size: 1rem; 
+      color: var(--text-light); 
+    }
+    .doc-info p { 
+      margin: 0.2rem 0 0 0; 
+      font-size: 0.9rem; 
+      color: var(--text-lighter); 
+    }
+
+    /* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #001f3f !important; /* Force le thème sombre */
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+      margin-top: 2rem;
+    }
+    
+    /* EMPÊCHE LE THÈME CLAIR DE MODIFIER LE FOOTER */
+    [data-theme="light"] footer {
+      /* Aucune modification - reste en thème sombre */
+      background-color: #001f3f !important;
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SEULE NAVIGATION -->
+  <nav>
+    <div class="nav-brand" id="animated-name"></div>
+
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <ul id="nav-menu">
+      <li><a href="accueil.html">Accueil</a></li>
+      <li><a href="profil.html">Profil</a></li>
+      <li><a href="bts-sio.html">BTS SIO</a></li>
+      <li class="active"><a href="formation.html">Formation</a></li>
+      <li><a href="situation-professionnelle.html">Situation Professionnelle</a></li>
+       <li><a href="certificat.html" data-i18n="nav_gestion">Certificat</a></li>
+      <li><a href="veille-technologique.html">Veille Technologique</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="mentions-legales.html">Mentions légales</a></li>
+    </ul>
+  </nav>
+
+  <!-- CANVAS -->
+  <canvas id="networkCanvas"></canvas>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="formation-container">
+    <!-- Header -->
+    <div class="formation-header">
+      <h2><i class="fas fa-graduation-cap"></i> Mon Parcours de Formation</h2>
+      <p>Étudiant en BTS SIO option SISR, spécialisé dans les infrastructures systèmes et réseaux.</p>
+    </div>
+
+    <!-- Diplômes -->
+<div class="formation-card">
+  <h3><i class="fas fa-university"></i> Diplômes et Certifications</h3>
+  <table class="certif-table">
+    <thead>
+      <tr>
+        <th>Diplôme / Certification</th>
+        <th>Organisme</th>
+        <th>Année</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>BTS SIO - Option SISR</td>
+        <td>Éducation Nationale</td>
+        <td>2024-2026</td>
+        <td><span class="status-badge status-en-cours">En cours</span></td>
+      </tr>
+      <tr>
+        <td>SecNum Académie</td>
+        <td>ANSSI</td>
+        <td>2025</td>
+        <td><span class="status-badge status-obtenu">Validée</span></td>
+      </tr>
+      <tr>
+        <td>L'ATELIER RGPD</td>
+        <td>CNIL</td>
+        <td>2025</td>
+        <td><span class="status-badge status-obtenu">Validée</span></td>
+      </tr>
+      <tr>
+        <td>Formation Active Directory</td>
+        <td>Microsoft Learn</td>
+        <td>2025</td>
+        <td><span class="status-badge status-obtenu">Validée</span></td>
+      </tr>
+      <tr>
+        <td>Certificat PIX</td>
+        <td>ELAN FORMATION</td>
+        <td>2024</td>
+        <td><span class="status-badge status-obtenu">Validée</span></td>
+      </tr>
+      <tr>
+        <td>BAC PRO Maintenance et assistance technique</td>
+        <td>Lycée</td>
+        <td>2015-2020</td>
+        <td><span class="status-badge status-obtenu">Obtenu</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    <!-- Compétences -->
+    <div class="formation-card">
+      <h3><i class="fas fa-laptop-code"></i> Compétences & connaissances Techniques</h3>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h4><i class="fas fa-network-wired"></i> Réseaux</h4>
+          <ul>
+            <li>Configuration IP, VLAN, routage</li>
+            <li>pfSense</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h4><i class="fas fa-server"></i> Systèmes</h4>
+          <ul>
+            <li>Windows Server 2022 / 2025</li>
+            <li>Active Directory</li>
+            <li>GPO simples</li>
+            <li>DNS / DHCP</li>
+            <li>LAPS (aperçu en stage)</li>
+            <li>Linux – Ubuntu/Debian, SSH</li>
+          </ul>
+        </div>
+       <div class="skill-category">
+  <h4><i class="fas fa-shield-alt"></i> Sécurité & Conformité</h4>
+  <ul>
+    <li>Notions de sécurité</li>
+    <li>RGPD</li>
+    <li>PingCastle (aperçu en stage)</li>
+    <li>NAS (sauvegardes, sécurisation des données)</li>
+ <li>BitLocker (chiffrement de disque)</li>
+
+  </ul>
+</div>
+
+      <div class="skill-category">
+  <h4><i class="fas fa-tools"></i> Outils & Scripting</h4>
+  <ul>
+    <li>PowerShell/CMD</li>
+    <li>Bash</li>
+    <li>Git / GitHub</li>
+    <li>RustDesk (accès à distance)</li>
+    <li>GLPI (découverte / utilisation ponctuelle)</li>
+
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+   
+  </main>
+
+
+  <!-- BOUTONS DE CONTRÔLE DE PAGE -->
+<div class="page-controls">
+  <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
+    <i class="fas fa-moon"></i>
+    <span class="sr-only">Changer le thème</span>
+  </button>
+  <button class="control-btn" id="backToTop" aria-label="Retour en haut de la page">
+    <i class="fas fa-arrow-up"></i>
+    <span class="sr-only">Retour en haut</span>
+  </button>
+</div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; <span id="year"></span> Ayoub Benlamferred — Tous droits réservés.</p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    // Animation nom
+    const fullName = "Ayoub Benlamferred";
+    const nameEl = document.getElementById('animated-name');
+    let i = 0;
+    function typeWriter() {
+      if (i < fullName.length) {
+        nameEl.textContent = fullName.substring(0, i+1);
+        i++;
+        setTimeout(typeWriter, 150);
+      }
+    }
+    setTimeout(typeWriter, 200);
+
+    // Menu burger
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        menu.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', !expanded);
+      });
+    }
+
+    // Fermer le menu mobile quand on clique sur un lien
+    const navLinks = document.querySelectorAll('#nav-menu a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        // Empêcher le rechargement pour le lien actif
+        if (link.parentElement.classList.contains('active')) {
+          e.preventDefault();
+        }
+        
+        if (window.innerWidth <= 768) {
+          menu.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Année actuelle
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+<script src="../js/script.js"></script>
+</body>
+</html>

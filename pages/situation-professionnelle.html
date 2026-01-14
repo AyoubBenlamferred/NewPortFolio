@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ayoub Benlamferred - Situation Professionnelle</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome pour icônes -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- Favicon -->
+  <link rel="icon" href="../fav/favicon.ico" type="image/x-icon" />
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <style>
+    /* ===== VARIABLES CSS POUR THÈME CLAIR/SOMBRE ===== */
+    :root {
+      --primary: #00ffff;
+      --primary-light: rgba(0, 255, 255, 0.1);
+      --primary-dark: #00a8ff;
+      --bg-dark: #000913;
+      --bg-card: #001f3f;
+      --text-light: #a0c7d9;
+      --text-lighter: #cce7ff;
+      --transition-speed: 0.3s;
+    }
+
+    [data-theme="light"] {
+      --primary: #0088cc;
+      --primary-light: rgba(0, 136, 204, 0.1);
+      --primary-dark: #006699;
+      --bg-dark: #f8faff;
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --text-light: #333333;
+      --text-lighter: #000000;
+    }
+
+    /* Application du thème clair */
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: var(--primary);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    section {
+      max-width: 960px;
+      margin: 3rem auto 5rem auto;
+      padding: 0 1.5rem;
+      scroll-margin-top: 70px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+      border-left: 5px solid var(--primary);
+      padding-left: 12px;
+    }
+
+    [data-theme="light"] section h2 {
+      color: var(--primary);
+    }
+
+    section p,
+    section ul {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    section ul {
+      list-style: disc inside;
+      margin-top: 1rem;
+      color: var(--text-lighter);
+    }
+
+    section ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    .pro-block {
+      background-color: var(--bg-card);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      padding: 20px 25px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+      transition: box-shadow 0.3s ease;
+    }
+
+    [data-theme="light"] .pro-block {
+      box-shadow: 0 0 15px rgba(0, 136, 204, 0.3);
+    }
+
+    .pro-block:hover {
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
+    }
+
+    [data-theme="light"] .pro-block:hover {
+      box-shadow: 0 0 25px rgba(0, 136, 204, 0.5);
+    }
+
+    .pro-block h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--primary-dark);
+      padding-left: 12px;
+      font-weight: 700;
+    }
+
+    .pro-block ul li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    /* Styles spécifiques pour la page Situation Professionnelle */
+    .mission-tech {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .mission-tag {
+      background: var(--primary-light);
+      color: var(--text-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+    }
+
+    [data-theme="light"] .mission-tag {
+      border: 1px solid rgba(0, 136, 204, 0.3);
+    }
+    
+    .mission-links {
+      margin-top: 15px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .mission-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 40, 80, 0.5);
+      padding: 8px 15px;
+      border-radius: 6px;
+      border: 1px solid rgba(34, 216, 248, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="light"] .mission-link {
+      background: rgba(230, 242, 255, 0.8);
+      border: 1px solid rgba(0, 136, 204, 0.3);
+    }
+    
+    .mission-link:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    [data-theme="light"] .mission-link:hover {
+      background: rgba(0, 136, 204, 0.1);
+    }
+    
+    .mission-status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+    
+    .status-completed {
+      background: rgba(0, 255, 0, 0.15);
+      color: #00ff00;
+      border: 1px solid #00ff0055;
+    }
+    
+    .status-in-progress {
+      background: rgba(255, 255, 0, 0.15);
+      color: #ffff00;
+      border: 1px solid #ffff0055;
+    }
+    
+    .status-planned {
+      background: rgba(0, 150, 255, 0.15);
+      color: var(--primary-dark);
+      border: 1px solid rgba(34, 216, 248, 0.3);
+    }
+
+    /* Styles pour la section unifiée des projets */
+    .projects-container {
+      margin-top: 4rem;
+    }
+
+    .project-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+      border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+      padding-bottom: 10px;
+    }
+
+    [data-theme="light"] .project-tabs {
+      border-bottom: 2px solid rgba(0, 136, 204, 0.2);
+    }
+
+    .project-tab {
+      background: rgba(0, 40, 80, 0.3);
+      color: var(--text-light);
+      padding: 10px 20px;
+      border-radius: 8px 8px 0 0;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-bottom: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    [data-theme="light"] .project-tab {
+      background: rgba(230, 242, 255, 0.6);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+    }
+
+    .project-tab:hover {
+      background: rgba(0, 60, 120, 0.4);
+      color: var(--primary);
+    }
+
+    [data-theme="light"] .project-tab:hover {
+      background: rgba(0, 136, 204, 0.2);
+    }
+
+    .project-tab.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+
+    [data-theme="light"] .project-tab.active {
+      box-shadow: 0 0 10px rgba(0, 136, 204, 0.3);
+    }
+
+    .project-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .project-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .project-info {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .project-info {
+        grid-template-columns: 300px 1fr;
+      }
+    }
+
+    .project-image {
+      width: 100%;
+      height: 220px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid var(--primary);
+      background: #002240;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .project-image img:hover {
+      transform: scale(1.05);
+    }
+
+    .project-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .project-details {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .project-tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .tech-tag {
+      background: rgba(34, 216, 248, 0.1);
+      color: var(--text-lighter);
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      border: 1px solid var(--primary-dark);
+    }
+
+    .project-docs {
+      background: rgba(0, 40, 80, 0.3);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+      border: 1px solid rgba(34, 216, 248, 0.3);
+    }
+
+    [data-theme="light"] .project-docs {
+      background: rgba(230, 242, 255, 0.6);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+    }
+
+    .project-docs h4 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .doc-item {
+      background: rgba(0, 60, 120, 0.2);
+      padding: 15px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="light"] .doc-item {
+      background: rgba(230, 242, 255, 0.8);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+    }
+
+    .doc-item:hover {
+      background: rgba(0, 80, 160, 0.3);
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    [data-theme="light"] .doc-item:hover {
+      background: rgba(0, 136, 204, 0.1);
+    }
+
+    .doc-item h5 {
+      color: var(--text-lighter);
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    [data-theme="light"] .doc-item h5 {
+      color: var(--text-light);
+    }
+
+    .doc-item p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    .doc-link {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 0.85rem;
+      color: var(--primary-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .doc-link:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .nav-brand {
+      position: relative;
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+
+    .nav-brand::after {
+      content: "|";
+      animation: blink 1s step-end infinite;
+      margin-left: 3px;
+      color: var(--primary);
+    }
+
+    @keyframes blink {
+      from,
+      to {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* Navigation thème clair */
+    [data-theme="light"] nav {
+      background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    [data-theme="light"] nav ul li a {
+      color: var(--text-light);
+    }
+
+    [data-theme="light"] nav ul li.active a,
+    [data-theme="light"] nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    [data-theme="light"] #networkCanvas {
+      background: radial-gradient(ellipse at center, #e6f2ff 0%, #d9e8ff 100%);
+      border-top: 1.5px solid var(--primary);
+      border-bottom: 1.5px solid var(--primary);
+      box-shadow: inset 0 0 60px rgba(0, 136, 204, 0.3), 0 0 20px rgba(0, 136, 204, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      section {
+        margin: 6rem 1rem 5rem 1rem;
+        padding: 0 1rem;
+      }
+      
+      .mission-links {
+        flex-direction: column;
+      }
+      
+      .docs-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .project-tabs {
+        flex-direction: column;
+      }
+      
+      .project-tab {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+    }
+
+    .project-desc {
+      font-size: 1.05rem;
+      color: var(--primary);
+      line-height: 1.6;
+      margin: 10px 0 20px 0;
+      padding: 10px 12px;
+      border-left: 3px solid var(--primary-dark);
+      background: rgba(0, 40, 80, 0.3);
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    [data-theme="light"] .project-desc {
+      background: rgba(230, 242, 255, 0.6);
+    }
+
+    .project-docs h4 {
+      color: var(--primary);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      padding: 8px 12px;
+      background: rgba(0, 40, 80, 0.4);
+      border-left: 4px solid var(--primary-dark);
+      border-radius: 6px;
+    }
+
+    [data-theme="light"] .project-docs h4 {
+      background: rgba(230, 242, 255, 0.8);
+    }
+
+    .experience-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      margin-top: 2rem;
+    }
+
+    .exp-card {
+      background: rgba(0, 40, 80, 0.3);
+      border: 2px solid rgba(0, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    [data-theme="light"] .exp-card {
+      background: rgba(230, 242, 255, 0.8);
+      border: 2px solid rgba(0, 136, 204, 0.2);
+    }
+
+    .exp-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    }
+
+    [data-theme="light"] .exp-card:hover {
+      box-shadow: 0 0 20px rgba(0, 136, 204, 0.2);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .status {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .status-completed {
+      background: rgba(0, 255, 0, 0.2);
+      color: #00ff00;
+    }
+
+    .status-in-progress {
+      background: rgba(255, 255, 0, 0.2);
+      color: #ffff00;
+    }
+
+    .exp-company,
+    .exp-period {
+      margin: 5px 0;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .exp-tasks {
+      margin: 10px 0;
+      padding-left: 20px;
+      list-style-type: disc;
+      color: var(--text-lighter);
+    }
+
+    .exp-tasks li {
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .exp-links .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .exp-links .btn:hover {
+      background: var(--primary);
+      color: #001f3f;
+    }
+
+    /* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #001f3f !important; /* Force le thème sombre */
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+      margin-top: 2rem;
+    }
+    
+    /* EMPÊCHE LE THÈME CLAIR DE MODIFIER LE FOOTER */
+    [data-theme="light"] footer {
+      /* Aucune modification - reste en thème sombre */
+      background-color: #001f3f !important;
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+    }
+  </style>
+
+
+
+
+
+
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-brand" id="animated-name"></div>
+
+    <!-- Bouton menu mobile -->
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+      ☰
+    </button>
+
+    <ul id="nav-menu">
+      <li><a href="accueil.html">Accueil</a></li>
+      <li><a href="profil.html">Profil</a></li>
+      <li><a href="bts-sio.html">BTS SIO</a></li>
+       <li><a href="formation.html">Formation</a></li>
+      <li class="active"><a href="situation-professionnelle.html">Situation Professionnelle</a></li>
+      <li><a href="certificat.html" data-i18n="nav_gestion">Certificat</a></li>
+      <li><a href="veille-technologique.html">Veille Technologique</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="mentions-legales.html">Mentions légales</a></li>
+    </ul>
+  </nav>
+
+  <!-- Canvas réseau -->
+  <canvas id="networkCanvas"></canvas>
+
+  <!-- Contenu principal -->
+  <main>
+  <section id="situation-pro" aria-label="Situation professionnelle">
+  <h2><i class="fas fa-briefcase"></i> Parcours Professionnel BTS SIO</h2>
+
+  <div class="experience-cards">
+
+    <!-- Stage Année 1 -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <h3>Stage Technicien Support - 2024-2025 </h3>
+        
+      </div>
+      <p class="exp-company"><strong>Entreprise :</strong> OTHISMOS SARL</p>
+      <p class="exp-period"><strong>Durée :</strong> 6 semaines (Année 1)</p>
+
+      <ul class="exp-tasks">
+       <li>Installation & configuration postes Windows</li>
+                <li>Maintenance parc informatique </li>
+                <li>Support utilisateurs niveau 1 & 2</li>
+                <li>Configuration réseau & gestion sauvegardes</li>
+
+      <div class="exp-links">
+        <a href="../doc/Periode du stage1.pdf" target="_blank" class="btn"></i> Voir le journal de Stage</a>
+        
+      </div>
+    </div>
+
+    <!-- Stage Année 2 -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <h3>Stage Technicien Support - 2025-2026 </h3>
+       
+      </div>
+      <p class="exp-company"><strong>Entreprise :</strong> OTHISMOS SARL</p>
+      <p class="exp-period"><strong>Durée :</strong> 6 semaines (Année 2)</p>
+
+      <ul class="exp-tasks">
+        <li>Administration Windows Server et Active Directory</li>
+        <li>Déploiement de postes et logiciels métiers</li>
+        <li>Support utilisateurs et incidents réseau</li>
+        <li>Participation à la documentation et procédures internes</li>
+      </ul>
+
+      <div class="exp-links">
+        <a href="../doc/journal-stage-annee2.pdf" target="_blank" class="btn"></i> Voir le journal de Stage</a>
+      </div>
+    </div>
+
+    <!-- Compétences -->
+    <div class="exp-card summary">
+      <h3>Compétences développées </h3>
+      <ul class="exp-tasks">
+        <li><strong>Techniques :</strong> Windows Server, Active Directory, TCP/IP, VLAN, maintenance postes</li>
+        <li><strong>Outils :</strong> Hyper-V, PowerShell, ticketing, sauvegardes automatisées</li>
+        <li><strong>Méthodologie :</strong> Gestion d’incidents, documentation technique, planification de tâches</li>
+        <li><strong>Relationnel :</strong> Travail en équipe, communication avec utilisateurs, résolution de problèmes</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+  <!-- Section unifiée pour tous les projets -->
+<section id="projets-scolaires" class="projects-container" aria-label="Projets Scolaires">
+  <h2><i class="fas fa-code-branch"></i> Projets Scolaires BTS SIO</h2>
+
+  <div class="pro-block">
+    <h3>Mes Projets Réalisés (AP2, AP3, AP4)</h3>
+
+    <!-- Onglets projets -->
+    <div class="project-tabs">
+      <div class="project-tab active" data-project="ap2">
+        <i class="fas fa-project-diagram"></i> Projet AP2
+      </div>
+      <div class="project-tab" data-project="ap3">
+        <i class="fas fa-server"></i> Projet AP3
+      </div>
+      <div class="project-tab" data-project="ap4">
+        <i class="fas fa-lock"></i> Projet AP4
+      </div>
+    </div>
+
+    <!-- AP2 -->
+    <div class="project-content active" id="project-ap2">
+      <p class="project-desc">
+        Mise en place d’un environnement informatique fonctionnel selon cahier des charges : installation, configuration et documentation des postes et services.
+      </p>
+      <div class="project-docs">
+        <h4><i class="fas fa-folder-open"></i> Documents du Projet AP2</h4>
+        <div class="docs-grid">
+          <div class="doc-item">
+            <h5>Cahier des charges</h5>
+            <p>Contexte et besoins métier de l’entreprise simulée</p>
+            <a class="doc-link" href="../doc/AP2-2025_cas_PARCUS_IFIDE- (3).pdf">Voir →</a>
+          </div>
+          <div class="doc-item">
+            <h5>Livrables</h5>
+            <p>Fichiers et résultats produits lors du projet</p>
+            <a class="doc-link" href="../doc/LIVRABLE 1 Parcus.pdf">Voir →</a>
+          </div>
+          <div class="doc-item">
+            <h5>Documentation technique</h5>
+            <p>Procédures d’installation, configuration, scripts et plan d’adressage</p>
+            <a class="doc-link" href="../doc/Livrable 2 Technique Parcus groupe 4.pdf">Voir →</a>
+          </div>
+          <div class="doc-item">
+            <h5>Schéma réseau</h5>
+            <p>Topologie réseau et organisation des VLAN</p>
+            <a class="doc-link" href="../images/imgap2.png">Voir →</a>
+          </div>
+          <!-- Nouveau : PowerPoint -->
+          <div class="doc-item">
+            <h5>Présentation PowerPoint</h5>
+            <p>Présentation du projet sous format diaporama</p>
+            <a class="doc-link" href="../doc/DIAPO ORAL PARCUS PROJET.odp" download>
+    <i class="fas fa-download"></i> Télécharger
+</a>
+          </div>
+          <!-- Nouveau : Diagramme de Gantt -->
+          <div class="doc-item">
+            <h5>Diagramme de Gantt</h5>
+            <p>Planification et étapes du projet</p>
+            <a class="doc-link" href="../images/ganttap2.png">Voir →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AP3 -->
+    <div class="project-content" id="project-ap3">
+      <p class="project-desc">
+        Déploiement d’une infrastructure réseau sécurisée incluant Active Directory, gestion des utilisateurs et services essentiels.
+      </p>
+      <div class="project-docs">
+        <h4><i class="fas fa-folder-open"></i> Documents du Projet AP3</h4>
+        <div class="docs-grid">
+          <div class="doc-item">
+            <h5>Cahier des charges</h5>
+            <p>Décrit le besoin métier et la situation professionnelle simulée</p>
+            <a class="doc-link" href="../doc/AP3-2025_cas_ifide (1).pdf">Voir →</a>
+          </div>
+          <div class="doc-item">
+            <h5>Livrables</h5>
+            <p>Fichiers produits et résultats du déploiement</p>
+            <a class="doc-link" href="../doc/Projet AP3 Livrable1.pdf">Voir →</a>
+          </div>
+          <div class="doc-item">
+            <h5>Documentation technique</h5>
+            <p>Procédures AD, scripts, plan d’adressage, configuration des services</p>
+            <a class="doc-link" href="../doc/TemplateAP3 Livrable2 .pdf">Voir →</a>
+          </div>
+          <div class="doc-item">
+            <h5>Schéma réseau</h5>
+            <p>Topologie complète et organisation VLAN</p>
+            <a class="doc-link" href="../images/Chemin SISR.drawio.png">Voir →</a>
+          </div>
+          <!-- Nouveau : PowerPoint -->
+          <div class="doc-item">
+            <h5>Présentation PowerPoint</h5>
+            <p>Présentation du projet sous format diaporama</p>
+            <a class="doc-link" href="../doc/POWERPOINT AP3 ORAL2.pptx" download>
+    <i class="fas fa-download"></i> Télécharger
+</a>
+          </div>
+          <!-- Nouveau : Diagramme de Gantt -->
+          <div class="doc-item">
+            <h5>Diagramme de Gantt</h5>
+            <p>Planification et étapes du projet</p>
+            <a class="doc-link" href="../images/ganttAP3.png">Voir →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AP4 -->
+    <div class="project-content" id="project-ap4">
+      <p class="project-desc">
+        Sécurisation et fiabilisation du système d’information avec administration avancée et contrôle des accès.
+      </p>
+      <div class="project-docs">
+        <h4><i class="fas fa-folder-open"></i> Documents du Projet AP4</h4>
+        <div class="docs-grid">
+          <div class="doc-item">
+            <h5>Cahier des charges</h5>
+            <p>Contexte du projet et besoins de sécurité</p>
+            <a class="doc-link" href="../doc/ap4/cahier-des-charges.pdf">Voir →</a>
+          </div>
+          <div class="doc-item">
+            <h5>Livrables</h5>
+            <p>Résultats et fichiers produits pour le projet</p>
+            <a class="doc-link" href="../doc/ap4/livrables.pdf">Voir →</a>
+          </div>
+          <div class="doc-item">
+            <h5>Documentation technique</h5>
+            <p>Procédures d’administration, scripts, plan d’adressage et sécurité</p>
+            <a class="doc-link" href="../doc/ap4/documentation.pdf">Voir →</a>
+          </div>
+          <div class="doc-item">
+            <h5>Architecture / Schéma</h5>
+            <p>Topologie, VLAN, firewall et organisation des services</p>
+            <a class="doc-link" href="../doc/ap4/schema.pdf">Voir →</a>
+          </div>
+        <!-- Nouveau : PowerPoint -->
+          <div class="doc-item">
+            <h5>Présentation PowerPoint</h5>
+            <p>Présentation du projet sous format diaporama</p>
+            <a class="doc-link" href="../doc/POWERPOINT AP3 ORAL2.pptx" download>
+    <i class="fas fa-download"></i> Télécharger
+</a>
+          </div>
+          <!-- Nouveau : Diagramme de Gantt -->
+          <div class="doc-item">
+            <h5>Diagramme de Gantt</h5>
+            <p>Planification et étapes du projet</p>
+            <a class="doc-link" href="../doc/ap4/gantt.pdf">Voir →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+  </main>
+
+
+  <!-- BOUTONS DE CONTRÔLE DE PAGE -->
+<div class="page-controls">
+  <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
+    <i class="fas fa-moon"></i>
+    <span class="sr-only">Changer le thème</span>
+  </button>
+  <button class="control-btn" id="backToTop" aria-label="Retour en haut de la page">
+    <i class="fas fa-arrow-up"></i>
+    <span class="sr-only">Retour en haut</span>
+  </button>
+</div>
+  <!-- Script -->
+  <script src="../js/script.js"></script>
+  <script>
+    function animateName() {
+      const fullName = "Ayoub Benlamferred";
+      const nameElement = document.getElementById('animated-name');
+      let i = 0;
+      function typeWriter() {
+        if (i < fullName.length) {
+          nameElement.textContent = fullName.substring(0, i + 1);
+          i++;
+          setTimeout(typeWriter, 250);
+        }
+      }
+      setTimeout(typeWriter, 250);
+    }
+
+    function setupMenu() {
+      const toggleBtn = document.querySelector('.nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      toggleBtn.addEventListener('click', () => {
+        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+        navMenu.classList.toggle('active');
+        toggleBtn.setAttribute('aria-expanded', !isExpanded);
+      });
+    }
+
+    // Gestion des onglets des projets
+    function setupProjectTabs() {
+      const tabs = document.querySelectorAll('.project-tab');
+      const contents = document.querySelectorAll('.project-content');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const projectId = tab.getAttribute('data-project');
+          
+          // Retirer la classe active de tous les onglets
+          tabs.forEach(t => t.classList.remove('active'));
+          // Retirer la classe active de tous les contenus
+          contents.forEach(c => c.classList.remove('active'));
+          
+          // Ajouter la classe active à l'onglet cliqué
+          tab.classList.add('active');
+          // Afficher le contenu correspondant
+          document.getElementById(`project-${projectId}`).classList.add('active');
+        });
+      });
+    }
+
+    // Animation des sections au scroll
+    function setupScrollAnimation() {
+      const sections = document.querySelectorAll('section');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      animateName();
+      setupMenu();
+      setupProjectTabs();
+      setupScrollAnimation();
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+
+
+
+
+
+
+  </script>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year"></span> Ayoub Benlamferred — Tous droits réservés.</p>
+  </footer>
+
+</body>
+</html>

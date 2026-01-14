@@ -1,0 +1,18 @@
+# Activer le moteur de réécriture
+RewriteEngine On
+
+# Forcer le HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Redirection de la racine vers /pages/accueil.html
+RewriteRule ^index\.html$ /pages/accueil.html [R=301,L]
+RewriteRule ^$ /pages/accueil.html [R=301,L]
+
+# Sécurité basique : interdire la navigation dans les dossiers
+Options -Indexes
+
+# Cache pour CSS, JS, images (1 semaine)
+<FilesMatch "\.(css|js|jpg|jpeg|png|gif|svg|ico)$">
+  Header set Cache-Control "max-age=604800, public"
+</FilesMatch>

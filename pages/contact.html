@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ayoub Benlamferred - Contact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <!-- FontAwesome pour icônes -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <!-- Favicon -->
+  <link rel="icon" href="../fav/favicon.ico" type="image/x-icon" />
+  <!-- Feuille de style -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+/* =========================================== */
+/* STYLES POUR LA PAGE CONTACT - THÈME SEULEMENT */
+/* =========================================== */
+
+/* Variables pour le thème */
+:root {
+  --primary: #00ffff;
+  --primary-light: rgba(0, 255, 255, 0.1);
+  --primary-dark: #00a8ff;
+  --bg-dark: #001a2a;
+  --text-light: #a0c7d9;
+  --text-lighter: #cce7ff;
+  --transition-speed: 0.3s;
+  --footer-bg: #001f3f;
+  --footer-border: #00ffff;
+}
+
+[data-theme="light"] {
+  /* Variables mode clair */
+  --primary: #0088cc;
+  --primary-light: rgba(0, 136, 204, 0.1);
+  --primary-dark: #006699;
+  --bg-dark: #f0f8ff;
+  --text-light: #333333;
+  --text-lighter: #000000;
+  --footer-bg: #e6f2ff;
+  --footer-border: #0088cc;
+}
+
+/* Application du thème clair au body */
+[data-theme="light"] body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* 1. Navigation - Change la couleur selon le thème */
+.nav-brand {
+  color: var(--primary); /* CHANGE avec thème */
+}
+
+.nav-brand::after {
+  color: var(--primary); /* CHANGE avec thème */
+}
+
+/* Navigation thème clair */
+[data-theme="light"] nav {
+  background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
+  border-bottom: 2px solid var(--primary);
+}
+
+[data-theme="light"] nav ul li a {
+  color: var(--text-light);
+}
+
+[data-theme="light"] nav ul li.active a,
+[data-theme="light"] nav ul li a:hover {
+  color: var(--primary);
+}
+
+[data-theme="light"] #networkCanvas {
+  background: radial-gradient(ellipse at center, #e6f2ff 0%, #d9e8ff 100%);
+  border-top: 1.5px solid var(--primary);
+  border-bottom: 1.5px solid var(--primary);
+  box-shadow: inset 0 0 60px rgba(0, 136, 204, 0.3), 0 0 20px rgba(0, 136, 204, 0.2);
+}
+
+/* 2. Éléments de contact - Changent de couleur */
+.contact-info,
+.map-container,
+#contact-form {
+  background: var(--bg-dark); /* CHANGE avec thème */
+  border: 2px solid var(--primary); /* CHANGE avec thème */
+  color: var(--text-light); /* CHANGE avec thème */
+}
+
+.contact-info h3,
+#contact-form h3 {
+  color: var(--primary); /* CHANGE avec thème */
+  border-bottom: 2px solid var(--primary); /* CHANGE avec thème */
+}
+
+.contact-info strong {
+  color: var(--primary-dark); /* CHANGE avec thème */
+}
+
+.contact-info a {
+  color: var(--primary); /* CHANGE avec thème */
+}
+
+.contact-info a:hover {
+  color: var(--primary-dark); /* CHANGE avec thème */
+  border-bottom: 1px solid var(--primary); /* CHANGE avec thème */
+}
+
+/* 3. Formulaire */
+#contact-form input,
+#contact-form textarea {
+  border: 1px solid var(--primary); /* CHANGE avec thème */
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text-light); /* CHANGE avec thème */
+}
+
+[data-theme="light"] #contact-form input,
+[data-theme="light"] #contact-form textarea {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+  border-color: var(--primary-dark); /* CHANGE avec thème */
+}
+
+#contact-form button {
+  background: var(--primary); /* CHANGE avec thème */
+  color: #001a2a; /* Texte foncé fixe pour contraste */
+}
+
+#contact-form button:hover {
+  background: var(--primary-dark); /* CHANGE avec thème */
+}
+
+/* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #001f3f !important; /* Force le thème sombre */
+  border-top: 2px solid #00ffff !important;
+  color: #a0c7d9 !important;
+  margin-top: 2rem;
+}
+
+/* EMPÊCHE LE THÈME CLAIR DE MODIFIER LE FOOTER */
+[data-theme="light"] footer {
+  /* Aucune modification - reste en thème sombre */
+  background-color: #001f3f !important;
+  border-top: 2px solid #00ffff !important;
+  color: #a0c7d9 !important;
+}
+
+/* 5. Boutons de contrôle - Garde ta version */
+.page-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.control-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary); /* CHANGE avec thème */
+  color: var(--bg-dark); /* CHANGE avec thème */
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all var(--transition-speed) ease;
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+}
+
+[data-theme="light"] .control-btn {
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+}
+
+.control-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 255, 255, 0.4);
+}
+
+[data-theme="light"] .control-btn:hover {
+  box-shadow: 0 6px 16px rgba(0, 136, 204, 0.4);
+}
+
+.theme-toggle {
+  background: var(--bg-dark); /* CHANGE avec thème */
+  color: var(--primary); /* CHANGE avec thème */
+  border: 2px solid var(--primary); /* CHANGE avec thème */
+}
+
+/* Thème clair pour boutons */
+[data-theme="light"] .control-btn:not(.theme-toggle) {
+  background: var(--primary);
+  color: var(--bg-dark);
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+}
+
+/* Responsive - Garde tes valeurs existantes */
+@media (max-width: 768px) {
+  .page-controls {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .control-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-controls {
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .control-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+</style>
+</head>
+<body class="contact-page">
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-brand" id="animated-name"></div>
+    <!-- Bouton menu mobile -->
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+      ☰
+    </button>
+    <ul id="nav-menu">
+      <li><a href="accueil.html">Accueil</a></li>
+      <li><a href="profil.html">Profil</a></li>
+      <li><a href="bts-sio.html">BTS SIO</a></li>
+        <li><a href="formation.html">Formation</a></li>
+      <li><a href="situation-professionnelle.html">Situation Professionnelle</a></li>
+      <li><a href="certificat.html" data-i18n="nav_gestion">Certificat</a></li>
+      <li><a href="veille-technologique.html">Veille Technologique</a></li>
+      <li class="active"><a href="contact.html">Contact</a></li>
+      <li><a href="mentions-legales.html">Mentions légales</a></li>
+    </ul>
+  </nav>
+
+  <!-- Canvas réseau -->
+  <canvas id="networkCanvas"></canvas>
+
+  <!-- Contenu principal -->
+  <main>
+    <section class="intro">
+      <h2><i class="fas fa-envelope"></i> Contact</h2>
+
+      <section class="contact-info">
+        <h3>Mes coordonnées</h3>
+        <p><strong>Téléphone :</strong> <a href="tel:+33751230258">+33 7 51 23 02 58</a></p>
+        <p><strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/ayoub-benlamferred-476b1b268/" target="_blank" rel="noopener">LinkedIn</a></p>
+        <p><strong>GitHub :</strong> <a href="https://github.com/AyoubBenlamferred" target="_blank" rel="noopener">GitHub</a></p>
+      </section>
+
+      <section class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2638.1684092213504!2d7.7563692770393855!3d48.60661957129924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796c8646089bef5%3A0x463491e46447f0f2!2s11%20Rue%20de%20la%20Moselle%2C%2067300%20Schiltigheim!5e0!3m2!1sfr!2sfr!4v1753383970186!5m2!1sfr!2sfr"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </section>
+
+      <section id="contact-form">
+        <h3>Formulaire de contact</h3>
+        <form id="contactForm">
+          <input type="text" name="from_name" id="from_name" placeholder="Votre nom et prénom" required />
+          <input type="email" name="from_email" id="from_email" placeholder="Votre email" required />
+          <textarea name="message" id="message" rows="5" placeholder="Votre message" required></textarea>
+          <p class="rgpd-notice">Vos données resteront confidentielles.</p>
+          <button type="submit">Envoyer</button>
+        </form>
+      </section>
+    </section>
+  </main>
+
+
+
+
+<!-- Contrôles de page -->
+  <div class="page-controls">
+    <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
+      <i class="fas fa-moon"></i>
+      <span class="sr-only">Changer le thème</span>
+    </button>
+    <button class="control-btn" id="backToTop" aria-label="Retour en haut de la page">
+      <i class="fas fa-arrow-up"></i>
+      <span class="sr-only">Retour en haut</span>
+    </button>
+  </div>
+
+
+
+
+  <!-- Pied de page -->
+  <footer>
+    <p>&copy; <span id="year"></span> Ayoub Benlamferred — Tous droits réservés.</p>
+  </footer>
+
+  <!-- Script principal -->
+  <script src="../js/script.js"></script>
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // Animation du nom dans la navbar (machine à écrire)
+    function animateName() {
+      const fullName = "Ayoub Benlamferred";
+      const nameElement = document.getElementById('animated-name');
+      let i = 0;
+      function typeWriter() {
+        if (i < fullName.length) {
+          nameElement.textContent = fullName.substring(0, i + 1);
+          i++;
+          setTimeout(typeWriter, 250);
+        }
+      }
+      setTimeout(typeWriter, 250);
+    }
+
+    // Menu burger toggle
+    function setupMenu() {
+      const toggleBtn = document.querySelector('.nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      toggleBtn.addEventListener('click', () => {
+        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+        navMenu.classList.toggle('active');
+        toggleBtn.setAttribute('aria-expanded', !isExpanded);
+      });
+    }
+
+    // Initialisation au DOM prêt
+    document.addEventListener('DOMContentLoaded', () => {
+      animateName();
+      setupMenu();
+
+      // Initialisation année
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // EmailJS form submission setup
+      if (typeof emailjs === "undefined") {
+        alert("Erreur : EmailJS non chargé.");
+        return;
+      }
+      emailjs.init("r-jyS_levPlEb4d4a");
+
+      document.getElementById("contactForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = this.from_name.value.trim();
+        const email = this.from_email.value.trim();
+        const message = this.message.value.trim();
+        if (!name || !email || !message) return alert("Tous les champs sont requis.");
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regex.test(email)) return alert("Adresse email invalide.");
+        const params = { from_name: name, from_email: email, message };
+        emailjs.send("service_og9nukm", "template_u9f3i4d", params)
+          .then(() => {
+            alert("✅ Merci pour votre message, " + name + " !");
+            this.reset();
+          })
+          .catch(error => {
+            console.error("Erreur:", error);
+            alert("Erreur lors de l’envoi.");
+          });
+      });
+    });
+
+
+    
+  </script>
+</body>
+</html>

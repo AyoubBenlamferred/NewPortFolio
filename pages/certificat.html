@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ayoub Benlamferred - Certifications</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../fav/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+ <style>
+    /* ===== VARIABLES CSS POUR THÈME CLAIR/SOMBRE ===== */
+    :root {
+      --primary: #00ffff;
+      --primary-light: rgba(0, 255, 255, 0.1);
+      --primary-dark: #00a8ff;
+      --bg-dark: #000913;
+      --bg-card: #0a2a4f;
+      --text-light: #a0c7d9;
+      --text-lighter: #cce7ff;
+      --transition-speed: 0.3s;
+    }
+
+    [data-theme="light"] {
+      --primary: #0088cc;
+      --primary-light: rgba(0, 136, 204, 0.1);
+      --primary-dark: #006699;
+      --bg-dark: #f8faff;
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --text-light: #333333;
+      --text-lighter: #000000;
+    }
+
+    /* Application du thème clair */
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover { color: var(--primary); }
+    
+    main {
+      flex: 1;
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    section {
+      background-color: var(--bg-card);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    [data-theme="light"] section {
+      box-shadow: 0 0 20px rgba(0, 136, 204, 0.3);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+    }
+    
+    section h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      border-left: 5px solid var(--primary);
+      padding-left: 12px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    section p {
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    
+    .cert-category {
+      margin-bottom: 3rem;
+    }
+    
+    .cert-category h3 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+      padding-bottom: 0.8rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    [data-theme="light"] .cert-category h3 {
+      border-bottom: 2px solid rgba(0, 136, 204, 0.3);
+    }
+    
+    .category-title {
+      color: var(--primary) !important;
+    }
+    
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    
+    .cert-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    [data-theme="light"] .cert-card {
+      border: 1px solid rgba(0, 136, 204, 0.3);
+      box-shadow: 0 0 15px rgba(0, 136, 204, 0.2);
+    }
+    
+    .cert-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+      border-color: var(--primary);
+    }
+
+    [data-theme="light"] .cert-card:hover {
+      box-shadow: 0 0 25px rgba(0, 136, 204, 0.3);
+    }
+    
+    .cert-header {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem;
+      background-color: var(--primary-light);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    [data-theme="light"] .cert-header {
+      border-bottom: 1px solid rgba(0, 136, 204, 0.2);
+    }
+    
+    .cert-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 255, 255, 0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .cert-icon i { 
+      font-size: 1.8rem; 
+      color: var(--primary); 
+    }
+    
+    .cert-title h3 {
+      color: var(--primary-dark);
+      font-size: 1.4rem;
+      margin: 0 0 0.3rem 0;
+    }
+    
+    .cert-title p {
+      color: var(--text-light);
+      font-size: 1rem;
+      margin: 0;
+    }
+    
+    .cert-content {
+      padding: 1.5rem;
+      flex: 1;
+    }
+    
+    .cert-summary {
+      color: var(--text-light);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .cert-summary p { 
+      margin-bottom: 0.8rem; 
+    }
+    
+    .cert-summary strong { 
+      color: var(--primary); 
+    }
+    
+    .modules-summary {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background-color: var(--primary-light);
+      border-radius: 8px;
+    }
+    
+    .module-count {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .module-list {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background-color: var(--primary-light);
+      border-radius: 8px;
+    }
+    
+    .stat-item { 
+      text-align: center; 
+    }
+    
+    .stat-value {
+      color: var(--primary);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    
+    .stat-label {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    
+    .modules-container { 
+      margin: 1.5rem 0; 
+    }
+    
+    .module-title {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .modules-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 0.8rem;
+    }
+    
+    .module-item {
+      display: flex;
+      align-items: center;
+      padding: 0.7rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      border-left: 3px solid var(--primary);
+    }
+
+    [data-theme="light"] .module-item {
+      background-color: rgba(0, 136, 204, 0.05);
+    }
+    
+    .progress-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #00ff88;
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+    
+    .score-badge {
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      background-color: rgba(0, 255, 255, 0.2);
+      border-radius: 20px;
+      color: var(--primary);
+      font-weight: 600;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+    }
+
+    [data-theme="light"] .score-badge {
+      background-color: rgba(0, 136, 204, 0.2);
+      border: 1px solid rgba(0, 136, 204, 0.3);
+    }
+    
+    .cert-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .cert-buttons a {
+      flex: 1;
+      text-align: center;
+      padding: 0.8rem;
+      background-color: var(--primary);
+      color: #001f3f;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.3s, color 0.3s;
+    }
+    
+    .cert-buttons a:hover {
+      background-color: var(--primary-dark);
+      color: #fff;
+    }
+    
+    .nav-brand {
+      position: relative;
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+    
+    .nav-brand::after {
+      content: "|";
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+      color: var(--primary);
+    }
+    
+    @keyframes blink {
+      from, to { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    .no-cert-message {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-light);
+      font-style: italic;
+      background-color: var(--primary-light);
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 255, 255, 0.3);
+    }
+
+    [data-theme="light"] .no-cert-message {
+      border: 1px dashed rgba(0, 136, 204, 0.3);
+    }
+
+    /* Navigation thème clair */
+    [data-theme="light"] nav {
+      background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    [data-theme="light"] nav ul li a {
+      color: var(--text-light);
+    }
+
+    [data-theme="light"] nav ul li.active a,
+    [data-theme="light"] nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    [data-theme="light"] #networkCanvas {
+      background: radial-gradient(ellipse at center, #e6f2ff 0%, #d9e8ff 100%);
+      border-top: 1.5px solid var(--primary);
+      border-bottom: 1.5px solid var(--primary);
+      box-shadow: inset 0 0 60px rgba(0, 136, 204, 0.3), 0 0 20px rgba(0, 136, 204, 0.2);
+    }
+    
+    @media (max-width: 768px) {
+      section { padding: 1rem; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .cert-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+      }
+      .cert-icon { margin: 0 0 1rem 0; }
+      .modules-list { grid-template-columns: 1fr; }
+      .cert-buttons { flex-direction: column; }
+      #nav-menu { display: none; }
+      #nav-menu.active { display: block; }
+    }
+
+    /* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
+    footer {
+      text-align: center;
+      padding: 1.5rem 0;
+      background-color: #001f3f !important; /* Force le thème sombre */
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+      margin-top: 2rem;
+    }
+    
+    /* EMPÊCHE LE THÈME CLAIR DE MODIFIER LE FOOTER */
+    [data-theme="light"] footer {
+      /* Aucune modification - reste en thème sombre */
+      background-color: #001f3f !important;
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand" id="animated-name"></div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+    <ul id="nav-menu">
+      <li><a href="accueil.html">Accueil</a></li>
+      <li><a href="profil.html">Profil</a></li>
+      <li><a href="bts-sio.html">BTS SIO</a></li>
+       <li><a href="formation.html">Formation</a></li>
+      <li><a href="situation-professionnelle.html">Situation Professionnelle</a></li>
+      <li class="active"><a href="certificat.html">Certificat</a></li>
+      <li><a href="veille-technologique.html">Veille Technologique</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="mentions-legales.html">Mentions légales</a></li>
+    </ul>
+  </nav>
+
+  <canvas id="networkCanvas"></canvas>
+
+  <main>
+    <section id="certifications" aria-label="Certifications">
+      <h2><i class="fas fa-certificate"></i> Mes Certifications</h2>
+      <p>Voici mes certifications officielles obtenues dans le cadre de formations reconnues par les institutions françaises. Ces attestations valident mes compétences en protection des données, cybersécurité et compétences numériques.</p>
+
+      <div class="cert-category">
+        <h3><i class="fas fa-shield-alt"></i> Protection des Données & Cybersécurité</h3>
+        
+        <div class="cert-category">
+          <h3 class="category-title"><i class="fas fa-user-shield"></i> Atelier RGPD – CNIL (6 Attestations)</h3>
+          <div class="cert-grid">
+            <div class="cert-card">
+              <div class="cert-header">
+                <div class="cert-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="cert-title">
+                  <h3>Module 1 : RGPD Notions Clés</h3>
+                  <p>Commission Nationale de l'Informatique et des Libertés</p>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div class="cert-summary">
+                  <p><strong>Sujet :</strong> Le RGPD et ses notions clés</p>
+                  <p><strong>Statut :</strong> 100% terminé</p>
+                  <p><strong>Contenu :</strong> Bases du règlement, définitions, champs d'application</p>
+                </div>
+                <div class="cert-buttons">
+                  <a href="../doc/MOD1Certificat_.pdf" target="_blank"><i class="fas fa-eye"></i> Voir</a>
+                  <a href="../doc/MOD1Certificat_.pdf" download><i class="fas fa-download"></i> Télécharger</a>
+                </div>
+              </div>
+            </div>
+            <div class="cert-card">
+              <div class="cert-header">
+                <div class="cert-icon"><i class="fas fa-balance-scale"></i></div>
+                <div class="cert-title">
+                  <h3>Module 2 : Principes Protection</h3>
+                  <p>Commission Nationale de l'Informatique et des Libertés</p>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div class="cert-summary">
+                  <p><strong>Sujet :</strong> Principes de protection des données</p>
+                  <p><strong>Statut :</strong> 100% terminé</p>
+                  <p><strong>Contenu :</strong> Licéité, finalité, minimisation, exactitude</p>
+                </div>
+                <div class="cert-buttons">
+                  <a href="../doc/MOD2Attestation_de_suivi.pdf" target="_blank"><i class="fas fa-eye"></i> Voir</a>
+                  <a href="../doc/MOD2Attestation_de_suivi.pdf" download><i class="fas fa-download"></i> Télécharger</a>
+                </div>
+              </div>
+            </div>
+            <div class="cert-card">
+              <div class="cert-header">
+                <div class="cert-icon"><i class="fas fa-users"></i></div>
+                <div class="cert-title">
+                  <h3>Module 3 : Responsabilités Acteurs</h3>
+                  <p>Commission Nationale de l'Informatique et des Libertés</p>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div class="cert-summary">
+                  <p><strong>Sujet :</strong> Responsabilités des acteurs</p>
+                  <p><strong>Statut :</strong> 100% terminé</p>
+                  <p><strong>Contenu :</strong> Responsables, sous-traitants, co-responsables</p>
+                </div>
+                <div class="cert-buttons">
+                  <a href="../doc/MOD3Certificat_.pdf" target="_blank"><i class="fas fa-eye"></i> Voir</a>
+                  <a href="../doc/MOD3Certificat_.pdf" download><i class="fas fa-download"></i> Télécharger</a>
+                </div>
+              </div>
+            </div>
+            <div class="cert-card">
+              <div class="cert-header">
+                <div class="cert-icon"><i class="fas fa-tools"></i></div>
+                <div class="cert-title">
+                  <h3>Module 4 : DPO & Outils</h3>
+                  <p>Commission Nationale de l'Informatique et des Libertés</p>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div class="cert-summary">
+                  <p><strong>Sujet :</strong> DPO et outils de conformité</p>
+                  <p><strong>Statut :</strong> 100% terminé</p>
+                  <p><strong>Contenu :</strong> Rôle DPO, registre, PIA, mesures techniques</p>
+                </div>
+                <div class="cert-buttons">
+                  <a href="../doc/MOD4Certificat_.pdf" target="_blank"><i class="fas fa-eye"></i> Voir</a>
+                  <a href="../doc/MOD4Certificat_.pdf" download><i class="fas fa-download"></i> Télécharger</a>
+                </div>
+              </div>
+            </div>
+            <div class="cert-card">
+              <div class="cert-header">
+                <div class="cert-icon"><i class="fas fa-landmark"></i></div>
+                <div class="cert-title">
+                  <h3>Module 5 : Collectivités</h3>
+                  <p>Commission Nationale de l'Informatique et des Libertés</p>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div class="cert-summary">
+                  <p><strong>Sujet :</strong> Collectivités territoriales</p>
+                  <p><strong>Statut :</strong> 100% terminé</p>
+                  <p><strong>Contenu :</strong> Spécificités secteur public, délégations</p>
+                </div>
+                <div class="cert-buttons">
+                  <a href="../doc/MOD5Certificat_.pdf" target="_blank"><i class="fas fa-eye"></i> Voir</a>
+                  <a href="../doc/MOD5Certificat_.pdf" download><i class="fas fa-download"></i> Télécharger</a>
+                </div>
+              </div>
+            </div>
+            <div class="cert-card">
+              <div class="cert-header">
+                <div class="cert-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="cert-title">
+                  <h3>Module 6 : Travail & Données</h3>
+                  <p>Commission Nationale de l'Informatique et des Libertés</p>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div class="cert-summary">
+                  <p><strong>Sujet :</strong> Travail et données personnelles</p>
+                  <p><strong>Statut :</strong> 100% terminé</p>
+                  <p><strong>Contenu :</strong> Données salariés, recrutement, surveillance</p>
+                </div>
+                <div class="cert-buttons">
+                  <a href="../doc/MOD6Attestation_de_suivi.pdf" target="_blank"><i class="fas fa-eye"></i> Voir</a>
+                  <a href="../doc/MOD6Attestation_de_suivi.pdf" download><i class="fas fa-download"></i> Télécharger</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cert-grid">
+          <div class="cert-card">
+            <div class="cert-header">
+              <div class="cert-icon"><i class="fas fa-lock"></i></div>
+              <div class="cert-title">
+                <h3>SecNum Académie (ANSSI)</h3>
+                <p>Agence Nationale de la Sécurité des Systèmes d'Information</p>
+              </div>
+            </div>
+            <div class="cert-content">
+              <div class="cert-summary">
+                <p><strong>Organisme :</strong> ANSSI</p>
+                <p><strong>Date d'obtention :</strong> 26 Décembre 2025</p>
+                <p><strong>Type :</strong> Attestation de formation en ligne</p>
+                <p><strong>Objectif :</strong> Sensibilisation aux bonnes pratiques de cybersécurité</p>
+                <div class="stats-grid">
+                  <div class="stat-item"><div class="stat-value">100%</div><div class="stat-label">Progression globale</div></div>
+                  <div class="stat-item"><div class="stat-value">87%</div><div class="stat-label">Score moyen</div></div>
+                  <div class="stat-item"><div class="stat-value">4</div><div class="stat-label">Modules validés</div></div>
+                  <div class="stat-item"><div class="stat-value">>80%</div><div class="stat-label">Score minimum</div></div>
+                </div>
+                <div class="modules-container">
+                  <div class="module-title"><i class="fas fa-chart-bar"></i>Résultats par module</div>
+                  <div class="modules-list">
+                    <div class="module-item"><div><strong>PANORAMA DE LA SSI</strong><div class="progress-indicator"><span class="score-badge">86.0%</span> 100% complété</div></div></div>
+                    <div class="module-item"><div><strong>SÉCURITÉ DE L'AUTHENTIFICATION</strong><div class="progress-indicator"><span class="score-badge">88.0%</span> 100% complété</div></div></div>
+                    <div class="module-item"><div><strong>SÉCURITÉ SUR INTERNET</strong><div class="progress-indicator"><span class="score-badge">90.0%</span> 100% complété</div></div></div>
+                    <div class="module-item"><div><strong>SÉCURITÉ DU POSTE DE TRAVAIL</strong><div class="progress-indicator"><span class="score-badge">82.0%</span> 100% complété</div></div></div>
+                  </div>
+                </div>
+                <p><em>Attestation délivrée après validation des 4 modules avec un score supérieur à 80% pour chaque module.</em></p>
+              </div>
+              <div class="cert-buttons">
+                <a href="../doc/secnum (2).pdf" target="_blank"><i class="fas fa-eye"></i> Voir l'attestation</a>
+                <a href="../doc/secnum (2).pdf" download><i class="fas fa-download"></i> Télécharger</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<div class="cert-category">
+  <h3><i class="fas fa-server"></i> Formation Active Directory</h3>
+  <div class="cert-category">
+    <h3 class="category-title"><i class="fas fa-certificate"></i> Badges Microsoft Learn (5 Modules Validés)</h3>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-header">
+          <div class="cert-icon"><i class="fas fa-cogs"></i></div>
+          <div class="cert-title">
+            <h3>Implémenter des objets de stratégie de groupe</h3>
+            <p>Microsoft Learn</p>
+          </div>
+        </div>
+        <div class="cert-content">
+          <div class="cert-summary">
+            <p><strong>Module :</strong> Parcours d'apprentissage Active Directory</p>
+            <p><strong>Statut :</strong> Évaluation réussie</p>
+            <p><strong>Date d'obtention :</strong> 26/11/2025</p>
+            <p><strong>Contenu :</strong> Création et gestion des objets GPO (Group Policy Objects), application des politiques de sécurité et configuration</p>
+          </div>
+          <div class="cert-buttons">
+            <a href="../doc/Succès digitaux1 ayoubbenlamferred-3263 _ Microsoft Learn.pdf" target="_blank"><i class="fas fa-eye"></i> Voir le badge</a>
+            <a href="../doc/Succès digitaux1 ayoubbenlamferred-3263 _ Microsoft Learn.pdf" download><i class="fas fa-download"></i> Télécharger</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-header">
+          <div class="cert-icon"><i class="fas fa-tachometer-alt"></i></div>
+          <div class="cert-title">
+            <h3>Gérer les fonctionnalités avancées d'AD DS</h3>
+            <p>Microsoft Learn</p>
+          </div>
+        </div>
+        <div class="cert-content">
+          <div class="cert-summary">
+            <p><strong>Module :</strong> Parcours d'apprentissage Active Directory</p>
+            <p><strong>Statut :</strong> Évaluation réussie</p>
+            <p><strong>Date d'obtention :</strong> 26/11/2025</p>
+            <p><strong>Contenu :</strong> Fonctionnalités avancées d'Active Directory Domain Services, réplication, sites et services</p>
+          </div>
+          <div class="cert-buttons">
+            <a href="../doc/Succès digitaux2- ayoubbenlamferred-3263 _ Microsoft Learn.pdf" target="_blank"><i class="fas fa-eye"></i> Voir le badge</a>
+            <a href="../doc/Succès digitaux2- ayoubbenlamferred-3263 _ Microsoft Learn.pdf" download><i class="fas fa-download"></i> Télécharger</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-header">
+          <div class="cert-icon"><i class="fas fa-lock"></i></div>
+          <div class="cert-title">
+            <h3>Implémenter et gérer des services de certificats Active Directory</h3>
+            <p>Microsoft Learn</p>
+          </div>
+        </div>
+        <div class="cert-content">
+          <div class="cert-summary">
+            <p><strong>Module :</strong> Parcours d'apprentissage Active Directory</p>
+            <p><strong>Statut :</strong> Évaluation réussie</p>
+            <p><strong>Date d'obtention :</strong> 26/11/2025</p>
+            <p><strong>Contenu :</strong> PKI (Public Key Infrastructure), certificats numériques, autorités de certification AD CS</p>
+          </div>
+          <div class="cert-buttons">
+            <a href="../doc/Succès digitaux3 - ayoubbenlamferred-3263 _ Microsoft Learn.pdf" target="_blank"><i class="fas fa-eye"></i> Voir le badge</a>
+            <a href="../doc/Succès digitaux3 - ayoubbenlamferred-3263 _ Microsoft Learn.pdf" download><i class="fas fa-download"></i> Télécharger</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-header">
+          <div class="cert-icon"><i class="fas fa-chess-king"></i></div>
+          <div class="cert-title">
+            <h3>Gérer les contrôleurs de domaine AD DS et les rôles FSMO</h3>
+            <p>Microsoft Learn</p>
+          </div>
+        </div>
+        <div class="cert-content">
+          <div class="cert-summary">
+            <p><strong>Module :</strong> Parcours d'apprentissage Active Directory</p>
+            <p><strong>Statut :</strong> Évaluation réussie</p>
+            <p><strong>Date d'obtention :</strong> 26/11/2025</p>
+            <p><strong>Contenu :</strong> Contrôleurs de domaine, rôles FSMO (Flexible Single Master Operations), maintenance AD DS</p>
+          </div>
+          <div class="cert-buttons">
+            <a href="../doc/Succès digitaux4 - ayoubbenlamferred-3263 _ Microsoft Learn.pdf" target="_blank"><i class="fas fa-eye"></i> Voir le badge</a>
+            <a href="../doc/Succès digitaux4 - ayoubbenlamferred-3263 _ Microsoft Learn.pdf" download><i class="fas fa-download"></i> Télécharger</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-header">
+          <div class="cert-icon"><i class="fas fa-sitemap"></i></div>
+          <div class="cert-title">
+            <h3>Modules Active Directory</h3>
+            <p>Microsoft Learn</p>
+          </div>
+        </div>
+        <div class="cert-content">
+          <div class="cert-summary">
+            <p><strong>Parcours complet :</strong> Administration Active Directory</p>
+            <p><strong>Statut :</strong> 5 modules validés</p>
+            <p><strong>Date de complétion :</strong> 26/11/2025</p>
+            <p><strong>Compétences acquises :</strong> Gestion complète d'infrastructure AD, stratégies de groupe, sécurité, certificats, haute disponibilité</p>
+            <div class="modules-list">
+              <strong>Modules validés :</strong><br>
+              • Implémenter des objets de stratégie de groupe<br>
+              • Gérer les fonctionnalités avancées d'AD DS<br>
+              • Implémenter et gérer des services de certificats Active Directory<br>
+              • Gérer les contrôleurs de domaine AD DS et les rôles FSMO<br>
+              • Modules divers Active Directory
+            </div>
+          </div>
+          <div class="cert-buttons">
+            <a href="../doc/Succès digitaux5 - ayoubbenlamferred-3263 _ Microsoft Learn.pdf" target="_blank"><i class="fas fa-eye"></i> Voir le parcours</a>
+            <a href="../doc/Succès digitaux5 - ayoubbenlamferred-3263 _ Microsoft Learn.pdf" download><i class="fas fa-download"></i> Télécharger</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+      <div class="cert-category">
+        <h3><i class="fas fa-laptop-code"></i> Compétences Numériques</h3>
+        <div class="cert-category">
+          <h3 class="category-title"><i class="fas fa-star"></i> Certification PIX</h3>
+          <div class="cert-grid">
+            <div class="cert-card">
+              <div class="cert-header">
+                <div class="cert-icon"><i class="fas fa-star"></i></div>
+                <div class="cert-title">
+                  <h3>Certification PIX</h3>
+                  <p>Ministère de l'Éducation Nationale</p>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div class="cert-summary">
+                  <p><strong>Nom :</strong> Ayoub BENLAMFERRED</p>
+                  <p><strong>Date de naissance :</strong> 17/11/1999 à IVRY SUR SEINE</p>
+                  <p><strong>Centre de certification :</strong> ELAN FORMATION (STR)</p>
+                  <p><strong>Délivrée le :</strong> 11/01/2024</p>
+                  <p><strong>Code de vérification :</strong> P-G63R769J</p>
+                  <div class="modules-summary">
+                    <div class="module-count"><i class="fas fa-trophy"></i> Compétences certifiées</div>
+                    <div class="module-list">
+                      <strong>Communication et collaboration :</strong><br>
+                      • Interagir : Niveau 3<br>
+                      • Partager et publier : Niveau 6<br>
+                      • Collaborer : Niveau 2<br>
+                      • S'insérer dans le monde numérique : Niveau 4<br><br>
+                      <strong>Création de contenu :</strong><br>
+                      • Développer des documents multimédia : Niveau 2<br>
+                      • Adapter les documents à leur finalité : Niveau 2<br>
+                      • Programmer : Niveau 1<br><br>
+                      <strong>Protection et sécurité :</strong><br>
+                      • Sécuriser l'environnement numérique : Niveau 4<br>
+                      • Protéger les données personnelles : Niveau 3<br>
+                      • Protéger la santé, le bien-être : Niveau 3<br><br>
+                      <strong>Environnement numérique :</strong><br>
+                      • Résoudre des problèmes techniques : Niveau 3<br>
+                      • Construire un environnement numérique : Niveau 4
+                    </div>
+                  </div>
+                  <p><em>Le certificat Pix est reconnu comme professionnalisant par France compétences.</em></p>
+                </div>
+                <div class="cert-buttons">
+                  <a href="../doc/certification-pix-20240111 (1).pdf" target="_blank"><i class="fas fa-eye"></i> Voir la certification</a>
+                  <a href="../doc/certification-pix-20240111 (1).pdf" download><i class="fas fa-download"></i> Télécharger</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="no-cert-message">
+        <h3><i class="fas fa-rocket"></i> Certifications en préparation</h3>
+        <p>D'autres certifications techniques sont actuellement en cours de préparation et viendront compléter ce portfolio professionnel.</p>
+      </div>
+    </section>
+  </main>
+<!-- BOUTONS DE CONTRÔLE DE PAGE -->
+<div class="page-controls">
+  <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
+    <i class="fas fa-moon"></i>
+    <span class="sr-only">Changer le thème</span>
+  </button>
+  <button class="control-btn" id="backToTop" aria-label="Retour en haut de la page">
+    <i class="fas fa-arrow-up"></i>
+    <span class="sr-only">Retour en haut</span>
+  </button>
+</div>
+  <script src="../js/script.js"></script>
+  <script>
+    function animateName() {
+      const fullName = "Ayoub Benlamferred";
+      const nameElement = document.getElementById('animated-name');
+      let i = 0;
+      function typeWriter() {
+        if (i < fullName.length) {
+          nameElement.textContent = fullName.substring(0, i + 1);
+          i++;
+          setTimeout(typeWriter, 150);
+        }
+      }
+      setTimeout(typeWriter, 150);
+    }
+    function setupMenu() {
+      const toggleBtn = document.querySelector('.nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      toggleBtn.addEventListener('click', () => {
+        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+        navMenu.classList.toggle('active');
+        toggleBtn.setAttribute('aria-expanded', !isExpanded);
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      animateName();
+      setupMenu();
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Ayoub Benlamferred — Tous droits réservés.</p>
+  </footer>
+</body>
+</html>

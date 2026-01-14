@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ayoub Benlamferred - Profil</title>
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="../fav/favicon.ico" type="image/x-icon" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #00ffff;
+      white-space: nowrap;
+    }
+    
+    .nav-brand::after {
+      content: "|";
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    }
+    
+    /* ===== THÈME CLAIR COMPLET (SAUF FOOTER) ===== */
+    
+    :root {
+      --primary: #00ffff;
+      --primary-light: rgba(0, 255, 255, 0.1);
+      --primary-dark: #00a8ff;
+      --bg-dark: #001a2a;
+      --bg-card: rgba(0, 26, 42, 0.7);
+      --text-light: #a0c7d9;
+      --text-lighter: #cce7ff;
+      --transition-speed: 0.3s;
+    }
+    
+    [data-theme="light"] {
+      --primary: #0088cc;
+      --primary-light: rgba(0, 136, 204, 0.1);
+      --primary-dark: #006699;
+      --bg-dark: #f8faff;
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --text-light: #333333;
+      --text-lighter: #000000;
+    }
+    
+    /* Application du thème clair (sauf footer) */
+    [data-theme="light"] body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+    
+    [data-theme="light"] .nav-brand {
+      color: var(--primary);
+    }
+    
+    [data-theme="light"] nav {
+      background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
+      border-bottom: 2px solid var(--primary);
+    }
+    
+    [data-theme="light"] nav ul li a {
+      color: var(--text-light);
+    }
+    
+    [data-theme="light"] nav ul li.active a,
+    [data-theme="light"] nav ul li a:hover {
+      color: var(--primary);
+    }
+    
+    [data-theme="light"] #networkCanvas {
+      background: radial-gradient(ellipse at center, #e6f2ff 0%, #d9e8ff 100%);
+      border-top: 1.5px solid var(--primary);
+      border-bottom: 1.5px solid var(--primary);
+      box-shadow: inset 0 0 60px rgba(0, 136, 204, 0.3), 0 0 20px rgba(0, 136, 204, 0.2);
+    }
+    
+    /* Section profil */
+    #profil {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    
+    [data-theme="light"] #profil h2 {
+      color: var(--primary);
+      text-shadow: 0 0 10px rgba(0, 136, 204, 0.3);
+    }
+    
+    /* Présentation */
+    .presentation {
+      background: var(--bg-card);
+      border-radius: 15px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: all var(--transition-speed) ease;
+    }
+    
+    [data-theme="light"] .presentation {
+      background: var(--bg-card);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .presentation img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid var(--primary);
+      object-fit: cover;
+      display: block;
+      margin: -20px auto 1.5rem;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      transition: all var(--transition-speed) ease;
+    }
+    
+    .presentation img:hover {
+      transform: scale(1.05);
+      border-color: var(--primary-dark);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+    }
+    
+    [data-theme="light"] .presentation img {
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 20px rgba(0, 136, 204, 0.3);
+    }
+    
+    .presentation p {
+      color: var(--text-light);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+    }
+    
+    [data-theme="light"] .presentation p {
+      color: var(--text-light);
+    }
+    
+    .presentation strong {
+      color: var(--primary);
+    }
+    
+    [data-theme="light"] .presentation strong {
+      color: var(--primary);
+    }
+    
+    /* Bouton CV */
+    .cv-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary);
+      color: #000000;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1.5rem;
+      transition: all var(--transition-speed) ease;
+      border: 2px solid var(--primary);
+      font-size: 1rem;
+    }
+    
+    .cv-button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+    }
+    
+    [data-theme="light"] .cv-button {
+      background: var(--primary);
+      color: #ffffff;
+    }
+    
+    [data-theme="light"] .cv-button:hover {
+      background: var(--primary-dark);
+      box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
+    }
+    
+    /* Sections blocs */
+    .section-block {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.8rem;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s forwards;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: all var(--transition-speed) ease;
+    }
+    
+    .section-block:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
+    }
+    
+    [data-theme="light"] .section-block {
+      background: var(--bg-card);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    [data-theme="light"] .section-block:hover {
+      border-color: var(--primary);
+      box-shadow: 0 10px 25px rgba(0, 136, 204, 0.2);
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Titres de sections */
+    .section-title {
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.4rem;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      padding-bottom: 0.5rem;
+    }
+    
+    [data-theme="light"] .section-title {
+      color: var(--primary);
+      border-bottom: 1px solid rgba(0, 136, 204, 0.2);
+    }
+    
+    /* Compétences */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+    
+    .skill-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      font-size: 0.95rem;
+      transition: all var(--transition-speed) ease;
+    }
+    
+    .skill-tag:hover {
+      background: rgba(0, 255, 255, 0.2);
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+    
+    [data-theme="light"] .skill-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid rgba(0, 136, 204, 0.3);
+    }
+    
+    [data-theme="light"] .skill-tag:hover {
+      background: rgba(0, 136, 204, 0.2);
+    }
+    
+    /* Grille deux colonnes */
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+    
+    /* Texte */
+    .section-block p {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin: 0;
+      font-size: 1rem;
+    }
+    
+    [data-theme="light"] .section-block p {
+      color: var(--text-light);
+    }
+    
+    /* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #001f3f !important; /* Force le thème sombre */
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+      margin-top: 2rem;
+    }
+    
+    /* EMPÊCHE LE THÈME CLAIR DE MODIFIER LE FOOTER */
+    [data-theme="light"] footer {
+      /* Aucune modification - reste en thème sombre */
+      background-color: #001f3f !important;
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .two-columns {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      
+      .presentation {
+        padding: 2rem 1.5rem;
+      }
+      
+      .presentation img {
+        width: 150px;
+        height: 150px;
+        margin: -20px auto 1.5rem;
+      }
+    }
+    
+    /* Animation du curseur */
+    @keyframes blink {
+      from, to { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand" id="animated-name">Ayoub Benlamferred</div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+    <ul id="nav-menu">
+      <li><a href="accueil.html">Accueil</a></li>
+      <li class="active"><a href="profil.html">Profil</a></li>
+      <li><a href="bts-sio.html">BTS SIO</a></li>
+      <li><a href="formation.html">Formation</a></li>
+      <li><a href="situation-professionnelle.html">Situation Professionnelle</a></li>
+       <li><a href="certificat.html" data-i18n="nav_gestion">Certificat</a></li>
+      <li><a href="veille-technologique.html">Veille Technologique</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="mentions-legales.html">Mentions légales</a></li>
+    </ul>
+  </nav>
+
+  <canvas id="networkCanvas"></canvas>
+
+  <main>
+    <section id="profil">
+      <h2>Mon Profil</h2>
+
+      <div class="presentation">
+        <img src="../images/img.jpg" alt="Photo de Ayoub Benlamferred">
+        <p><strong>Je m'appelle Ayoub Benlamferred</strong>, étudiant en <strong>BTS SIO option SISR</strong>, passionné par
+          l'administration systèmes et réseaux.</p>
+        <a href="../doc/CV (BTS SIO OPTION SISR).pdf" target="_blank" class="cv-button">
+          <i class="fas fa-download"></i> Télécharger mon CV
+        </a>
+      </div>
+
+      <div class="section-block">
+        <h3 class="section-title"><i class="fas fa-cogs"></i> Compétences techniques</h3>
+       <div class="skills">
+  <span class="skill-tag">Windows Server</span>
+  <span class="skill-tag">Linux : commandes de base</span>
+  <span class="skill-tag">Réseaux TCP/IP</span>
+  
+</div>
+
+      </div>
+
+      <div class="two-columns">
+        <div class="section-block">
+          <h3 class="section-title"><i class="fas fa-graduation-cap"></i> Diplôme </h3>
+          <p>BTS SIO option SISR (2024–2026)</p>
+        </div>
+
+        <div class="section-block">
+          <h3 class="section-title"><i class="fas fa-star"></i> Qualités</h3>
+          <p>Rigoureux, autonome, motivé, esprit d’équipe</p>
+        </div>
+      </div>
+    </section>
+  </main>
+<!-- BOUTONS DE CONTRÔLE DE PAGE -->
+<div class="page-controls">
+  <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
+    <i class="fas fa-moon"></i>
+    <span class="sr-only">Changer le thème</span>
+  </button>
+  <button class="control-btn" id="backToTop" aria-label="Retour en haut de la page">
+    <i class="fas fa-arrow-up"></i>
+    <span class="sr-only">Retour en haut</span>
+  </button>
+</div>
+  <footer>
+    <p>&copy; <span id="year"></span> Ayoub Benlamferred — Tous droits réservés.</p>
+  </footer>
+
+  <script src="../js/script.js"></script>
+
+  <script>
+    function animateName() {
+      const fullName = "Ayoub Benlamferred";
+      const el = document.getElementById("animated-name");
+      if (!el) return;
+
+      el.textContent = "";
+      let i = 0;
+
+      function type() {
+        if (i < fullName.length) {
+          el.textContent += fullName.charAt(i);
+          i++;
+          setTimeout(type, 250);
+        }
+      }
+      type();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      animateName();
+
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      const toggleBtn = document.querySelector(".nav-toggle");
+      const navMenu = document.getElementById("nav-menu");
+      if (toggleBtn && navMenu) {
+        toggleBtn.addEventListener("click", () => {
+          navMenu.classList.toggle("active");
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

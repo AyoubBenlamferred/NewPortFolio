@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ayoub Benlamferred - Mentions légales</title>
+  <meta name="description" content="Mentions légales du portfolio de Ayoub Benlamferred, étudiant en BTS SIO SISR.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../fav/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+/* =========================================== */
+/* STYLES POUR LA PAGE MENTIONS LÉGALES - THÈME SEULEMENT */
+/* =========================================== */
+
+/* Variables pour le thème (identique à contact.html) */
+:root {
+  --primary: #00ffff;
+  --primary-light: rgba(0, 255, 255, 0.1);
+  --primary-dark: #00a8ff;
+  --bg-dark: #001a2a;
+  --text-light: #a0c7d9;
+  --text-lighter: #cce7ff;
+  --transition-speed: 0.3s;
+  --footer-bg: #001f3f;
+  --footer-border: #00ffff;
+}
+
+[data-theme="light"] {
+  /* Variables mode clair (identique à contact.html) */
+  --primary: #0088cc;
+  --primary-light: rgba(0, 136, 204, 0.1);
+  --primary-dark: #006699;
+  --bg-dark: #f0f8ff;
+  --text-light: #333333;
+  --text-lighter: #000000;
+  --footer-bg: #e6f2ff;
+  --footer-border: #0088cc;
+}
+
+/* Application du thème clair au body */
+[data-theme="light"] body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* 1. Navigation - Change la couleur selon le thème */
+.nav-brand {
+  color: var(--primary); /* CHANGE avec thème */
+}
+
+.nav-brand::after {
+  color: var(--primary); /* CHANGE avec thème */
+}
+
+/* Navigation thème clair */
+[data-theme="light"] nav {
+  background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
+  border-bottom: 2px solid var(--primary);
+}
+
+[data-theme="light"] nav ul li a {
+  color: var(--text-light);
+}
+
+[data-theme="light"] nav ul li.active a,
+[data-theme="light"] nav ul li a:hover {
+  color: var(--primary);
+}
+
+[data-theme="light"] #networkCanvas {
+  background: radial-gradient(ellipse at center, #e6f2ff 0%, #d9e8ff 100%);
+  border-top: 1.5px solid var(--primary);
+  border-bottom: 1.5px solid var(--primary);
+  box-shadow: inset 0 0 60px rgba(0, 136, 204, 0.3), 0 0 20px rgba(0, 136, 204, 0.2);
+}
+
+/* 2. Éléments de la page mentions légales */
+.legal-container {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+
+/* Glass header */
+.glass-header {
+  background: linear-gradient(135deg, rgba(0, 31, 63, 0.7), rgba(0, 51, 102, 0.5));
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  border: 2px solid var(--primary); /* CHANGE avec thème */
+  box-shadow: 
+    0 20px 40px rgba(0, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="light"] .glass-header {
+  background: linear-gradient(135deg, rgba(230, 242, 255, 0.7), rgba(217, 232, 255, 0.5));
+  box-shadow: 
+    0 20px 40px rgba(0, 136, 204, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-header h1 {
+  color: var(--primary); /* CHANGE avec thème */
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+[data-theme="light"] .glass-header h1 {
+  text-shadow: 0 0 20px rgba(0, 136, 204, 0.3);
+}
+
+.glass-header p {
+  color: var(--text-light); /* CHANGE avec thème */
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 4rem auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--primary), transparent); /* CHANGE avec thème */
+  opacity: 0.5;
+}
+
+.timeline-content {
+  flex: 1;
+  padding: 2rem;
+  background: var(--bg-dark); /* CHANGE avec thème */
+  border-radius: 15px;
+  border: 1px solid var(--primary); /* CHANGE avec thème */
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="light"] .timeline-content {
+  box-shadow: 0 10px 30px rgba(0, 136, 204, 0.1);
+}
+
+.timeline-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary), #22d8f8); /* CHANGE avec thème */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2rem;
+  flex-shrink: 0;
+  z-index: 2;
+  border: 3px solid #000f1f;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+[data-theme="light"] .timeline-icon {
+  box-shadow: 0 0 20px rgba(0, 136, 204, 0.3);
+}
+
+.timeline-icon i {
+  font-size: 1.5rem;
+  color: #000f1f;
+}
+
+.timeline-content h3 {
+  color: var(--primary); /* CHANGE avec thème */
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.timeline-content p {
+  color: var(--text-light); /* CHANGE avec thème */
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+/* Info grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin: 4rem 0;
+}
+
+.info-card {
+  background: var(--bg-dark); /* CHANGE avec thème */
+  border-radius: 15px;
+  padding: 2rem;
+  border: 1px solid var(--primary); /* CHANGE avec thème */
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 255, 255, 0.15);
+  border-color: var(--primary); /* CHANGE avec thème */
+}
+
+[data-theme="light"] .info-card:hover {
+  box-shadow: 0 15px 35px rgba(0, 136, 204, 0.15);
+}
+
+.info-card h3 {
+  color: var(--primary); /* CHANGE avec thème */
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.info-card p {
+  color: var(--text-light); /* CHANGE avec thème */
+  line-height: 1.6;
+}
+
+/* Modern table */
+.modern-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 3rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-dark); /* CHANGE avec thème */
+  border: 1px solid var(--primary); /* CHANGE avec thème */
+}
+
+.modern-table thead {
+  background: linear-gradient(90deg, var(--primary), #22d8f8); /* CHANGE avec thème */
+}
+
+.modern-table th {
+  padding: 1.5rem;
+  text-align: left;
+  color: #000f1f;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.modern-table tbody tr {
+  transition: background-color 0.3s ease;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+[data-theme="light"] .modern-table tbody tr {
+  border-bottom: 1px solid rgba(0, 136, 204, 0.1);
+}
+
+.modern-table tbody tr:hover {
+  background-color: rgba(0, 255, 255, 0.05);
+}
+
+[data-theme="light"] .modern-table tbody tr:hover {
+  background-color: rgba(0, 136, 204, 0.05);
+}
+
+.modern-table td {
+  padding: 1.2rem 1.5rem;
+  color: var(--text-light); /* CHANGE avec thème */
+  border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+[data-theme="light"] .modern-table td {
+  border-bottom: 1px solid rgba(0, 136, 204, 0.1);
+}
+
+.modern-table td:first-child {
+  color: var(--primary); /* CHANGE avec thème */
+  font-weight: 500;
+  width: 40%;
+}
+
+/* Legal contact */
+.legal-contact {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 4rem 0;
+}
+
+.contact-card {
+  background: var(--bg-dark); /* CHANGE avec thème */
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--primary); /* CHANGE avec thème */
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 255, 255, 0.1);
+  border-color: var(--primary); /* CHANGE avec thème */
+}
+
+[data-theme="light"] .contact-card:hover {
+  box-shadow: 0 15px 35px rgba(0, 136, 204, 0.1);
+}
+
+.contact-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--primary), #22d8f8); /* CHANGE avec thème */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 1.8rem;
+  color: #000f1f;
+}
+
+.contact-card h3 {
+  color: var(--primary); /* CHANGE avec thème */
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.contact-card p {
+  color: var(--text-light); /* CHANGE avec thème */
+  line-height: 1.6;
+}
+
+/* Legal links */
+.legal-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 1.8rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+[data-theme="light"] .legal-links {
+  border-top: 1px solid rgba(0, 136, 204, 0.1);
+}
+
+.legal-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #22d8f8;
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  background: rgba(0, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+[data-theme="light"] .legal-link {
+  background: rgba(0, 136, 204, 0.05);
+  border: 1px solid rgba(0, 136, 204, 0.1);
+}
+
+.legal-link:hover {
+  color: var(--primary); /* CHANGE avec thème */
+  background: rgba(0, 255, 255, 0.1);
+  border-color: var(--primary); /* CHANGE avec thème */
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
+}
+
+[data-theme="light"] .legal-link:hover {
+  background: rgba(0, 136, 204, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 136, 204, 0.1);
+}
+
+.legal-link i {
+  font-size: 0.9rem;
+  color: var(--primary); /* CHANGE avec thème */
+}
+
+/* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #001f3f !important; /* Force le thème sombre */
+  border-top: 2px solid #00ffff !important;
+  color: #a0c7d9 !important;
+  margin-top: 2rem;
+}
+
+/* EMPÊCHE LE THÈME CLAIR DE MODIFIER LE FOOTER */
+[data-theme="light"] footer {
+  /* Aucune modification - reste en thème sombre */
+  background-color: #001f3f !important;
+  border-top: 2px solid #00ffff !important;
+  color: #a0c7d9 !important;
+}
+
+/* Boutons de contrôle */
+.page-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.control-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary); /* CHANGE avec thème */
+  color: var(--bg-dark); /* CHANGE avec thème */
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all var(--transition-speed) ease;
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+}
+
+[data-theme="light"] .control-btn {
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+}
+
+.control-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 255, 255, 0.4);
+}
+
+[data-theme="light"] .control-btn:hover {
+  box-shadow: 0 6px 16px rgba(0, 136, 204, 0.4);
+}
+
+.theme-toggle {
+  background: var(--bg-dark); /* CHANGE avec thème */
+  color: var(--primary); /* CHANGE avec thème */
+  border: 2px solid var(--primary); /* CHANGE avec thème */
+}
+
+/* Thème clair pour boutons */
+[data-theme="light"] .control-btn:not(.theme-toggle) {
+  background: var(--primary);
+  color: var(--bg-dark);
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .timeline::before {
+    left: 30px;
+  }
+  
+  .timeline-item {
+    flex-direction: row !important;
+    margin-left: 60px;
+  }
+  
+  .timeline-icon {
+    position: absolute;
+    left: -90px;
+    margin: 0;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .glass-header {
+    padding: 2rem 1rem;
+  }
+  
+  .glass-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .modern-table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .legal-container {
+    padding: 0 1rem;
+  }
+  
+  .legal-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .legal-link {
+    justify-content: center;
+    text-align: center;
+    padding: 1.2rem 1rem;
+  }
+  
+  .page-controls {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .control-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-item {
+    margin-left: 40px;
+  }
+  
+  .timeline-icon {
+    left: -70px;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .glass-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .page-controls {
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .control-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+</style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand" id="animated-name"></div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+    <ul id="nav-menu">
+      <li><a href="accueil.html">Accueil</a></li>
+      <li><a href="profil.html">Profil</a></li>
+      <li><a href="bts-sio.html">BTS SIO</a></li>
+      <li><a href="formation.html">Formation</a></li>
+      <li><a href="situation-professionnelle.html">Situation Professionnelle</a></li>
+       <li><a href="certificat.html" data-i18n="nav_gestion">Certificat</a></li>
+      <li><a href="veille-technologique.html">Veille Technologique</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="active"><a href="mentions-legales.html">Mentions légales</a></li>
+    </ul>
+  </nav>
+
+  <canvas id="networkCanvas"></canvas>
+
+  <div class="legal-container">
+    <!-- En-tête avec effet glassmorphism -->
+    <div class="glass-header">
+      <h1><i class="fas fa-scale-balanced"></i> Mentions Légales</h1>
+      <p>Informations légales et cadre juridique de ce portfolio professionnel</p>
+    </div>
+
+    <!-- Timeline verticale pour le parcours juridique -->
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <div class="timeline-content">
+          <h3><i class="fas fa-id-card"></i> Identification du site</h3>
+          <p>Ce portfolio est la propriété exclusive de <strong>Ayoub Benlamferred</strong>, étudiant en BTS SIO option SISR.</p>
+          <p>Le site a pour vocation de présenter un parcours professionnel et académique dans le domaine des systèmes informatiques.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-icon">
+          <i class="fas fa-copyright"></i>
+        </div>
+        <div class="timeline-content">
+          <h3><i class="fas fa-balance-scale"></i> Propriété intellectuelle</h3>
+          <p>Tous les éléments composant ce site (textes, images, graphismes, logo, code source) sont protégés par les lois en vigueur sur la propriété intellectuelle.</p>
+          <p>Toute reproduction, représentation, modification, publication ou adaptation est soumise à autorisation préalable.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="timeline-content">
+          <h3><i class="fas fa-database"></i> Protection des données</h3>
+          <p>Conformément au Règlement Général sur la Protection des Données (RGPD), ce site ne collecte aucune donnée personnelle.</p>
+          <p>Aucun traitement de données personnelles n'est effectué, et aucun cookie de suivi n'est utilisé.</p>
+          <div class="legal-links">
+            <a href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees" target="_blank" rel="noopener noreferrer" class="legal-link">
+              <i class="fas fa-external-link-alt"></i> En savoir plus sur le RGPD
+            </a>
+            <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" class="legal-link">
+              <i class="fas fa-landmark"></i> Site officiel de la CNIL
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grille d'informations principales -->
+    <div class="info-grid">
+      <div class="info-card">
+        <h3><i class="fas fa-info-circle"></i> Informations générales</h3>
+        <p>Site réalisé dans le cadre d'une formation BTS SIO (Services Informatiques aux Organisations), option SISR (Solutions d'Infrastructure, Systèmes et Réseaux).</p>
+      </div>
+      
+      <div class="info-card">
+        <h3><i class="fas fa-server"></i> Hébergement</h3>
+        <p>Le site est hébergé sur GitHub Pages, service fourni par GitHub Inc., dont le siège social est situé à San Francisco, Californie, États-Unis.</p>
+      </div>
+      
+      <div class="info-card">
+        <h3><i class="fas fa-cookie-bite"></i> Politique des cookies</h3>
+        <p>Ce site utilise uniquement des cookies techniques essentiels à son fonctionnement. Aucun cookie de suivi ou de publicité n'est déposé.</p>
+      </div>
+    </div>
+
+    <!-- Tableau des informations techniques -->
+    <table class="modern-table">
+      <thead>
+        <tr>
+          <th colspan="2">Informations techniques et juridiques</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nom du site</td>
+          <td>Portfolio de Ayoub Benlamferred</td>
+        </tr>
+        <tr>
+          <td>Propriétaire</td>
+          <td>Ayoub Benlamferred</td>
+        </tr>
+        <tr>
+          <td>Responsable publication</td>
+          <td>Ayoub Benlamferred</td>
+        </tr>
+        <tr>
+          <td>Hébergeur</td>
+          <td>GitHub Pages – GitHub Inc.</td>
+        </tr>
+        <tr>
+          <td>Date de mise à jour</td>
+          <td>Dernière mise à jour : <span id="currentDate"></span></td>
+        </tr>
+        <tr>
+          <td>Technologies utilisées</td>
+          <td>HTML5, CSS3, JavaScript, FontAwesome, Google Fonts</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Section contact -->
+    <div class="legal-contact">
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-gavel"></i>
+        </div>
+        <h3>Cadre légal</h3>
+        <p>Ce site respecte les lois françaises et européennes en matière de publication web et de protection des données.</p>
+      </div>
+      
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h3>Limitations</h3>
+        <p>L'auteur décline toute responsabilité quant aux éventuelles erreurs ou omissions présentes sur le site.</p>
+      </div>
+      
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-link"></i>
+        </div>
+        <h3>Liens externes</h3>
+        <p>Les liens vers des sites tiers ne sauraient engager la responsabilité du propriétaire de ce site.</p>
+      </div>
+    </div>
+  </div>
+<!-- BOUTONS DE CONTRÔLE DE PAGE -->
+<div class="page-controls">
+  <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
+    <i class="fas fa-moon"></i>
+    <span class="sr-only">Changer le thème</span>
+  </button>
+  <button class="control-btn" id="backToTop" aria-label="Retour en haut de la page">
+    <i class="fas fa-arrow-up"></i>
+    <span class="sr-only">Retour en haut</span>
+  </button>
+</div>
+  <footer>
+    <p>&copy; <span id="year"></span> Ayoub Benlamferred — Tous droits réservés.</p>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script>
+    // Animation du nom
+    function animateName() {
+      const fullName = "Ayoub Benlamferred";
+      const nameElement = document.getElementById('animated-name');
+      let i = 0;
+      function typeWriter() {
+        if (i < fullName.length) {
+          nameElement.textContent = fullName.substring(0, i + 1);
+          i++;
+          setTimeout(typeWriter, 150);
+        }
+      }
+      setTimeout(typeWriter, 150);
+    }
+
+    // Menu burger
+    function setupMenu() {
+      const toggleBtn = document.querySelector('.nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      toggleBtn.addEventListener('click', () => {
+        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+        navMenu.classList.toggle('active');
+        toggleBtn.setAttribute('aria-expanded', !isExpanded);
+      });
+    }
+
+    // Date actuelle
+    function setCurrentDate() {
+      const date = new Date();
+      const options = { day: 'numeric', month: 'long', year: 'numeric' };
+      document.getElementById('currentDate').textContent = date.toLocaleDateString('fr-FR', options);
+    }
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+      animateName();
+      setupMenu();
+      setCurrentDate();
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

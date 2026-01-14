@@ -1,0 +1,585 @@
+
+/* RESET ET BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #121212;
+  color: #e0f7ff;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  color: #22d8f8;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #00ffff;
+}
+
+/* NAVIGATION */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  background: linear-gradient(90deg, #0a192f, #001f3f);
+  box-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
+  border-bottom: 2px solid #00ffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 1000;
+}
+
+/* NOM DANS LA NAVBAR */
+.nav-brand {
+  color: #00ffff;
+  font-size: 1.5rem; /* taille fixe identique partout */
+  font-weight: 700;
+  cursor: default;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+nav ul li {
+  position: relative;
+}
+nav ul li a {
+  color: #22d8f8;
+  font-size: 1rem;
+  position: relative;
+}
+nav ul li.active a,
+nav ul li a:hover {
+  color: #00ffff;
+}
+nav ul li.active a::after,
+nav ul li a:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: #00ffff;
+  box-shadow: 0 0 8px #00ffff;
+}
+
+/* Canvas réseau */
+#networkCanvas {
+  display: block;
+  width: 100%;
+  height: 280px;
+  margin-top: 56px;
+  background: radial-gradient(ellipse at center, #001a2a 0%, #000913 100%);
+  border-top: 1.5px solid #00ffff;
+  border-bottom: 1.5px solid #00ffff;
+  box-shadow: inset 0 0 60px #00ffff55, 0 0 20px #00ffff33;
+  image-rendering: crisp-edges;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  animation: canvasPulse 8s infinite alternate;
+}
+@keyframes canvasPulse {
+  0% { opacity: 0.95; box-shadow: inset 0 0 60px #00ffff55; }
+  100% { opacity: 1; box-shadow: inset 0 0 90px #00ffffaa; }
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  #networkCanvas {
+    border-width: 1px;
+    box-shadow: inset 0 0 80px #00ffff55;
+  }
+}
+
+/* SECTIONS */
+section {
+  max-width: 960px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  scroll-margin-top: 70px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  text-align: left;
+}
+section, .intro {
+  align-self: center;
+  width: 100%;
+  max-width: 960px;
+  padding: 0 1.5rem;
+}
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #00ffff;
+  border-left: 5px solid #00ffff;
+  padding-left: 12px;
+}
+section p {
+  font-size: 1.1rem;
+  color: #a0c7d9;
+  line-height: 1.6;
+}
+section ul {
+  color: #70cfff;
+  margin-top: 1rem;
+  list-style: disc inside;
+}
+section li {
+  margin-bottom: 0.5rem;
+}
+
+/* PROFIL */
+#profil img {
+  float: right;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 20px;
+  border: 3px solid #00ffff;
+  box-shadow: 0 0 15px #00ffffaa;
+}
+
+/* CONTACT / COORDONNÉES */
+.contact-info, #contact-form, .map-container {
+  max-width: 960px;
+  margin: 0 auto 2rem;
+  background: #001f3f;
+  border: 1px solid #00ffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 0 15px #00ffff88;
+  color: #a0c7d9;
+  box-sizing: border-box;
+}
+.contact-info h3, #contact-form h3 {
+  color: #00ffff;
+  margin-bottom: 1rem;
+  border-left: 5px solid #00ffff;
+  padding-left: 12px;
+}
+.contact-info a {
+  color: #22d8f8;
+  text-decoration: underline;
+}
+.contact-info a:hover {
+  color: #00ffff;
+}
+
+/* FORMULAIRE */
+#contact-form form {
+  max-width: 480px;
+  margin: 0 auto;
+}
+#contact-form input, #contact-form textarea {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: none;
+  background: #003048;
+  color: #a0c7d9;
+  font-size: 1rem;
+  box-shadow: 0 0 8px #00ffff33 inset;
+  transition: background 0.3s;
+}
+#contact-form input:focus, #contact-form textarea:focus {
+  background: #005a87;
+  outline: none;
+  box-shadow: 0 0 15px #00ffff99 inset;
+}
+#contact-form button {
+  background: #00ffff;
+  color: #001520;
+  font-weight: 700;
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  box-shadow: 0 0 10px #00ffff;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+#contact-form button:hover {
+  background: #00cccc;
+}
+#contact-form .rgpd-notice {
+  font-size: 0.85rem;
+  color: #70cfff;
+  margin-bottom: 1rem;
+}
+
+/* MAP */
+.map-container iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #00ffff55;
+  display: block;
+}
+
+/* FOOTER */
+footer {
+  background: #0a192f;
+  color: #00ffff;
+  padding: 1rem 0;
+  text-align: center;
+  margin-top: auto;
+  font-size: 0.9rem;
+  box-shadow: inset 0 1px 10px #00ffff44;
+}
+
+/* MENU BURGER */
+.nav-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  color: #00ffff;
+  border: none;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background: #001f3f;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  /* forcer même taille du nom partout */
+  .nav-brand {
+    font-size: 1.5rem !important; /* important pour uniformiser sur mobile */
+    max-width: 60%;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: row;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #001f3f;
+    padding: 0.5rem 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    z-index: 999;
+    border-top: 1px solid #00ffff;
+    box-shadow: 0 8px 15px rgba(0, 255, 255, 0.3);
+    margin-top: 0;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  nav ul li {
+    display: inline-block;
+    margin: 0 0.7rem;
+  }
+
+  nav ul li a {
+    color: #00ffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.5rem 0 1.5rem 0.5rem;
+    transition: color 0.3s ease;
+  }
+
+  nav ul li a:hover, nav ul li a:focus {
+    color: #66ffff;
+  }
+}
+
+@media (max-width: 375px) {
+  body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* NEON EFFECT */
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 10px #00ffff55, 0 0 20px #00ffff33;
+  }
+  100% {
+    box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff66, 0 0 45px #00ffff33;
+  }
+}
+
+
+
+
+
+/* ============================================
+   BOUTONS DE CONTRÔLE DE PAGE
+   (Thème + Retour en haut)
+   ============================================ */
+
+/* Variables nécessaires pour les boutons */
+:root {
+  --primary: #00ffff;
+  --primary-light: rgba(0, 255, 255, 0.1);
+  --primary-dark: #00a8ff;
+  --bg-dark: #001a2a;
+  --text-light: #a0c7d9;
+  --text-lighter: #cce7ff;
+  --transition-speed: 0.3s;
+}
+
+[data-theme="light"] {
+  --primary: #0088cc;
+  --primary-light: rgba(0, 136, 204, 0.1);
+  --primary-dark: #006699;
+  --bg-dark: #f0f8ff;
+  --text-light: #333333;
+  --text-lighter: #000000;
+}
+
+/* Conteneur des boutons */
+.page-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+/* Style de base des boutons */
+.control-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--bg-dark);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all var(--transition-speed) ease;
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+}
+
+/* Effets au survol */
+.control-btn:hover,
+.control-btn:focus {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 255, 255, 0.4);
+  outline: none;
+}
+
+/* Focus pour accessibilité */
+.control-btn:focus {
+  outline: 2px solid var(--text-lighter);
+  outline-offset: 2px;
+}
+
+/* Bouton changement de thème spécifique */
+.theme-toggle {
+  background: var(--bg-dark);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+/* Texte masqué pour accessibilité */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Thème clair pour les boutons */
+[data-theme="light"] .theme-toggle {
+  background: #f0f8ff;
+  color: #0088cc;
+  border: 2px solid #0088cc;
+}
+
+[data-theme="light"] .control-btn:not(.theme-toggle) {
+  background: #0088cc;
+  color: #f0f8ff;
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-controls {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .control-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-controls {
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .control-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+
+html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Inter', sans-serif;
+      background-color: #000913;
+      color: #a0c7d9;
+    }
+
+
+
+
+
+/* ============================================
+   CURSEUR NEON FUTURISTE
+   ============================================ */
+
+.cursor-outer {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #22d8f8;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: 
+    width 0.3s ease,
+    height 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease;
+  box-shadow: 0 0 10px #22d8f8;
+  mix-blend-mode: difference;
+  opacity: 1;
+}
+
+.cursor-inner {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: #22d8f8;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: 
+    width 0.3s ease,
+    height 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease;
+  box-shadow: 0 0 8px #22d8f8;
+  opacity: 1;
+}
+
+/* Désactiver le curseur par défaut */
+* {
+  cursor: none !important;
+}
+
+/* Exceptions pour la compatibilité */
+.control-btn:hover,
+.nav-toggle:hover {
+  cursor: none !important;
+}
+
+/* Mode focus sur inputs */
+input:focus,
+textarea:focus,
+select:focus {
+  cursor: text !important;
+}
+
+/* Cacher curseur sur mobile */
+@media (max-width: 768px) {
+  .cursor-outer,
+  .cursor-inner {
+    display: none !important;
+  }
+  
+  * {
+    cursor: auto !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
