@@ -16,8 +16,7 @@ Bienvenue sur mon portfolio professionnel, présentant mes projets, compétences
 - `doc/` : documents PDF et autres supports
 
 ## 🌐 Déploiement
-Ce portfolio est hébergé sur GitHub Pages :  
-[👉 Voir mon portfolio en ligne](https://ayoubbenlamferred.github.io/NewPortFolio/)
+Ce portfolio est hébergé sur https://ayoubbenlamferred.github.io/NewPortfolio/ ou via GitHub Pages.
 
 ## 👨‍💻 Auteur
 **Ayoub Benlamferred**  
@@ -25,4 +24,3 @@ Ce portfolio est hébergé sur GitHub Pages :
 
 ## 📄 Licence
 Ce projet est à titre personnel, tous droits réservés.
-
