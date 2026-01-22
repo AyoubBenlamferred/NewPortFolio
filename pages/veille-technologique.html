@@ -1731,7 +1731,7 @@
       <div class="tech-stack">
         <span class="tech-badge"><i class="fas fa-server"></i> Active Directory</span>
         <span class="tech-badge"><i class="fas fa-shield-alt"></i> GPO</span>
-        <span class="tech-badge"><i class="fas fa-lock"></i> NTLM</span>
+        <span class="tech-badge"><i class="fas fa-lock"></i> MFA</span>
         <span class="tech-badge"><i class="fas fa-key"></i> Kerberos</span>
       </div>
     </div>
@@ -1819,7 +1819,7 @@
         <li><strong>Complexité :</strong> Majuscules, minuscules, chiffres, symboles</li>
         <li><strong>Expiration :</strong> 90 jours maximum</li>
         <li><strong>Historique :</strong> 24 mots de passe mémorisés</li>
-        <li><strong>Verrouillage :</strong> 5 tentatives maximum</li>
+        <li><strong>Verrouillage :</strong> 3 tentatives maximum</li>
         <li><strong>Chiffrement :</strong> NTLMv2 obligatoire</li>
       </ul>
 
@@ -1831,226 +1831,7 @@
       </div>
     </div>
 
-        <!-- Section 4: Mise en pratique -->
-    <div class="section-card animate-in">
-      <h2><i class="fas fa-server" aria-hidden="true"></i> Mise en pratique dans un environnement virtualisé</h2>
-
-      <p class="section-intro">
-        Dans le cadre de ma formation <strong>BTS SIO SISR</strong>, j'ai mis en place un <strong>laboratoire virtualisé complet</strong> 
-        pour tester et maîtriser les concepts de sécurité Active Directory dans des conditions réelles.
-      </p>
-
-      <!-- Environnement de test -->
-      <div class="environment-section">
-        <h3><i class="fas fa-flask"></i> Environnement de test</h3>
-        <div class="environment-grid">
-          <div class="env-item">
-            <div class="env-icon">
-              <i class="fas fa-cube"></i>
-            </div>
-            <h4>Virtualisation</h4>
-            <p><strong>VMware Workstation Pro</strong> pour la création et la gestion des machines virtuelles</p>
-          </div>
-          
-          <div class="env-item">
-            <div class="env-icon">
-              <i class="fab fa-windows"></i>
-            </div>
-            <h4>Serveurs</h4>
-            <p><strong>Windows Server 2022</strong> comme contrôleur de domaine avec services AD DS, DNS, DHCP intégrés</p>
-          </div>
-          
-          <div class="env-item">
-            <div class="env-icon">
-              <i class="fas fa-desktop"></i>
-            </div>
-            <h4>Clients</h4>
-            <p><strong>Windows 10 & 11</strong> comme postes de travail pour tester les politiques de groupe</p>
-          </div>
-          
-          <div class="env-item">
-            <div class="env-icon">
-              <i class="fas fa-shield-alt"></i>
-            </div>
-            <h4>Sécurité</h4>
-            <p><strong>Stratégies de Groupe (GPO)</strong> avancées pour la sécurité des mots de passe et des comptes</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tests effectués -->
-      <div class="tests-section">
-        <h3><i class="fas fa-vial"></i> Tests effectués</h3>
-        <div class="tests-grid">
-          <div class="test-card">
-            <div class="test-header">
-              <i class="fas fa-hammer" style="color: var(--danger);"></i>
-              <h4>Simulations d'attaques</h4>
-            </div>
-            <div class="test-content">
-              <ul>
-                <li><strong>Brute force</strong> avec Hashcat et John the Ripper</li>
-                <li><strong>Credential stuffing</strong> avec des listes de mots de passe courants</li>
-                <li><strong>Password spraying</strong> sur plusieurs comptes</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="test-card">
-            <div class="test-header">
-              <i class="fas fa-clipboard-check" style="color: var(--success);"></i>
-              <h4>Audit & Conformité</h4>
-            </div>
-            <div class="test-content">
-              <ul>
-                <li><strong>Audit des politiques</strong> de mots de passe existantes</li>
-                <li><strong>Tests de conformité</strong> ANSSI et RGPD</li>
-                <li><strong>Vérification</strong> des paramètres de sécurité AD</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="test-card">
-            <div class="test-header">
-              <i class="fas fa-lock" style="color: var(--primary);"></i>
-              <h4>Sécurisation</h4>
-            </div>
-            <div class="test-content">
-              <ul>
-                <li><strong>Authentification à deux facteurs</strong> (2FA)</li>
-                <li><strong>NTLMv2</strong> exclusif</li>
-                <li><strong>Verrouillage</strong> automatique des comptes</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="test-card">
-            <div class="test-header">
-              <i class="fas fa-chart-bar" style="color: var(--warning);"></i>
-              <h4>Monitoring</h4>
-            </div>
-            <div class="test-content">
-              <ul>
-                <li><strong>Journalisation</strong> des événements de sécurité</li>
-                <li><strong>Alertes</strong> sur tentatives d'accès</li>
-                <li><strong>Reporting</strong> des politiques appliquées</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Technologies utilisées -->
-      <div class="tech-section">
-        <h3><i class="fas fa-tools"></i> Technologies utilisées</h3>
-        <div class="tech-grid">
-          <div class="tech-item">
-            <i class="fas fa-desktop"></i>
-            <span class="tech-name">VMware Workstation</span>
-            <span class="tech-desc">Virtualisation avancée</span>
-          </div>
-          
-          <div class="tech-item">
-            <i class="fab fa-windows"></i>
-            <span class="tech-name">Windows Server 2022</span>
-            <span class="tech-desc">Contrôleur de domaine</span>
-          </div>
-          
-          <div class="tech-item">
-            <i class="fas fa-network-wired"></i>
-            <span class="tech-name">Hyper-V</span>
-            <span class="tech-desc">Virtualisation Microsoft</span>
-          </div>
-          
-          <div class="tech-item">
-            <i class="fas fa-code"></i>
-            <span class="tech-name">PowerShell</span>
-            <span class="tech-desc">Automatisation & Scripting</span>
-          </div>
-          
-          <div class="tech-item">
-            <i class="fas fa-terminal"></i>
-            <span class="tech-name">ISE & VSCode</span>
-            <span class="tech-desc">Environnements de développement</span>
-          </div>
-          
-          <div class="tech-item">
-            <i class="fas fa-database"></i>
-            <span class="tech-name">Event Viewer</span>
-            <span class="tech-desc">Monitoring des logs</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bénéfices -->
-      <div class="benefits-section">
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <i class="fas fa-shield-virus"></i>
-          </div>
-          <div class="benefit-content">
-            <h4>Apprentissage sans risque</h4>
-            <p>La virtualisation permet de <strong>tester des configurations extrêmes</strong> et de simuler des attaques sans impact sur un environnement de production.</p>
-          </div>
-        </div>
-        
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <i class="fas fa-undo-alt"></i>
-          </div>
-          <div class="benefit-content">
-            <h4>Restauration rapide</h4>
-            <p>Les <strong>snapshots</strong> permettent de revenir à un état antérieur en quelques secondes, facilitant l'expérimentation.</p>
-          </div>
-        </div>
-        
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            <i class="fas fa-tasks"></i>
-          </div>
-          <div class="benefit-content">
-            <h4>Reproductibilité</h4>
-            <p>Possibilité de <strong>reproduire exactement le même environnement</strong> pour différents tests et démonstrations.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Résultats obtenus -->
-      <div class="results-section">
-        <h3><i class="fas fa-chart-line"></i> Résultats obtenus</h3>
-        <div class="results-grid">
-          <div class="result-item">
-            <div class="result-value">100%</div>
-            <div class="result-label">Compréhension des GPO</div>
-          </div>
-          
-          <div class="result-item">
-            <div class="result-value">12</div>
-            <div class="result-label">Politiques testées</div>
-          </div>
-          
-          <div class="result-item">
-            <div class="result-value">5+</div>
-            <div class="result-label">Scripts PowerShell créés</div>
-          </div>
-          
-          <div class="result-item">
-            <div class="result-value">24/7</div>
-            <div class="result-label">Monitoring actif</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Conclusion de la section -->
-      <div class="section-conclusion">
-        <p>
-          <i class="fas fa-lightbulb"></i>
-          Cette <strong>expérience pratique</strong> m'a permis de valider théoriquement les concepts étudiés en cours 
-          et de développer des <strong>compétences opérationnelles</strong> directement applicables en entreprise. 
-          La virtualisation s'est révélée être un <strong>outil indispensable</strong> pour l'apprentissage de l'administration système.
-        </p>
-      </div>
-    </div>
+     
 
     <!-- Section 5: Bonnes pratiques -->
     <div class="section-card animate-in">
@@ -2076,36 +1857,7 @@
         </div>
       </div>
 
-      <div class="comparison-table">
-        <thead>
-          <tr>
-            <th>Type de mot de passe</th>
-            <th>Complexité</th>
-            <th>Temps de crack</th>
-            <th>Recommandation</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Mot de passe simple</td>
-            <td>Faible</td>
-            <td>Quelques secondes</td>
-            <td>❌ À éviter</td>
-          </tr>
-          <tr>
-            <td>Mot de passe complexe</td>
-            <td>Moyenne</td>
-            <td>Quelques heures</td>
-            <td>⚠️ Acceptable</td>
-          </tr>
-          <tr>
-            <td>Passphrase</td>
-            <td>Élevée</td>
-            <td>Années</td>
-            <td>✅ Recommandé</td>
-          </tr>
-        </tbody>
-      </div>
+     
 
       <div class="stats-display">
         <div class="stat-item">
@@ -2244,7 +1996,7 @@
       <tr>
         <td>
           <strong>Microsoft Learn</strong><br>
-          <small><a href="https://learn.microsoft.com" target="_blank">learn.microsoft.com</a></small>
+          <small><a href="https://learn.microsoft.com/fr-fr/docs/" target="_blank">learn.microsoft.com</a></small>
         </td>
         <td>Documentation Officielle</td>
         <td>Meilleures pratiques AD, GPO, sécurité Windows Server</td>
@@ -2291,8 +2043,8 @@
       </tr>
       <tr>
         <td>
-          <strong>YouTube - John Hammond</strong><br>
-          <small><a href="https://www.youtube.com/c/JohnHammond010" target="_blank">youtube.com/c/JohnHammond010</a></small>
+          <strong>YouTube - Geek Advisor</strong><br>
+          <small><a href="https://www.youtube.com/@geek_advisor" target="_blank">youtube.com/c/geek_advisor</a></small>
         </td>
         <td>Vidéos Pédagogiques</td>
         <td>Démonstrations attaques AD, défense active directory</td>
@@ -2392,7 +2144,7 @@
         </div>
         <div class="benefit">
           <h4><i class="fas fa-tools"></i> Compétences développées</h4>
-          <p>Maîtrise des GPO, PowerShell, et outils de sécurité</p>
+          <p>Maîtrise des GPO</p>
         </div>
         <div class="benefit">
           <h4><i class="fas fa-eye"></i> Perspectives</h4>
