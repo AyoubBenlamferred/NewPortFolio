@@ -1,5 +1,6 @@
-
-/* RESET ET BASE */
+/* ============================================
+   RESET ET BASE
+   ============================================ */
 * {
   margin: 0;
   padding: 0;
@@ -7,15 +8,18 @@
   font-family: 'Inter', sans-serif;
 }
 
-body {
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: #121212;
   color: #e0f7ff;
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
+/* Liens */
 a {
   color: #22d8f8;
   text-decoration: none;
@@ -25,7 +29,9 @@ a:hover {
   color: #00ffff;
 }
 
-/* NAVIGATION */
+/* ============================================
+   NAVIGATION
+   ============================================ */
 nav {
   position: fixed;
   top: 0;
@@ -41,10 +47,9 @@ nav {
   z-index: 1000;
 }
 
-/* NOM DANS LA NAVBAR */
 .nav-brand {
   color: #00ffff;
-  font-size: 1.5rem; /* taille fixe identique partout */
+  font-size: 1.5rem;
   font-weight: 700;
   cursor: default;
   white-space: nowrap;
@@ -81,7 +86,19 @@ nav ul li a:hover::after {
   box-shadow: 0 0 8px #00ffff;
 }
 
-/* Canvas réseau */
+/* Menu burger */
+.nav-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  color: #00ffff;
+  border: none;
+  cursor: pointer;
+}
+
+/* ============================================
+   CANVAS RÉSEAU
+   ============================================ */
 #networkCanvas {
   display: block;
   width: 100%;
@@ -92,23 +109,18 @@ nav ul li a:hover::after {
   border-bottom: 1.5px solid #00ffff;
   box-shadow: inset 0 0 60px #00ffff55, 0 0 20px #00ffff33;
   image-rendering: crisp-edges;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -webkit-optimize-contrast;
   animation: canvasPulse 8s infinite alternate;
 }
 @keyframes canvasPulse {
   0% { opacity: 0.95; box-shadow: inset 0 0 60px #00ffff55; }
   100% { opacity: 1; box-shadow: inset 0 0 90px #00ffffaa; }
 }
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  #networkCanvas {
-    border-width: 1px;
-    box-shadow: inset 0 0 80px #00ffff55;
-  }
-}
 
-/* SECTIONS */
+/* ============================================
+   SECTIONS
+   ============================================ */
 section {
+  width: 100%;
   max-width: 960px;
   margin: 3rem auto;
   padding: 0 1.5rem;
@@ -117,12 +129,6 @@ section {
   transform: translateY(20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
   text-align: left;
-}
-section, .intro {
-  align-self: center;
-  width: 100%;
-  max-width: 960px;
-  padding: 0 1.5rem;
 }
 section.visible {
   opacity: 1;
@@ -149,7 +155,9 @@ section li {
   margin-bottom: 0.5rem;
 }
 
-/* PROFIL */
+/* ============================================
+   PROFIL
+   ============================================ */
 #profil img {
   float: right;
   width: 180px;
@@ -161,7 +169,9 @@ section li {
   box-shadow: 0 0 15px #00ffffaa;
 }
 
-/* CONTACT / COORDONNÉES */
+/* ============================================
+   CONTACT / FORMULAIRE
+   ============================================ */
 .contact-info, #contact-form, .map-container {
   max-width: 960px;
   margin: 0 auto 2rem;
@@ -187,7 +197,6 @@ section li {
   color: #00ffff;
 }
 
-/* FORMULAIRE */
 #contact-form form {
   max-width: 480px;
   margin: 0 auto;
@@ -230,7 +239,7 @@ section li {
   margin-bottom: 1rem;
 }
 
-/* MAP */
+/* Map */
 .map-container iframe {
   width: 100%;
   height: 300px;
@@ -240,7 +249,9 @@ section li {
   display: block;
 }
 
-/* FOOTER */
+/* ============================================
+   FOOTER
+   ============================================ */
 footer {
   background: #0a192f;
   color: #00ffff;
@@ -251,104 +262,9 @@ footer {
   box-shadow: inset 0 1px 10px #00ffff44;
 }
 
-/* MENU BURGER */
-.nav-toggle {
-  display: none;
-  font-size: 2rem;
-  background: none;
-  color: #00ffff;
-  border: none;
-  cursor: pointer;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    background: #001f3f;
-  }
-
-  .nav-toggle {
-    display: block;
-  }
-
-  /* forcer même taille du nom partout */
-  .nav-brand {
-    font-size: 1.5rem !important; /* important pour uniformiser sur mobile */
-    max-width: 60%;
-  }
-
-  nav ul {
-    display: none;
-    flex-direction: row;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #001f3f;
-    padding: 0.5rem 0;
-    overflow-x: auto;
-    white-space: nowrap;
-    z-index: 999;
-    border-top: 1px solid #00ffff;
-    box-shadow: 0 8px 15px rgba(0, 255, 255, 0.3);
-    margin-top: 0;
-  }
-
-  nav ul.active {
-    display: flex;
-  }
-
-  nav ul li {
-    display: inline-block;
-    margin: 0 0.7rem;
-  }
-
-  nav ul li a {
-    color: #00ffff;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    padding: 0.5rem 0 1.5rem 0.5rem;
-    transition: color 0.3s ease;
-  }
-
-  nav ul li a:hover, nav ul li a:focus {
-    color: #66ffff;
-  }
-}
-
-@media (max-width: 375px) {
-  body {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
-
-/* NEON EFFECT */
-@keyframes neonPulse {
-  0% {
-    box-shadow: 0 0 10px #00ffff55, 0 0 20px #00ffff33;
-  }
-  100% {
-    box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff66, 0 0 45px #00ffff33;
-  }
-}
-
-
-
-
-
 /* ============================================
-   BOUTONS DE CONTRÔLE DE PAGE
-   (Thème + Retour en haut)
+   BOUTONS / CONTROLES
    ============================================ */
-
-/* Variables nécessaires pour les boutons */
 :root {
   --primary: #00ffff;
   --primary-light: rgba(0, 255, 255, 0.1);
@@ -368,7 +284,6 @@ footer {
   --text-lighter: #000000;
 }
 
-/* Conteneur des boutons */
 .page-controls {
   position: fixed;
   bottom: 20px;
@@ -379,7 +294,6 @@ footer {
   z-index: 1000;
 }
 
-/* Style de base des boutons */
 .control-btn {
   width: 50px;
   height: 50px;
@@ -396,7 +310,6 @@ footer {
   box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
 }
 
-/* Effets au survol */
 .control-btn:hover,
 .control-btn:focus {
   transform: scale(1.1);
@@ -404,20 +317,12 @@ footer {
   outline: none;
 }
 
-/* Focus pour accessibilité */
-.control-btn:focus {
-  outline: 2px solid var(--text-lighter);
-  outline-offset: 2px;
-}
-
-/* Bouton changement de thème spécifique */
 .theme-toggle {
   background: var(--bg-dark);
   color: var(--primary);
   border: 2px solid var(--primary);
 }
 
-/* Texte masqué pour accessibilité */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -430,7 +335,6 @@ footer {
   border: 0;
 }
 
-/* Thème clair pour les boutons */
 [data-theme="light"] .theme-toggle {
   background: #f0f8ff;
   color: #0088cc;
@@ -443,8 +347,120 @@ footer {
   box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
 }
 
-/* Responsive */
+/* ============================================
+   CURSEUR NEON
+   ============================================ */
+.cursor-outer {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #22d8f8;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, border-color 0.3s, box-shadow 0.3s, opacity 0.3s;
+  box-shadow: 0 0 10px #22d8f8;
+  mix-blend-mode: difference;
+  opacity: 1;
+}
+
+.cursor-inner {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: #22d8f8;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background-color 0.3s, box-shadow 0.3s, opacity 0.3s;
+  box-shadow: 0 0 8px #22d8f8;
+  opacity: 1;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 768px) {
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background: #001f3f;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-brand {
+    font-size: 1.5rem !important;
+    max-width: 60%;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #001f3f;
+    padding: 0.5rem 0;
+    overflow-x: hidden;
+    white-space: normal;
+    z-index: 999;
+    border-top: 1px solid #00ffff;
+    box-shadow: 0 8px 15px rgba(0, 255, 255, 0.3);
+    margin-top: 0;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  nav ul li a {
+    color: #00ffff;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  section {
+    max-width: 100%;
+    margin: 2rem 1rem;
+    padding: 0 1rem;
+  }
+
+  #profil img {
+    float: none;
+    display: block;
+    margin: 0 auto 1rem;
+    width: 120px;
+    height: 120px;
+  }
+
+  #networkCanvas {
+    height: 180px;
+  }
+
+  .cursor-outer,
+  .cursor-inner {
+    display: none !important;
+  }
+
+  * {
+    cursor: auto !important;
+  }
+
   .page-controls {
     bottom: 10px;
     right: 10px;
@@ -468,118 +484,9 @@ footer {
     height: 40px;
     font-size: 1rem;
   }
-}
 
-
-html, body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-      font-family: 'Inter', sans-serif;
-      background-color: #000913;
-      color: #a0c7d9;
-    }
-
-
-
-
-
-/* ============================================
-   CURSEUR NEON FUTURISTE
-   ============================================ */
-
-.cursor-outer {
-  position: fixed;
-  width: 30px;
-  height: 30px;
-  border: 2px solid #22d8f8;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: 
-    width 0.3s ease,
-    height 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    opacity 0.3s ease;
-  box-shadow: 0 0 10px #22d8f8;
-  mix-blend-mode: difference;
-  opacity: 1;
-}
-
-.cursor-inner {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: #22d8f8;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-  transition: 
-    width 0.3s ease,
-    height 0.3s ease,
-    background-color 0.3s ease,
-    box-shadow 0.3s ease,
-    opacity 0.3s ease;
-  box-shadow: 0 0 8px #22d8f8;
-  opacity: 1;
-}
-
-/* Désactiver le curseur par défaut */
-* {
-  cursor: none !important;
-}
-
-/* Exceptions pour la compatibilité */
-.control-btn:hover,
-.nav-toggle:hover {
-  cursor: none !important;
-}
-
-/* Mode focus sur inputs */
-input:focus,
-textarea:focus,
-select:focus {
-  cursor: text !important;
-}
-
-/* Cacher curseur sur mobile */
-@media (max-width: 768px) {
-  .cursor-outer,
-  .cursor-inner {
-    display: none !important;
-  }
-  
-  * {
-    cursor: auto !important;
+  body {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
