@@ -3,24 +3,24 @@
 
 Bienvenue sur mon portfolio professionnel, présentant mes projets, compétences et parcours en BTS SIO.
 
-## 🚀 Contenu
+##  Contenu
 - Présentation personnelle
 - Mes projets (BTS, veille technologique, certifications)
 - Contact
 
-## 📁 Structure du projet
+##  Structure du projet
 - `index.html` : page d'accueil
 - `pages/` : pages secondaires (profil, formation, veille, etc.)
 - `images/` : ressources visuelles
 - `js/` : scripts JavaScript
 - `doc/` : documents PDF et autres supports
 
-## 🌐 Déploiement
+##  Déploiement
 Ce portfolio est hébergé sur https://ayoubbenlamferred.github.io/NewPortfolio/ ou via GitHub Pages.
 
-## 👨‍💻 Auteur
+##  Auteur
 **Ayoub Benlamferred**  
 Étudiant en BTS SIO
 
-## 📄 Licence
+##  Licence
 Ce projet est à titre personnel, tous droits réservés.
