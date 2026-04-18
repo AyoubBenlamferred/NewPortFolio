@@ -1,268 +1,231 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tableau de synthèse - Portfolio</title>
-  <meta name="description" content="Tableau de synthèse des réalisations et compétences du portfolio d'Ayoub Benlamferred.">
+  <meta name="description" content="Tableau de synthèse BTS SIO - Ayoub Benlamferred">
+  <title>Tableau de synthèse - Ayoub Benlamferred</title>
 
+  <!-- CSS principal -->
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="icon" href="../fav/favicon.ico" type="image/x-icon" />
+
   <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<style>
-:root {
-  --primary: #00ffff;
-  --primary-light: rgba(0, 255, 255, 0.1);
-  --primary-dark: #00a8ff;
-  --bg-dark: #001a2a;
-  --bg-card: rgba(0, 40, 70, 0.8);
-  --text-light: #a0c7d9;
-  --text-lighter: #cce7ff;
-  --transition-speed: 0.3s;
-}
-body {
-  background-color: var(--bg-dark) !important;
-  color: var(--text-light);
-}
-/* ===== THEME CLAIR ===== */
-html[data-theme="light"] {
-  --primary: #0088cc;
-  --primary-light: rgba(0, 136, 204, 0.1);
-  --primary-dark: #006699;
-  --bg-dark: #f8faff;
-  --bg-card: rgba(255, 255, 255, 0.95);
-  --text-light: #333;
-  --text-lighter: #000;
-}
+  <style>
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #00ffff;
+      white-space: nowrap;
+    }
+    
+    .nav-brand::after {
+      content: "|";
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    }
+    
+    /* ===== THÈME CLAIR COMPLET (SAUF FOOTER) ===== */
+    
+    :root {
+      --primary: #00ffff;
+      --primary-light: rgba(0, 255, 255, 0.1);
+      --primary-dark: #00a8ff;
+      --bg-dark: #001a2a;
+      --bg-card: rgba(0, 26, 42, 0.7);
+      --text-light: #a0c7d9;
+      --text-lighter: #cce7ff;
+      --transition-speed: 0.3s;
+    }
+    
+    [data-theme="light"] {
+      --primary: #0088cc;
+      --primary-light: rgba(0, 136, 204, 0.1);
+      --primary-dark: #006699;
+      --bg-dark: #f8faff;
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --text-light: #333333;
+      --text-lighter: #000000;
+    }
+    
+    /* Application du thème clair (sauf footer) */
+    [data-theme="light"] body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+    
+    [data-theme="light"] .nav-brand {
+      color: var(--primary);
+    }
+    
+    [data-theme="light"] nav {
+      background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
+      border-bottom: 2px solid var(--primary);
+    }
+    
+    [data-theme="light"] nav ul li a {
+      color: var(--text-light);
+    }
+    
+    [data-theme="light"] nav ul li.active a,
+    [data-theme="light"] nav ul li a:hover {
+      color: var(--primary);
+    }
+    
+    [data-theme="light"] #networkCanvas {
+      background: radial-gradient(ellipse at center, #e6f2ff 0%, #d9e8ff 100%);
+      border-top: 1.5px solid var(--primary);
+      border-bottom: 1.5px solid var(--primary);
+      box-shadow: inset 0 0 60px rgba(0, 136, 204, 0.3), 0 0 20px rgba(0, 136, 204, 0.2);
+    }
 
-/* ===== BODY ===== */
+    /* Section tableau PDF */
+    #pdf-viewer {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
 
+    #pdf-viewer h2 {
+      color: var(--primary);
+    }
 
-/* ===== NAVBAR ===== */
-nav {
-  transition: all 0.3s ease;
-}
+    [data-theme="light"] #pdf-viewer h2 {
+      color: var(--primary);
+      text-shadow: 0 0 10px rgba(0, 136, 204, 0.3);
+    }
 
-html[data-theme="light"] nav {
-  background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
-  border-bottom: 2px solid var(--primary);
-}
+    .pdf-card {
+      background: var(--bg-card);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: all var(--transition-speed) ease;
+    }
 
-html[data-theme="light"] .nav-brand {
-  color: var(--primary);
-}
+    [data-theme="light"] .pdf-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
 
-html[data-theme="light"] nav ul li a {
-  color: var(--text-light);
-}
+    .pdf-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
+    }
 
-html[data-theme="light"] nav ul li.active a,
-html[data-theme="light"] nav ul li a:hover {
-  color: var(--primary);
-}
+    [data-theme="light"] .pdf-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 10px 25px rgba(0, 136, 204, 0.2);
+    }
 
-/* ===== CANVAS ===== */
-html[data-theme="light"] #networkCanvas {
-  background: radial-gradient(ellipse at center, #e6f2ff 0%, #d9e8ff 100%);
-  border-top: 1.5px solid var(--primary);
-  border-bottom: 1.5px solid var(--primary);
-}
+    .sous-titre {
+      color: var(--text-light);
+      line-height: 1.6;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      border-left: 3px solid var(--primary);
+      padding-left: 1rem;
+    }
 
-/* ===== SECTIONS ===== */
-main > section {
-  background: var(--bg-card);
-  border-radius: 15px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(0, 255, 255, 0.1);
-  transition: 0.3s ease;
-}
+    .pdf-frame {
+      width: 100%;
+      height: 420px;
+      border: none;
+      border-radius: 12px;
+      background: white;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+    }
 
-main > section:hover {
-  border-color: var(--primary);
-  transform: translateY(-3px);
-}
+    .pdf-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.2rem;
+    }
 
-main > section h2 {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  font-size: 1.5rem;
-  margin-bottom: 1.2rem;
-  color: var(--primary);
-  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-}
+    .pdf-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary);
+      color: #000000;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all var(--transition-speed) ease;
+      border: 2px solid var(--primary);
+      font-size: 1rem;
+    }
 
-/* ===== TABLE ===== */
-.table-container {
-  overflow-x: auto;
-}
+    .pdf-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+    }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 900px;
-}
+    [data-theme="light"] .pdf-btn {
+      background: var(--primary);
+      color: #ffffff;
+    }
 
-th, td {
-  padding: 12px;
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  color: var(--text-light);
-}
+    [data-theme="light"] .pdf-btn:hover {
+      background: var(--primary-dark);
+      box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
+    }
+    
+    /* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #001f3f !important;
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+      margin-top: 2rem;
+    }
+    
+    [data-theme="light"] footer {
+      background-color: #001f3f !important;
+      border-top: 2px solid #00ffff !important;
+      color: #a0c7d9 !important;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      #pdf-viewer {
+        padding: 0 1rem;
+      }
 
-th {
-  background: var(--primary-light);
-  color: var(--primary);
-}
+      .pdf-card {
+        padding: 1rem;
+      }
 
-tr:hover {
-  background: rgba(0, 255, 255, 0.05);
-}
-
-/* ===== BOUTONS FLOTTANTS (AMÉLIORÉS) ===== */
-
-.page-controls {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 999;
-}
-
-.control-btn {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 2px solid var(--primary);
-  background: rgba(0, 40, 70, 0.7);
-  backdrop-filter: blur(8px);
-  color: var(--primary);
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transition: all 0.3s ease;
-
-  box-shadow:
-    0 0 8px rgba(0, 255, 255, 0.3),
-    inset 0 0 6px rgba(0, 255, 255, 0.2);
-}
-
-.control-btn:hover {
-  background: var(--primary);
-  color: #001a2a;
-
-  transform: translateY(-5px) scale(1.05);
-
-  box-shadow:
-    0 0 20px rgba(0, 255, 255, 0.6),
-    0 0 40px rgba(0, 255, 255, 0.3);
-}
-
-.control-btn i {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-}
-
-.control-btn:hover i {
-  transform: rotate(15deg);
-}
-
-/* glow autour */
-.control-btn::before {
-  content: "";
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,255,255,0.2), transparent);
-  z-index: -1;
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.control-btn:hover::before {
-  opacity: 1;
-}
-
-/* ===== VERSION CLAIR ===== */
-html[data-theme="light"] .control-btn {
-  background: rgba(255,255,255,0.9);
-  border: 2px solid #0088cc;
-  color: #0088cc;
-
-  box-shadow:
-    0 0 8px rgba(0,136,204,0.3),
-    inset 0 0 6px rgba(0,136,204,0.2);
-}
-
-html[data-theme="light"] .control-btn:hover {
-  background: #0088cc;
-  color: white;
-
-  box-shadow:
-    0 0 20px rgba(0,136,204,0.5);
-}
-
-/* ===== FOOTER ===== */
-footer {
-  text-align: center;
-  padding: 1rem 0;
-  background-color: #001f3f !important;
-  border-top: 2px solid #00ffff !important;
-  color: #a0c7d9 !important;
-}
-
-/* ===== ANIMATION ===== */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-main > section {
-  animation: fadeInUp 0.6s ease forwards;
-  opacity: 0;
-}
-
-main > section:nth-child(2) { animation-delay: 0.1s; }
-main > section:nth-child(3) { animation-delay: 0.2s; }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .page-controls {
-    right: 10px;
-    bottom: 10px;
-  }
-
-  .control-btn {
-    width: 42px;
-    height: 42px;
-  }
-}
-</style>
+      .pdf-frame {
+        height: 280px;
+      }
+    }
+    
+    /* Animation du curseur */
+    @keyframes blink {
+      from, to { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
 </head>
+
 <body>
 
+  <!-- NAV -->
   <nav>
-    <div class="nav-brand" id="animated-name"></div>
-
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
-      <i class="fas fa-bars"></i>
-    </button>
-
+    <div class="nav-brand" id="animated-name">Ayoub Benlamferred</div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
     <ul id="nav-menu">
       <li><a href="accueil.html">Accueil</a></li>
       <li><a href="profil.html">Profil</a></li>
@@ -280,67 +243,29 @@ main > section:nth-child(3) { animation-delay: 0.2s; }
   <canvas id="networkCanvas"></canvas>
 
   <main>
-    <section id="tableau-intro" class="visible">
-      <h2><i class="fas fa-table"></i> Tableau de synthèse</h2>
-      <p class="intro-text">
-        Cette page présente de manière synthétique les principales réalisations menées durant mon BTS SIO. 
-        Elle permet de mettre en évidence les contextes professionnels, les compétences mobilisées, les outils utilisés ainsi que les résultats obtenus.
-      </p>
-    </section>
+    <section id="pdf-viewer">
+      <h2>📄 Tableau de compétences</h2>
 
-    <section id="tableau-realisations" class="visible">
-      <h2><i class="fas fa-list-check"></i> Récapitulatif des réalisations</h2>
+      <div class="pdf-card">
+        <div class="sous-titre">
+          Aperçu du document — cliquez sur le bouton pour l’ouvrir en grand
+        </div>
 
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Situation professionnelle</th>
-              <th>Contexte</th>
-              <th>Compétences mobilisées</th>
-              <th>Outils utilisés</th>
-              <th>Résultat</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Projet AP4 - Infrastructure réseau sécurisée</td>
-              <td>Mise en place d’une architecture réseau avec pare-feux redondants, DMZ et accès distant sécurisé.</td>
-              <td>Administration réseau, sécurisation des accès, configuration des services.</td>
-              <td>pfSense, OpenVPN, Active Directory</td>
-              <td>Infrastructure fonctionnelle, sécurisée et testée avec différents clients.</td>
-            </tr>
-            <tr>
-              <td>Serveur de messagerie</td>
-              <td>Déploiement d’un service de messagerie dans le cadre du projet d’infrastructure.</td>
-              <td>Installation et configuration système, gestion des services réseau.</td>
-              <td>Modoboa, Linux</td>
-              <td>Service de messagerie opérationnel en environnement de test.</td>
-            </tr>
-            <tr>
-              <td>Serveur de téléphonie</td>
-              <td>Mise en place d’un système de téléphonie IP pour les communications internes.</td>
-              <td>Configuration téléphonie IP, gestion réseau, validation fonctionnelle.</td>
-              <td>Asterisk</td>
-              <td>Appels internes fonctionnels dans l’environnement local.</td>
-            </tr>
-            <tr>
-              <td>Supervision de l’infrastructure</td>
-              <td>Surveillance et contrôle des équipements et services du réseau mis en place.</td>
-              <td>Analyse, supervision, maintenance préventive.</td>
-              <td>PRTG</td>
-              <td>Suivi en temps réel de l’état et des performances des services.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <iframe class="pdf-frame" src="../doc/MODELE DE TABLEAU DE SYNTHESE Benlamferred Ayoub-BTS SIO 2026.pdf"
+          title="Aperçu du PDF">
+          Ce navigateur ne prend pas en charge l'affichage du PDF.
+        </iframe>
 
-      <div class="table-note">
-        Ce tableau a pour objectif de donner une vue d’ensemble claire et structurée des travaux présentés dans mon portfolio.
+        <div class="pdf-actions">
+          <a href="../doc/MODELE DE TABLEAU DE SYNTHESE Benlamferred Ayoub-BTS SIO 2026.pdf" target="_blank" class="pdf-btn">
+            <i class="fas fa-up-right-from-square"></i> Ouvrir le PDF
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- BOUTONS DE CONTRÔLE DE PAGE -->
   <div class="page-controls">
     <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
       <i class="fas fa-moon"></i>
@@ -357,86 +282,41 @@ main > section:nth-child(3) { animation-delay: 0.2s; }
   </footer>
 
   <script src="../js/script.js"></script>
+
   <script>
     function animateName() {
       const fullName = "Ayoub Benlamferred";
-      const nameElement = document.getElementById('animated-name');
+      const el = document.getElementById("animated-name");
+      if (!el) return;
+
+      el.textContent = "";
       let i = 0;
-      function typeWriter() {
+
+      function type() {
         if (i < fullName.length) {
-          nameElement.textContent = fullName.substring(0, i + 1);
+          el.textContent += fullName.charAt(i);
           i++;
-          setTimeout(typeWriter, 250);
+          setTimeout(type, 250);
         }
       }
-      setTimeout(typeWriter, 250);
+      type();
     }
 
-    function setupMenu() {
-      const toggleBtn = document.querySelector('.nav-toggle');
-      const navMenu = document.getElementById('nav-menu');
-      toggleBtn.addEventListener('click', () => {
-        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-        navMenu.classList.toggle('active');
-        toggleBtn.setAttribute('aria-expanded', !isExpanded);
-      });
-    }
-
-    // Gestion des onglets des projets
-    function setupProjectTabs() {
-      const tabs = document.querySelectorAll('.project-tab');
-      const contents = document.querySelectorAll('.project-content');
-      
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          const projectId = tab.getAttribute('data-project');
-          
-          // Retirer la classe active de tous les onglets
-          tabs.forEach(t => t.classList.remove('active'));
-          // Retirer la classe active de tous les contenus
-          contents.forEach(c => c.classList.remove('active'));
-          
-          // Ajouter la classe active à l'onglet cliqué
-          tab.classList.add('active');
-          // Afficher le contenu correspondant
-          document.getElementById(`project-${projectId}`).classList.add('active');
-        });
-      });
-    }
-
-    // Animation des sections au scroll
-    function setupScrollAnimation() {
-      const sections = document.querySelectorAll('section');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
-      
-      sections.forEach(section => {
-        observer.observe(section);
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
       animateName();
-      setupMenu();
-      setupProjectTabs();
-      setupScrollAnimation();
-      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      const toggleBtn = document.querySelector(".nav-toggle");
+      const navMenu = document.getElementById("nav-menu");
+      if (toggleBtn && navMenu) {
+        toggleBtn.addEventListener("click", () => {
+          navMenu.classList.toggle("active");
+        });
+      }
     });
-
-
-
-
-
-
   </script>
+
 </body>
 </html>
