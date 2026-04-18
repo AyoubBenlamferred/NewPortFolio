@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Veille technologique sur la sécurité des mots de passe dans Active Directory">
-  <meta name="keywords" content="cybersécurité, Active Directory, mots de passe, GPO, BTS SIO, Ayoub Benlamferred">
-  <meta property="og:title" content="Veille Technologique - Sécurité Active Directory">
-  <meta property="og:description" content="Étude approfondie sur la gestion sécurisée des mots de passe">
-  <meta property="og:type" content="website">
-  <meta name="description" content="Portfolio de Ayoub Benlamferred, étudiant en BTS SIO">
+  <meta name="description" content="Veille technologique sur la sécurité des mots de passe et la gestion des identités dans Active Directory." />
+  <meta name="keywords" content="cybersécurité, Active Directory, mots de passe, GPO, BTS SIO, Ayoub Benlamferred, MFA, veille technologique" />
+  <meta property="og:title" content="Veille Technologique - Sécurité Active Directory" />
+  <meta property="og:description" content="Étude sur la sécurité des mots de passe, la gestion des identités et la veille technologique en environnement Active Directory." />
+  <meta property="og:type" content="website" />
   <title>Veille Technologique - Sécurité AD | Ayoub Benlamferred</title>
+
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="icon" href="../fav/favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
@@ -34,7 +34,6 @@
       --success: #2ed573;
     }
 
-    /* Thème clair */
     [data-theme="light"] {
       --primary: #0088cc;
       --primary-light: rgba(0, 136, 204, 0.1);
@@ -50,9 +49,7 @@
       --success: #2a9d8f;
     }
 
-    /* APPLIQUER LE THÈME AU BODY */
     body {
-      
       color: var(--text-light);
       transition: background-color var(--transition-speed), color var(--transition-speed);
       min-height: 100vh;
@@ -60,24 +57,23 @@
       padding: 0;
     }
 
-    [data-theme="light"] body {
+    body[data-theme="light"] {
       background-color: var(--bg-dark);
       color: var(--text-light);
     }
 
-    /* MAIN - TRANSPARENT COMME DANS LA PREMIÈRE VERSION */
     main {
       max-width: 1200px;
       margin: 2rem auto;
       padding: 0 1.5rem;
     }
 
-    /* Transition fluide pour tous les éléments */
     * {
-      transition: background-color var(--transition-speed), 
-                  color var(--transition-speed),
-                  border-color var(--transition-speed),
-                  box-shadow var(--transition-speed);
+      transition:
+        background-color var(--transition-speed),
+        color var(--transition-speed),
+        border-color var(--transition-speed),
+        box-shadow var(--transition-speed);
     }
 
     .nav-brand {
@@ -95,22 +91,21 @@
       color: var(--primary);
     }
 
-    /* Navigation thème clair */
-    [data-theme="light"] nav {
+    body[data-theme="light"] nav {
       background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
       border-bottom: 2px solid var(--primary);
     }
 
-    [data-theme="light"] nav ul li a {
+    body[data-theme="light"] nav ul li a {
       color: var(--text-light);
     }
 
-    [data-theme="light"] nav ul li.active a,
-    [data-theme="light"] nav ul li a:hover {
+    body[data-theme="light"] nav ul li.active a,
+    body[data-theme="light"] nav ul li a:hover {
       color: var(--primary);
     }
 
-    [data-theme="light"] #networkCanvas {
+    body[data-theme="light"] #networkCanvas {
       background: radial-gradient(ellipse at center, #e6f2ff 0%, #d9e8ff 100%);
       border-top: 1.5px solid var(--primary);
       border-bottom: 1.5px solid var(--primary);
@@ -118,12 +113,8 @@
     }
 
     @keyframes blink {
-      from, to {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0;
-      }
+      from, to { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     .veille-header {
@@ -159,7 +150,7 @@
       100% { transform: translateX(100%) rotate(25deg); }
     }
 
-    [data-theme="light"] .veille-header {
+    body[data-theme="light"] .veille-header {
       background: linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%);
       border: 1px solid rgba(0, 136, 204, 0.2);
     }
@@ -187,10 +178,6 @@
       z-index: 1;
     }
 
-    [data-theme="light"] .veille-header p {
-      color: var(--text-light);
-    }
-
     .veille-badge {
       display: inline-flex;
       align-items: center;
@@ -212,20 +199,11 @@
       50% { transform: scale(1.02); }
     }
 
-    [data-theme="light"] .veille-badge {
+    body[data-theme="light"] .veille-badge {
       background: rgba(0, 136, 204, 0.1);
       border: 1px solid var(--primary);
     }
 
-    /* ===== SECTIONS VERTICALES ===== */
-    .section-container {
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      margin-bottom: 3rem;
-    }
-
-    /* ===== CARTES DE SECTION - STYLE ORIGINAL ===== */
     .section-card {
       background: var(--bg-card);
       border-radius: 12px;
@@ -235,6 +213,7 @@
       height: 100%;
       position: relative;
       overflow: hidden;
+      margin-bottom: 2.5rem;
     }
 
     .section-card::before {
@@ -249,7 +228,7 @@
       transition: opacity 0.3s ease;
     }
 
-    [data-theme="light"] .section-card {
+    body[data-theme="light"] .section-card {
       background: var(--bg-card);
       border: 1px solid rgba(0, 136, 204, 0.2);
     }
@@ -264,7 +243,7 @@
       opacity: 1;
     }
 
-    [data-theme="light"] .section-card:hover {
+    body[data-theme="light"] .section-card:hover {
       box-shadow: 0 10px 25px rgba(0, 136, 204, 0.1);
     }
 
@@ -280,7 +259,7 @@
       padding-bottom: 0.8rem;
     }
 
-    [data-theme="light"] .section-card h2 {
+    body[data-theme="light"] .section-card h2 {
       border-bottom: 1px solid rgba(0, 136, 204, 0.2);
     }
 
@@ -355,8 +334,8 @@
       tab-size: 2;
     }
 
-    [data-theme="light"] code,
-    [data-theme="light"] pre {
+    body[data-theme="light"] code,
+    body[data-theme="light"] pre {
       background: rgba(0, 0, 0, 0.05);
       color: #006699;
     }
@@ -369,7 +348,6 @@
       max-width: 100%;
     }
 
-    /* ===== TECH STACK ===== */
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
@@ -396,7 +374,6 @@
       transform: translateY(-2px);
     }
 
-    /* ===== STATS DISPLAY ===== */
     .stats-display {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -425,7 +402,6 @@
       color: var(--text-light);
     }
 
-    /* ===== BENEFITS ===== */
     .benefits {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -454,7 +430,7 @@
       z-index: 0;
     }
 
-    [data-theme="light"] .benefit {
+    body[data-theme="light"] .benefit {
       background: rgba(0, 136, 204, 0.05);
     }
 
@@ -482,122 +458,6 @@
       z-index: 1;
     }
 
-    /* ===== TIMELINE ===== */
-    .timeline {
-      margin: 2rem 0;
-      position: relative;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 30px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--primary), transparent);
-    }
-
-    .timeline-item {
-      display: flex;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-
-    .timeline-date {
-      min-width: 60px;
-      background: var(--primary);
-      color: var(--bg-dark);
-      padding: 0.5rem;
-      border-radius: 4px;
-      text-align: center;
-      font-weight: bold;
-      margin-right: 1.5rem;
-      z-index: 1;
-    }
-
-    .timeline-content {
-      background: rgba(0, 255, 255, 0.05);
-      padding: 1rem;
-      border-radius: 8px;
-      flex: 1;
-      border: 1px solid rgba(0, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .timeline-content:hover {
-      background: rgba(0, 255, 255, 0.08);
-      transform: translateX(5px);
-    }
-
-    [data-theme="light"] .timeline-content {
-      background: rgba(0, 136, 204, 0.05);
-      border: 1px solid rgba(0, 136, 204, 0.1);
-    }
-
-    .timeline-content h4 {
-      color: var(--primary);
-      margin-top: 0;
-      margin-bottom: 0.5rem;
-    }
-
-    .timeline-content p {
-      color: var(--text-light);
-      margin: 0;
-      font-size: 0.95rem;
-    }
-
-    /* ===== COMPARISON TABLE ===== */
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .comparison-table th {
-      background: var(--primary-light);
-      color: var(--primary);
-      padding: 1rem;
-      text-align: left;
-      border: 1px solid rgba(0, 255, 255, 0.2);
-      font-weight: 600;
-    }
-
-    [data-theme="light"] .comparison-table th {
-      border: 1px solid rgba(0, 136, 204, 0.2);
-    }
-
-    .comparison-table td {
-      color: var(--text-light);
-      padding: 0.8rem 1rem;
-      border: 1px solid rgba(0, 255, 255, 0.1);
-      transition: background 0.2s ease;
-    }
-
-    [data-theme="light"] .comparison-table td {
-      border: 1px solid rgba(0, 136, 204, 0.1);
-    }
-
-    .comparison-table tr:nth-child(even) {
-      background: rgba(0, 255, 255, 0.02);
-    }
-
-    [data-theme="light"] .comparison-table tr:nth-child(even) {
-      background: rgba(0, 136, 204, 0.02);
-    }
-
-    .comparison-table tr:hover {
-      background: rgba(0, 255, 255, 0.05);
-    }
-
-    [data-theme="light"] .comparison-table tr:hover {
-      background: rgba(0, 136, 204, 0.05);
-    }
-
-    /* ===== PASSWORD STRENGTH SECTION ===== */
     .password-strength-section {
       margin: 2rem 0;
       padding: 2rem;
@@ -606,7 +466,7 @@
       border: 1px solid rgba(0, 255, 255, 0.2);
     }
 
-    [data-theme="light"] .password-strength-section {
+    body[data-theme="light"] .password-strength-section {
       background: linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(230, 240, 255, 0.95) 100%);
       border: 1px solid rgba(0, 136, 204, 0.2);
     }
@@ -667,17 +527,17 @@
       }
     }
 
-    .strength-bar.weak.active { 
+    .strength-bar.weak.active {
       background: linear-gradient(90deg, var(--danger), #ff6b81);
       box-shadow: 0 0 8px rgba(255, 71, 87, 0.3);
     }
 
-    .strength-bar.medium.active { 
+    .strength-bar.medium.active {
       background: linear-gradient(90deg, var(--warning), #ffbe76);
       box-shadow: 0 0 8px rgba(255, 165, 2, 0.3);
     }
 
-    .strength-bar.active:not(.weak):not(.medium) { 
+    .strength-bar.active:not(.weak):not(.medium) {
       background: linear-gradient(90deg, var(--success), #7bed9f);
       box-shadow: 0 0 8px rgba(46, 213, 115, 0.3);
     }
@@ -731,7 +591,6 @@
       border: 1px solid var(--success);
     }
 
-    /* ===== ARCHITECTURE VISUELLE ===== */
     .architecture-visual {
       display: flex;
       justify-content: center;
@@ -771,7 +630,6 @@
       display: none;
     }
 
-    /* ===== BOUTONS DE CONTRÔLE ===== */
     .page-controls {
       position: fixed;
       bottom: 20px;
@@ -798,7 +656,7 @@
       box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
     }
 
-    [data-theme="light"] .control-btn {
+    body[data-theme="light"] .control-btn {
       box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
     }
 
@@ -809,17 +667,11 @@
       outline: none;
     }
 
-    [data-theme="light"] .control-btn:hover {
+    body[data-theme="light"] .control-btn:hover {
       box-shadow: 0 6px 16px rgba(0, 136, 204, 0.4);
     }
 
     .theme-toggle {
-      background: var(--bg-dark);
-      color: var(--primary);
-      border: 2px solid var(--primary);
-    }
-
-    [data-theme="light"] .theme-toggle {
       background: var(--bg-dark);
       color: var(--primary);
       border: 2px solid var(--primary);
@@ -850,7 +702,10 @@
       transition: top 0.3s;
     }
 
-    /* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
+    .skip-link:focus {
+      top: 10px;
+    }
+
     footer {
       text-align: center;
       padding: 1rem 0;
@@ -859,236 +714,21 @@
       color: #a0c7d9 !important;
       margin-top: 2rem;
     }
-    
-    [data-theme="light"] footer {
+
+    body[data-theme="light"] footer {
       background-color: #001f3f !important;
       border-top: 2px solid #00ffff !important;
       color: #a0c7d9 !important;
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .veille-header h1 {
-        font-size: 2rem;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .section-container {
-        grid-template-columns: 1fr;
-      }
-
-      .architecture-visual {
-        flex-direction: column;
-      }
-
-      .arch-node::after {
-        content: '↓';
-        right: 50%;
-        transform: translateX(50%);
-        top: auto;
-        bottom: -25px;
-      }
-
-      .page-controls {
-        bottom: 10px;
-        right: 10px;
-      }
-
-      .control-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 1.1rem;
-      }
-      
-      main {
-        padding: 1.5rem;
-        margin: 1rem auto;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .password-example-item p {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-      }
-      
-      .benefits {
-        grid-template-columns: 1fr;
-      }
-      
-      main {
-        padding: 1rem;
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-in {
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-
-    /* ===== NOUVEAUX STYLES POUR LA SECTION SOURCES ===== */
-    .source-item {
-      background: rgba(0, 255, 255, 0.05);
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid rgba(0, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .source-item:hover {
-      transform: translateY(-3px);
-      border-color: var(--primary);
-      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
-    }
-
-    .source-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .source-icon {
-      width: 50px;
-      height: 50px;
-      background: var(--primary-light);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
+    .source-link-inline {
       color: var(--primary);
-    }
-
-    .source-title {
-      color: var(--text-lighter);
-      font-size: 1.2rem;
+      text-decoration: none;
       font-weight: 600;
     }
 
-    .source-description {
-      color: var(--text-light);
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-
-    .source-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      background: var(--primary-light);
-      border-radius: 6px;
-      transition: all 0.3s ease;
-    }
-
-    .source-link:hover {
-      background: var(--primary);
-      color: var(--bg-dark);
-    }
-
-    .source-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .source-card {
-      background: linear-gradient(135deg, rgba(0, 26, 42, 0.9) 0%, rgba(0, 40, 70, 0.9) 100%);
-      border-radius: 12px;
-      padding: 2rem;
-      border: 1px solid rgba(0, 255, 255, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    [data-theme="light"] .source-card {
-      background: linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(230, 240, 255, 0.95) 100%);
-    }
-
-    .source-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.1);
-    }
-
-    .source-card-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .source-card-icon {
-      width: 60px;
-      height: 60px;
-      background: var(--primary-light);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      color: var(--primary);
-    }
-
-    .source-card-title {
-      color: var(--primary);
-      font-size: 1.3rem;
-      font-weight: 700;
-    }
-
-    .source-card-content {
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    .source-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 1.5rem;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(0, 255, 255, 0.1);
-    }
-
-    .source-type {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.3rem 0.8rem;
-      background: rgba(0, 255, 255, 0.1);
-      color: var(--primary);
-      border-radius: 20px;
-      font-size: 0.85rem;
-    }
-
-    .source-visit {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: gap 0.3s ease;
-    }
-
-    .source-visit:hover {
-      gap: 0.8rem;
+    .source-link-inline:hover {
+      text-decoration: underline;
     }
 
     .sources-table {
@@ -1211,382 +851,81 @@
       gap: 1rem;
     }
 
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
+    .animate-in {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
 
+    @media (max-width: 768px) {
+      .veille-header h1 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
 
+      .architecture-visual {
+        flex-direction: column;
+      }
 
+      .arch-node::after {
+        content: '↓';
+        right: 50%;
+        transform: translateX(50%);
+        top: auto;
+        bottom: -25px;
+      }
 
+      .page-controls {
+        bottom: 10px;
+        right: 10px;
+      }
 
+      .control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
 
+      main {
+        padding: 1.5rem;
+        margin: 1rem auto;
+      }
+    }
 
+    @media (max-width: 480px) {
+      .password-example-item p {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
 
+      .benefits {
+        grid-template-columns: 1fr;
+      }
 
-
-/* ===== STYLES POUR LA SECTION MISE EN PRATIQUE ===== */
-.section-intro {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-  padding: 1.5rem;
-  background: rgba(0, 255, 255, 0.05);
-  border-radius: 10px;
-  border-left: 4px solid var(--primary);
-}
-
-/* Environnement de test */
-.environment-section {
-  margin: 3rem 0;
-}
-
-.environment-section h3 {
-  color: var(--primary);
-  margin-bottom: 2rem;
-  font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.environment-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.env-item {
-  background: rgba(0, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 1.5rem;
-  text-align: center;
-  border: 1px solid rgba(0, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
-
-.env-item:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary);
-  box-shadow: 0 10px 20px rgba(0, 255, 255, 0.1);
-}
-
-.env-icon {
-  width: 60px;
-  height: 60px;
-  background: var(--primary-light);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1rem;
-  font-size: 1.8rem;
-  color: var(--primary);
-}
-
-.env-item h4 {
-  color: var(--text-lighter);
-  margin-bottom: 0.8rem;
-  font-size: 1.1rem;
-}
-
-.env-item p {
-  color: var(--text-light);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* Tests effectués */
-.tests-section {
-  margin: 3rem 0;
-}
-
-.tests-section h3 {
-  color: var(--primary);
-  margin-bottom: 2rem;
-  font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.tests-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.test-card {
-  background: linear-gradient(135deg, rgba(0, 26, 42, 0.9) 0%, rgba(0, 40, 70, 0.9) 100%);
-  border-radius: 10px;
-  padding: 1.5rem;
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  transition: all 0.3s ease;
-}
-
-.test-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 255, 255, 0.15);
-}
-
-.test-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(0, 255, 255, 0.1);
-}
-
-.test-header i {
-  font-size: 1.5rem;
-}
-
-.test-header h4 {
-  color: var(--text-lighter);
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.test-content ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.test-content li {
-  color: var(--text-light);
-  margin-bottom: 0.6rem;
-  padding-left: 1.5rem;
-  position: relative;
-  line-height: 1.5;
-}
-
-.test-content li::before {
-  content: '▸';
-  position: absolute;
-  left: 0;
-  color: var(--primary);
-  font-weight: bold;
-}
-
-/* Technologies utilisées */
-.tech-section {
-  margin: 3rem 0;
-}
-
-.tech-section h3 {
-  color: var(--primary);
-  margin-bottom: 2rem;
-  font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-}
-
-.tech-item {
-  background: rgba(0, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 1.5rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid rgba(0, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
-
-.tech-item:hover {
-  background: rgba(0, 255, 255, 0.1);
-  transform: translateY(-3px);
-  border-color: var(--primary);
-}
-
-.tech-item i {
-  font-size: 2rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
-}
-
-.tech-name {
-  color: var(--text-lighter);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-}
-
-.tech-desc {
-  color: var(--text-light);
-  font-size: 0.85rem;
-  opacity: 0.9;
-}
-
-/* Bénéfices */
-.benefits-section {
-  margin: 3rem 0;
-}
-
-.benefit-card {
-  display: flex;
-  gap: 1.5rem;
-  background: rgba(0, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(0, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
-
-.benefit-card:hover {
-  transform: translateX(10px);
-  border-color: var(--primary);
-}
-
-.benefit-icon {
-  width: 60px;
-  height: 60px;
-  background: var(--primary-light);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.8rem;
-  color: var(--primary);
-  flex-shrink: 0;
-}
-
-.benefit-content h4 {
-  color: var(--primary);
-  margin: 0 0 0.8rem 0;
-  font-size: 1.2rem;
-}
-
-.benefit-content p {
-  color: var(--text-light);
-  margin: 0;
-  line-height: 1.6;
-}
-
-/* Résultats obtenus */
-.results-section {
-  margin: 3rem 0;
-}
-
-.results-section h3 {
-  color: var(--primary);
-  margin-bottom: 2rem;
-  font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.results-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1.5rem;
-}
-
-.result-item {
-  background: linear-gradient(135deg, var(--primary-light), rgba(138, 43, 226, 0.1));
-  border-radius: 10px;
-  padding: 1.5rem;
-  text-align: center;
-  border: 1px solid var(--primary);
-}
-
-.result-value {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-}
-
-.result-label {
-  color: var(--text-light);
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-/* Conclusion de la section */
-.section-conclusion {
-  background: linear-gradient(135deg, rgba(0, 40, 70, 0.9) 0%, rgba(0, 30, 60, 0.9) 100%);
-  border-radius: 12px;
-  padding: 2rem;
-  margin-top: 2rem;
-  border: 1px solid var(--primary);
-  position: relative;
-  overflow: hidden;
-}
-
-.section-conclusion p {
-  color: var(--text-lighter);
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin: 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.section-conclusion i {
-  color: var(--primary);
-  font-size: 1.5rem;
-  flex-shrink: 0;
-  margin-top: 0.2rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .environment-grid,
-  .tests-grid,
-  .tech-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .benefit-card {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .benefit-icon {
-    margin: 0 auto;
-  }
-  
-  .section-conclusion p {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .results-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .results-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-
+      main {
+        padding: 1rem;
+      }
+    }
   </style>
-
 </head>
 
 <body>
-  <!-- Skip link pour l'accessibilité -->
   <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
   <nav aria-label="Navigation principale">
     <div class="nav-brand" id="animated-name"></div>
-    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
     <ul id="nav-menu">
       <li><a href="accueil.html">Accueil</a></li>
       <li><a href="profil.html">Profil</a></li>
@@ -1601,11 +940,10 @@
     </ul>
   </nav>
 
-<canvas id="networkCanvas"></canvas>
+  <canvas id="networkCanvas"></canvas>
 
   <main id="main-content" role="main" tabindex="-1">
 
-    <!-- En-tête principal -->
     <header class="veille-header animate-in">
       <h1><i class="fas fa-shield-alt" aria-hidden="true"></i> Veille Technologique</h1>
       <p>Sécurité des mots de passe et gestion des identités dans un environnement Active Directory</p>
@@ -1615,25 +953,25 @@
       </span>
     </header>
 
-    <!-- Section 0: Qu'est-ce que la veille technologique -->
     <div class="section-card animate-in">
-      <h2><i class="fas fa-question-circle" aria-hidden="true"></i> C'est quoi la veille technologique ?</h2>
+      <h2><i class="fas fa-question-circle" aria-hidden="true"></i> Qu’est-ce que la veille technologique ?</h2>
 
       <div class="benefits">
         <div class="benefit">
           <h4><i class="fas fa-search"></i> Définition</h4>
           <p>
-            La <strong>veille technologique</strong> consiste à suivre l'évolution des technologies afin de
-            comprendre les nouvelles pratiques, anticiper les risques et améliorer les systèmes informatiques.
+            La <strong>veille technologique</strong> consiste à suivre régulièrement l’évolution d’un domaine
+            informatique afin d’identifier les nouveautés, les bonnes pratiques, les risques et les changements
+            importants.
           </p>
         </div>
 
         <div class="benefit">
           <h4><i class="fas fa-cogs"></i> Objectif</h4>
           <p>
-            En <strong>BTS SIO option SISR</strong>, la veille permet de rester à jour sur les technologies
-            utilisées en entreprise, notamment en matière de <strong>sécurité</strong> et d'
-            <strong>administration système et réseau</strong>.
+            En <strong>BTS SIO option SISR</strong>, la veille permet de montrer que l’on reste à jour sur les
+            technologies utilisées en entreprise, notamment en matière de <strong>sécurité</strong> et
+            d’<strong>administration système et réseau</strong>.
           </p>
         </div>
 
@@ -1641,53 +979,51 @@
           <h4><i class="fas fa-bullseye"></i> Intérêt professionnel</h4>
           <p>
             • Anticiper les menaces informatiques<br>
-            • Adapter les infrastructures existantes<br>
+            • Comprendre les évolutions des outils<br>
+            • Adapter les pratiques d’administration<br>
             • Améliorer la sécurité des utilisateurs et des données
           </p>
         </div>
 
         <div class="benefit">
-          <h4><i class="fas fa-tools"></i> Sources utilisées</h4>
+          <h4><i class="fas fa-tools"></i> Méthode</h4>
           <p>
-            • Documentation Microsoft<br>
-            • Recommandations ANSSI<br>
-            • Articles spécialisés en cybersécurité<br>
-            • Vidéos pédagogiques
+            Une veille crédible repose sur des <strong>sources fiables</strong>, un <strong>suivi régulier</strong>,
+            une <strong>analyse des nouveautés</strong> et une <strong>mise à jour de la synthèse</strong>.
           </p>
         </div>
       </div>
 
       <div class="stats-display">
         <div class="stat-item">
+          <div class="stat-number">1-2x</div>
+          <div class="stat-label">Consultation / semaine</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3+</div>
+          <div class="stat-label">Sources officielles</div>
+        </div>
+        <div class="stat-item">
           <div class="stat-number">100%</div>
-          <div class="stat-label">Pertinence</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">24/7</div>
-          <div class="stat-label">Veille continue</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">10+</div>
-          <div class="stat-label">Sources analysées</div>
+          <div class="stat-label">Sujet lié au BTS</div>
         </div>
       </div>
     </div>
 
-    <!-- Section 1: Introduction -->
     <div class="section-card animate-in">
-      <h2><i class="fas fa-info-circle" aria-hidden="true"></i> Pourquoi la sécurité des mots de passe est essentielle</h2>
+      <h2><i class="fas fa-info-circle" aria-hidden="true"></i> Pourquoi ce sujet est important</h2>
 
       <p>
-        Les <strong>mots de passe</strong> sont le principal moyen de protection des comptes utilisateurs.
-        Un mot de passe faible peut permettre à un attaquant d'accéder à un système informatique
-        et compromettre l'ensemble du réseau.
+        Les <strong>mots de passe</strong> restent un élément central de la sécurité des comptes utilisateurs.
+        Dans un environnement d’entreprise, un mot de passe faible ou réutilisé peut favoriser l’accès non autorisé
+        à des comptes, des serveurs ou des ressources sensibles.
       </p>
 
       <div class="password-strength-section">
-        <h3><i class="fas fa-lock"></i> Analyse Comparative des Mots de Passe</h3>
-        
+        <h3><i class="fas fa-lock"></i> Exemples de robustesse de mots de passe</h3>
+
         <div class="password-example-item">
-          <p><strong>"admin123"</strong> <span class="badge-high">Risque Élevé</span></p>
+          <p><strong>"admin123"</strong> <span class="badge-high">Très faible</span></p>
           <div class="password-strength">
             <div class="strength-bar weak active"></div>
             <div class="strength-bar"></div>
@@ -1695,11 +1031,11 @@
             <div class="strength-bar"></div>
             <div class="strength-bar"></div>
           </div>
-          <p><i class="fas fa-clock"></i> Temps de crack estimé : <strong>3 secondes</strong></p>
+          <p><i class="fas fa-exclamation-triangle"></i> Mot de passe simple, très exposé aux attaques par dictionnaire ou brute force.</p>
         </div>
-        
+
         <div class="password-example-item">
-          <p><strong>"P@ssword2023"</strong> <span class="badge-medium">Risque Moyen</span></p>
+          <p><strong>"P@ssword2023"</strong> <span class="badge-medium">Moyen</span></p>
           <div class="password-strength">
             <div class="strength-bar medium active"></div>
             <div class="strength-bar medium active"></div>
@@ -1707,11 +1043,11 @@
             <div class="strength-bar"></div>
             <div class="strength-bar"></div>
           </div>
-          <p><i class="fas fa-clock"></i> Temps de crack estimé : <strong>2 heures</strong></p>
+          <p><i class="fas fa-exclamation-circle"></i> Plus complexe, mais encore prévisible car construit sur un schéma courant.</p>
         </div>
-        
+
         <div class="password-example-item">
-          <p><strong>"V3ry$tr0ngP@ss!2024"</strong> <span class="badge-low">Sécurisé</span></p>
+          <p><strong>"V3ry$tr0ngP@ss!2024"</strong> <span class="badge-low">Plus robuste</span></p>
           <div class="password-strength">
             <div class="strength-bar active"></div>
             <div class="strength-bar active"></div>
@@ -1719,14 +1055,14 @@
             <div class="strength-bar active"></div>
             <div class="strength-bar active"></div>
           </div>
-          <p><i class="fas fa-clock"></i> Temps de crack estimé : <strong>500+ années</strong></p>
+          <p><i class="fas fa-check-circle"></i> Mot de passe plus long et plus varié, offrant une meilleure résistance aux attaques classiques.</p>
         </div>
       </div>
 
       <p>
-        En entreprise, notamment dans un environnement <strong>Active Directory</strong>,
-        la sécurité des mots de passe est un enjeu majeur pour protéger les utilisateurs,
-        les serveurs et les données sensibles.
+        Dans un environnement <strong>Active Directory</strong>, la sécurité des mots de passe s’inscrit dans
+        une logique plus large de <strong>gestion des identités</strong>, de protection des comptes à privilèges
+        et d’évolution vers des mécanismes comme le <strong>MFA</strong> ou le <strong>passwordless</strong>.
       </p>
 
       <div class="tech-stack">
@@ -1734,10 +1070,10 @@
         <span class="tech-badge"><i class="fas fa-shield-alt"></i> GPO</span>
         <span class="tech-badge"><i class="fas fa-lock"></i> MFA</span>
         <span class="tech-badge"><i class="fas fa-key"></i> Kerberos</span>
+        <span class="tech-badge"><i class="fas fa-fingerprint"></i> Passwordless</span>
       </div>
     </div>
 
-    <!-- Section 2: Problématiques -->
     <div class="section-card animate-in">
       <h2><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Problèmes liés aux mots de passe faibles</h2>
 
@@ -1747,16 +1083,18 @@
           <p>
             • Mots de passe trop courts<br>
             • Réutilisation du même mot de passe<br>
-            • Partage entre utilisateurs
+            • Partage entre utilisateurs<br>
+            • Schémas trop prévisibles
           </p>
         </div>
 
         <div class="benefit">
-          <h4><i class="fas fa-bug"></i> Risques pour l'entreprise</h4>
+          <h4><i class="fas fa-bug"></i> Risques pour l’entreprise</h4>
           <p>
             • Accès non autorisé aux ressources<br>
+            • Compromission de comptes sensibles<br>
             • Vol ou perte de données<br>
-            • Propagation de logiciels malveillants
+            • Mouvement latéral dans le réseau
           </p>
         </div>
 
@@ -1764,6 +1102,7 @@
           <h4><i class="fas fa-robot"></i> Attaques courantes</h4>
           <p>
             • Brute force<br>
+            • Password spraying<br>
             • Phishing<br>
             • Credential stuffing
           </p>
@@ -1772,28 +1111,27 @@
 
       <div class="stats-display">
         <div class="stat-item">
-          <div class="stat-number">81%</div>
-          <div class="stat-label">Fuite par mots de passe</div>
+          <div class="stat-number">AD</div>
+          <div class="stat-label">Cible fréquente en entreprise</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number">3s</div>
-          <div class="stat-label">Crack d'un mot faible</div>
+          <div class="stat-number">MFA</div>
+          <div class="stat-label">Renforcement recommandé</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number">65%</div>
-          <div class="stat-label">Réutilisation de mots de passe</div>
+          <div class="stat-number">Zero Trust</div>
+          <div class="stat-label">Évolution actuelle</div>
         </div>
       </div>
     </div>
 
-    <!-- Section 3: Active Directory -->
     <div class="section-card animate-in">
       <h2><i class="fas fa-network-wired" aria-hidden="true"></i> Gestion des mots de passe avec Active Directory</h2>
 
       <p>
-        <strong>Active Directory</strong> permet une gestion centralisée des comptes utilisateurs.
-        Grâce aux <strong>stratégies de groupe (GPO)</strong>, l'administrateur peut imposer
-        des règles de sécurité sur l'ensemble du domaine.
+        <strong>Active Directory</strong> permet une gestion centralisée des comptes utilisateurs. Grâce aux
+        <strong>stratégies de groupe (GPO)</strong>, l’administrateur peut imposer des règles de sécurité
+        sur l’ensemble du domaine.
       </p>
 
       <div class="architecture-visual">
@@ -1804,7 +1142,7 @@
         </div>
         <div class="arch-node" style="background: rgba(0, 255, 255, 0.1);">
           <i class="fas fa-server" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;"></i>
-          <h4 style="margin: 0;">Contrôleur de Domaine</h4>
+          <h4 style="margin: 0;">Contrôleur de domaine</h4>
           <p style="font-size: 0.9rem; margin: 0.5rem 0 0;">Active Directory</p>
         </div>
         <div class="arch-node">
@@ -1814,27 +1152,68 @@
         </div>
       </div>
 
-      <h3><i class="fas fa-sliders-h"></i> Paramètres GPO recommandés</h3>
+      <h3><i class="fas fa-sliders-h"></i> Paramètres de sécurité étudiés</h3>
       <ul>
-        <li><strong>Longueur minimale :</strong> 12 caractères minimum</li>
-        <li><strong>Complexité :</strong> Majuscules, minuscules, chiffres, symboles</li>
-        <li><strong>Expiration :</strong> 90 jours maximum</li>
-        <li><strong>Historique :</strong> 24 mots de passe mémorisés</li>
-        <li><strong>Verrouillage :</strong> 3 tentatives maximum</li>
-        <li><strong>Chiffrement :</strong> NTLMv2 obligatoire</li>
+        <li><strong>Longueur minimale :</strong> politique renforcée pour limiter les mots de passe trop simples</li>
+        <li><strong>Complexité :</strong> combinaison de plusieurs types de caractères</li>
+        <li><strong>Historique :</strong> éviter la réutilisation immédiate des anciens mots de passe</li>
+        <li><strong>Verrouillage :</strong> limiter les tentatives successives</li>
+        <li><strong>Comptes sensibles :</strong> exigences plus strictes pour les administrateurs</li>
+        <li><strong>Évolution :</strong> complément avec MFA, passkeys et authentification moderne</li>
       </ul>
 
-     <div class="tech-stack">
-    <span class="tech-badge">Gérer</span>
-    <span class="tech-badge">Automatiser</span>
-    <span class="tech-badge">Outils</span>
-    <span class="tech-badge">Vérifier</span>
-</div>
+      <div class="tech-stack">
+        <span class="tech-badge">Gérer</span>
+        <span class="tech-badge">Automatiser</span>
+        <span class="tech-badge">Surveiller</span>
+        <span class="tech-badge">Sécuriser</span>
+      </div>
+    </div>
 
+    <div class="section-card animate-in">
+      <h2><i class="fas fa-rss" aria-hidden="true"></i> Comment je fais ma veille</h2>
 
-     
+      <p>
+        Une veille technologique ne consiste pas seulement à présenter un thème. Elle doit montrer que l’on
+        suit <strong>régulièrement</strong> les évolutions d’un sujet et que l’on sait identifier les
+        informations importantes.
+      </p>
 
-    <!-- Section 5: Bonnes pratiques -->
+      <div class="benefits">
+        <div class="benefit">
+          <h4><i class="fas fa-calendar-alt"></i> Rythme de suivi</h4>
+          <p>
+            Consultation régulière des publications techniques, suivi des mises à jour sécurité
+            et lecture des recommandations officielles plusieurs fois par semaine.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h4><i class="fas fa-filter"></i> Sélection des informations</h4>
+          <p>
+            Je conserve uniquement les informations utiles pour mon sujet : Active Directory, politiques
+            de mot de passe, MFA, comptes à privilèges, authentification moderne.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h4><i class="fas fa-bell"></i> Mises à jour et notifications</h4>
+          <p>
+            Je peux suivre les publications officielles, consulter les alertes CERT et utiliser
+            les flux RSS ou les pages d’actualités pour repérer les nouveautés importantes.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h4><i class="fas fa-save"></i> Mise à jour de la synthèse</h4>
+          <p>
+            Quand une nouveauté importante apparaît, je mets à jour ma synthèse de veille
+            afin de garder un contenu cohérent et actuel dans mon portfolio.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <div class="section-card animate-in">
       <h2><i class="fas fa-check-circle" aria-hidden="true"></i> Bonnes pratiques en entreprise</h2>
 
@@ -1842,225 +1221,206 @@
         <div class="benefit">
           <h4><i class="fas fa-user-tie"></i> Administrateur système</h4>
           <p>
-            • Implémentation stricte des GPO<br>
-            • Séparation des comptes (admin / utilisateur)<br>
-            • Surveillance active des connexions
+            • Définir des politiques adaptées au contexte<br>
+            • Séparer les comptes d’administration et les comptes standards<br>
+            • Surveiller les événements liés à l’authentification<br>
+            • Renforcer les comptes sensibles
           </p>
         </div>
 
         <div class="benefit">
           <h4><i class="fas fa-users"></i> Utilisateurs finaux</h4>
           <p>
-            • Mots de passe complexes et uniques<br>
-            • Jamais de partage d'identifiants<br>
-            • Sensibilisation continue à la sécurité
+            • Utiliser des mots de passe robustes et uniques<br>
+            • Ne jamais partager ses identifiants<br>
+            • Être sensibilisé au phishing<br>
+            • Utiliser le MFA lorsqu’il est disponible
           </p>
         </div>
       </div>
 
-     
-
       <div class="stats-display">
         <div class="stat-item">
-          <div class="stat-number">99%</div>
-          <div class="stat-label">Risques réduits</div>
+          <div class="stat-number">MFA</div>
+          <div class="stat-label">Mesure complémentaire</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number">24</div>
-          <div class="stat-label">Mots de passe mémorisés</div>
+          <div class="stat-number">GPO</div>
+          <div class="stat-label">Pilotage centralisé</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number">90j</div>
-          <div class="stat-label">Expiration</div>
+          <div class="stat-number">AD</div>
+          <div class="stat-label">Gestion des identités</div>
         </div>
       </div>
     </div>
 
+    <div class="sources-summary">
+      <h3><i class="fas fa-table"></i> Synthèse des sources utilisées</h3>
+    </div>
 
+    <table class="sources-table">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Type</th>
+          <th>Contribution principale</th>
+          <th>Tags</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong>Microsoft Learn</strong><br>
+            <small><a class="source-link-inline" href="https://learn.microsoft.com/fr-fr/" target="_blank" rel="noopener noreferrer">learn.microsoft.com</a></small>
+          </td>
+          <td>Documentation officielle</td>
+          <td>Bonnes pratiques Microsoft, Active Directory, sécurité, authentification, MFA, identité</td>
+          <td>
+            <span class="source-tag"><i class="fab fa-microsoft"></i> Microsoft</span>
+            <span class="source-tag"><i class="fas fa-server"></i> AD</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>ANSSI</strong><br>
+            <small><a class="source-link-inline" href="https://cyber.gouv.fr" target="_blank" rel="noopener noreferrer">cyber.gouv.fr</a></small>
+          </td>
+          <td>Source institutionnelle</td>
+          <td>Recommandations françaises sur l’authentification, les mots de passe et l’hygiène informatique</td>
+          <td>
+            <span class="source-tag"><i class="fas fa-shield-alt"></i> Sécurité</span>
+            <span class="source-tag"><i class="fas fa-flag"></i> France</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>CERT-FR</strong><br>
+            <small><a class="source-link-inline" href="https://www.cert.ssi.gouv.fr/" target="_blank" rel="noopener noreferrer">cert.ssi.gouv.fr</a></small>
+          </td>
+          <td>Alertes de sécurité</td>
+          <td>Alertes, avis, bulletins et informations utiles pour suivre les vulnérabilités et incidents</td>
+          <td>
+            <span class="source-tag"><i class="fas fa-bell"></i> Alertes</span>
+            <span class="source-tag"><i class="fas fa-rss"></i> Veille</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>OWASP</strong><br>
+            <small><a class="source-link-inline" href="https://owasp.org" target="_blank" rel="noopener noreferrer">owasp.org</a></small>
+          </td>
+          <td>Référence sécurité</td>
+          <td>Bonnes pratiques générales sur l’authentification et la sécurité des accès</td>
+          <td>
+            <span class="source-tag"><i class="fas fa-lock"></i> Authentification</span>
+            <span class="source-tag"><i class="fas fa-globe"></i> International</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  <!-- Tableau des Sources -->
-  <div class="sources-summary">
-    <h3><i class="fas fa-table"></i> Synthèse des Sources Utilisées</h3>
-  </div>
+    <div class="sources-summary">
+      <h3><i class="fas fa-robot"></i> Outils d’intelligence artificielle utilisés</h3>
+    </div>
 
-  <table class="sources-table">
-    <thead>
-      <tr>
-        <th>Source</th>
-        <th>Type</th>
-        <th>Contribution Principale</th>
-        <th>Tags</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <strong>Microsoft Learn</strong><br>
-          <small><a href="https://learn.microsoft.com/fr-fr/docs/" target="_blank">learn.microsoft.com</a></small>
-        </td>
-        <td>Documentation Officielle</td>
-        <td>Meilleures pratiques AD, GPO, sécurité Windows Server</td>
-        <td>
-          <span class="source-tag"><i class="fab fa-microsoft"></i> Microsoft</span>
-          <span class="source-tag"><i class="fas fa-server"></i> AD</span>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <strong>ANSSI</strong><br>
-          <small><a href="https://www.ssi.gouv.fr" target="_blank">ssi.gouv.fr</a></small>
-        </td>
-        <td>Guide Institutionnel</td>
-        <td>Recommandations sécurité mots de passe, conformité RGPD</td>
-        <td>
-          <span class="source-tag"><i class="fas fa-shield-alt"></i> Sécurité</span>
-          <span class="source-tag"><i class="fas fa-flag"></i> France</span>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <strong>IT-Connect</strong><br>
-          <small><a href="https://www.it-connect.fr" target="_blank">it-connect.fr</a></small>
-        </td>
-        <td>Plateforme Pédagogique</td>
-        <td>Tutoriels pratiques, cas concrets, vidéos explicatives</td>
-        <td>
-          <span class="source-tag"><i class="fas fa-chalkboard-teacher"></i> Tutoriels</span>
-          <span class="source-tag"><i class="fas fa-video"></i> Vidéos</span>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <strong>OWASP</strong><br>
-          <small><a href="https://owasp.org" target="_blank">owasp.org</a></small>
-        </td>
-        <td>Communauté Sécurité</td>
-        <td>Standards sécurité web, protection authentification</td>
-        <td>
-          <span class="source-tag"><i class="fas fa-lock"></i> Web Security</span>
-          <span class="source-tag"><i class="fas fa-globe"></i> International</span>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <strong>YouTube - Geek Advisor</strong><br>
-          <small><a href="https://www.youtube.com/@geek_advisor" target="_blank">youtube.com/c/geek_advisor</a></small>
-        </td>
-        <td>Vidéos Pédagogiques</td>
-        <td>Démonstrations attaques AD, défense active directory</td>
-        <td>
-          <span class="source-tag"><i class="fab fa-youtube"></i> YouTube</span>
-          <span class="source-tag"><i class="fas fa-user-secret"></i> Pentest</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Outils IA Utilisés -->
-  <div class="sources-summary">
-    <h3><i class="fas fa-robot"></i> Outils d'Intelligence Artificielle Utilisés</h3>
-  </div>
-
-  <div class="ai-tools">
-    <div class="ai-tool">
-      <div class="ai-tool-header">
-        <div class="ai-tool-icon">
-          <i class="fas fa-comment-alt"></i>
+    <div class="ai-tools">
+      <div class="ai-tool">
+        <div class="ai-tool-header">
+          <div class="ai-tool-icon">
+            <i class="fas fa-comment-alt"></i>
+          </div>
+          <div class="ai-tool-title">ChatGPT</div>
         </div>
-        <div class="ai-tool-title">ChatGPT 4</div>
+        <div class="ai-tool-description">
+          Utilisé pour aider à reformuler, structurer le contenu et clarifier certaines notions techniques.
+        </div>
       </div>
-      <div class="ai-tool-description">
-        Utilisé pour la recherche d'informations, la synthèse de documentation technique et la clarification de concepts complexes sur la sécurité Active Directory.
+
+      <div class="ai-tool">
+        <div class="ai-tool-header">
+          <div class="ai-tool-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <div class="ai-tool-title">DeepSeek</div>
+        </div>
+        <div class="ai-tool-description">
+          Utilisé en appui pour la structuration du contenu et la reformulation de certains passages.
+        </div>
+      </div>
+
+      <div class="ai-tool">
+        <div class="ai-tool-header">
+          <div class="ai-tool-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <div class="ai-tool-title">Google Gemini</div>
+        </div>
+        <div class="ai-tool-description">
+          Utilisé ponctuellement pour comparer certaines formulations et explorer des pistes de recherche.
+        </div>
       </div>
     </div>
 
-    <div class="ai-tool">
-      <div class="ai-tool-header">
-        <div class="ai-tool-icon">
-          <i class="fas fa-brain"></i>
-        </div>
-        <div class="ai-tool-title">DeepSeek</div>
+    <div class="sources-summary">
+      <h3><i class="fas fa-chart-line"></i> Méthodologie de veille appliquée</h3>
+    </div>
+
+    <div class="benefits">
+      <div class="benefit">
+        <h4><i class="fas fa-calendar-alt"></i> Rythme de suivi</h4>
+        <p>Consultation régulière des sources officielles et suivi des actualités sécurité en lien avec l’authentification et Active Directory.</p>
       </div>
-      <div class="ai-tool-description">
-        Assistance pour la structuration du contenu, la vérification des informations techniques et l'optimisation des explications sur les GPO et la sécurité AD.
+
+      <div class="benefit">
+        <h4><i class="fas fa-filter"></i> Sélection des informations</h4>
+        <p>Je me concentre sur les informations applicables en entreprise et utiles dans le cadre du BTS SIO SISR.</p>
+      </div>
+
+      <div class="benefit">
+        <h4><i class="fas fa-save"></i> Organisation</h4>
+        <p>Je conserve les éléments importants, je note les changements utiles et j’actualise ma synthèse de veille dans le portfolio.</p>
+      </div>
+
+      <div class="benefit">
+        <h4><i class="fas fa-users"></i> Application pratique</h4>
+        <p>J’utilise cette veille pour mieux comprendre les politiques de sécurité, les pratiques d’administration et les évolutions du monde professionnel.</p>
       </div>
     </div>
 
-    <div class="ai-tool">
-      <div class="ai-tool-header">
-        <div class="ai-tool-icon">
-          <i class="fas fa-search"></i>
-        </div>
-        <div class="ai-tool-title">Google Gemini</div>
-      </div>
-      <div class="ai-tool-description">
-        Recherche d'actualités récentes sur les failles de sécurité AD et les nouvelles recommandations en matière de gestion des identités.
-      </div>
-    </div>
-  </div>
-
-  <!-- Méthodologie de Veille -->
-<div class="sources-summary">
-  <h3><i class="fas fa-chart-line"></i> Méthodologie de Veille Appliquée</h3>
-</div>
-
-<div class="benefits">
-  <div class="benefit">
-    <h4><i class="fas fa-calendar-alt"></i> Rythme de suivi</h4>
-    <p>Consultation régulière des actualités (1-2 fois par semaine), suivi des mises à jour Microsoft mensuelles, et visionnage de tutoriels vidéo.</p>
-  </div>
-
-  <div class="benefit">
-    <h4><i class="fas fa-filter"></i> Sélection des informations</h4>
-    <p>Je me concentre sur ce qui est applicable en entreprise et dans le cadre du BTS. Je vérifie les informations sur plusieurs sites avant de les considérer comme fiables.</p>
-  </div>
-
-  <div class="benefit">
-    <h4><i class="fas fa-save"></i> Organisation personnelle</h4>
-    <p>Je classe les articles intéressants par thème, je garde une trace des tests que je réalise en environnement virtuel, et je prends des notes pour mes révisions.</p>
-  </div>
-
-  <div class="benefit">
-    <h4><i class="fas fa-users"></i> Application pratique</h4>
-    <p>J'utilise ces connaissances dans mes projets de BTS, j'en discute avec mes camarades de classe, et je les applique dans mes travaux pratiques.</p>
-  </div>
-</div>
-
-  
-    <!-- Section 7: Conclusion -->
     <div class="section-card animate-in">
       <h2><i class="fas fa-flag-checkered" aria-hidden="true"></i> Conclusion</h2>
 
       <p>
-        La sécurité des mots de passe est un élément <strong>essentiel</strong> de la sécurité informatique.
-        Active Directory et les GPO permettent de mettre en place des règles efficaces
-        pour protéger les comptes utilisateurs et l'ensemble de l'infrastructure.
+        La sécurité des mots de passe et des identités est un élément <strong>essentiel</strong> de la sécurité
+        informatique en entreprise. Active Directory, les GPO et les mécanismes d’authentification renforcée
+        permettent de mieux protéger les comptes utilisateurs et les ressources du système d’information.
       </p>
 
       <div class="benefits">
         <div class="benefit">
           <h4><i class="fas fa-chart-line"></i> Apports de cette veille</h4>
-          <p>Compréhension approfondie des enjeux de sécurité dans AD</p>
+          <p>Compréhension des enjeux liés à la gestion des identités, aux politiques de sécurité et aux évolutions de l’authentification.</p>
         </div>
         <div class="benefit">
           <h4><i class="fas fa-tools"></i> Compétences développées</h4>
-          <p>Maîtrise des GPO</p>
+          <p>Analyse de documentation technique, compréhension des GPO, sensibilisation aux bonnes pratiques et veille structurée.</p>
         </div>
         <div class="benefit">
           <h4><i class="fas fa-eye"></i> Perspectives</h4>
-          <p>Évolution vers Zero Trust et authentification biométrique</p>
+          <p>Évolution vers le Zero Trust, le MFA généralisé, les passkeys et les méthodes d’authentification sans mot de passe.</p>
         </div>
       </div>
 
       <p>
-        Cette veille m'a permis de renforcer mes compétences en <strong>administration système</strong>
-        et de mieux comprendre les enjeux de la sécurité dans un environnement professionnel moderne.
+        Cette veille m’a permis de renforcer mes compétences en <strong>administration système</strong>
+        et de mieux comprendre comment suivre les évolutions d’un sujet technique de manière régulière
+        et professionnelle.
       </p>
     </div>
 
   </main>
 
-  <!-- Contrôles de page -->
   <div class="page-controls">
     <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
       <i class="fas fa-moon"></i>
@@ -2079,140 +1439,118 @@
   <script src="../js/script.js"></script>
 
   <script>
-     // Initialisation
     document.addEventListener('DOMContentLoaded', () => {
-        // Année dans le footer
-        const yearEl = document.getElementById('year');
-        if (yearEl) yearEl.textContent = new Date().getFullYear();
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-        // =========================
-        // ANIMATION DU NOM (UNE SEULE FOIS)
-        // =========================
-        let nameAnimated = false;
-        function animateName() {
-            if (nameAnimated) return;
-            const fullName = "Ayoub Benlamferred";
-            const nameElement = document.getElementById('animated-name');
-            if (!nameElement) return;
-            let i = 0;
-            function typeWriter() {
-                if (i < fullName.length) {
-                    nameElement.textContent = fullName.substring(0, i + 1);
-                    i++;
-                    setTimeout(typeWriter, 250);
-                }
-            }
+      let nameAnimated = false;
+      function animateName() {
+        if (nameAnimated) return;
+        const fullName = "Ayoub Benlamferred";
+        const nameElement = document.getElementById('animated-name');
+        if (!nameElement) return;
+        let i = 0;
+
+        function typeWriter() {
+          if (i < fullName.length) {
+            nameElement.textContent = fullName.substring(0, i + 1);
+            i++;
             setTimeout(typeWriter, 250);
-            nameAnimated = true;
-        }
-        
-        // APPEL DE LA FONCTION
-        animateName();
-
-        // Menu burger
-        const toggleBtn = document.querySelector('.nav-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        if (toggleBtn && navMenu) {
-            toggleBtn.addEventListener('click', () => {
-                const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-                navMenu.classList.toggle('active');
-                toggleBtn.setAttribute('aria-expanded', !isExpanded);
-            });
+          }
         }
 
-        // Animation au survol des cartes
-        document.querySelectorAll('.section-card, .tool-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px)';
-            });
+        setTimeout(typeWriter, 250);
+        nameAnimated = true;
+      }
 
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
+      animateName();
+
+      const toggleBtn = document.querySelector('.nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      if (toggleBtn && navMenu) {
+        toggleBtn.addEventListener('click', () => {
+          const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+          navMenu.classList.toggle('active');
+          toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
+        });
+      }
+
+      document.querySelectorAll('.section-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-8px)';
         });
 
-        // =========================
-        // GESTION DU THÈME CLAIR/SOMBRE
-        // =========================
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('i');
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
 
-        // Vérifier le thème sauvegardé ou préféré
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.body.setAttribute('data-theme', savedTheme);
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
 
-        // Mettre à jour l'icône
-        if (savedTheme === 'light') {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-            themeToggle.setAttribute('aria-label', 'Passer en mode sombre');
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.body.setAttribute('data-theme', savedTheme);
+
+      function updateThemeIcon(theme) {
+        if (!themeIcon || !themeToggle) return;
+        if (theme === 'light') {
+          themeIcon.classList.remove('fa-moon');
+          themeIcon.classList.add('fa-sun');
+          themeToggle.setAttribute('aria-label', 'Passer en mode sombre');
         } else {
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-            themeToggle.setAttribute('aria-label', 'Passer en mode clair');
+          themeIcon.classList.remove('fa-sun');
+          themeIcon.classList.add('fa-moon');
+          themeToggle.setAttribute('aria-label', 'Passer en mode clair');
         }
+      }
 
-        // Basculer le thème au clic
+      updateThemeIcon(savedTheme);
+
+      if (themeToggle) {
         themeToggle.addEventListener('click', () => {
-            const currentTheme = document.body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            // Changer l'attribut sur le body
-            document.body.setAttribute('data-theme', newTheme);
-            
-            // Sauvegarder dans localStorage
-            localStorage.setItem('theme', newTheme);
-            
-            // Changer l'icône et le label
-            if (newTheme === 'light') {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-                themeToggle.setAttribute('aria-label', 'Passer en mode sombre');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-                themeToggle.setAttribute('aria-label', 'Passer en mode clair');
-            }
-        });
+          const currentTheme = document.body.getAttribute('data-theme');
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-        // =========================
-        // BOUTON RETOUR EN HAUT
-        // =========================
-        const backToTopBtn = document.getElementById('backToTop');
+          document.body.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+          updateThemeIcon(newTheme);
+        });
+      }
+
+      const backToTopBtn = document.getElementById('backToTop');
+      if (backToTopBtn) {
         backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
         });
 
-        // Afficher/masquer le bouton au scroll
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.style.opacity = '1';
-                backToTopBtn.style.visibility = 'visible';
-            } else {
-                backToTopBtn.style.opacity = '0';
-                backToTopBtn.style.visibility = 'hidden';
-            }
-        });
-
-        // Initialiser le bouton
         backToTopBtn.style.opacity = '0';
         backToTopBtn.style.visibility = 'hidden';
 
-        // Animation des cartes de sources au hover
-        document.querySelectorAll('.source-card, .ai-tool').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px)';
-                this.style.boxShadow = '0 15px 30px rgba(0, 255, 255, 0.2)';
-            });
-
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '';
-            });
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) {
+            backToTopBtn.style.opacity = '1';
+            backToTopBtn.style.visibility = 'visible';
+          } else {
+            backToTopBtn.style.opacity = '0';
+            backToTopBtn.style.visibility = 'hidden';
+          }
         });
+      }
+
+      document.querySelectorAll('.ai-tool').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-10px)';
+          this.style.boxShadow = '0 15px 30px rgba(0, 255, 255, 0.2)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+          this.style.boxShadow = '';
+        });
+      });
     });
   </script>
 </body>
