@@ -773,5 +773,54 @@
 
   <script src="../js/script.js"></script>
   
+<script>
+  function animateName() {
+    const fullName = "Ayoub Benlamferred";
+    const el = document.getElementById("animated-name");
+    if (!el) return;
+
+    el.textContent = "";
+    let i = 0;
+
+    function type() {
+      if (i < fullName.length) {
+        el.textContent += fullName.charAt(i);
+        i++;
+        setTimeout(type, 120);
+      }
+    }
+
+    type();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    animateName();
+
+    const yearEl = document.getElementById("year");
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+
+    const currentDateEl = document.getElementById("currentDate");
+    if (currentDateEl) {
+      const today = new Date();
+      currentDateEl.textContent = today.toLocaleDateString("fr-FR");
+    }
+
+    const toggleBtn = document.querySelector(".nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+
+    if (toggleBtn && navMenu) {
+      toggleBtn.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+    }
+  });
+</script>
+
+
+
+
+
 </body>
 </html>
