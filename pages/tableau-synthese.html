@@ -180,7 +180,20 @@
       background: var(--primary-dark);
       box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
     }
-    
+
+    /* Style spécifique pour l'attestation E5 */
+    .attestation-badge {
+      display: inline-block;
+      background: rgba(0, 255, 255, 0.15);
+      border: 1px solid var(--primary);
+      border-radius: 30px;
+      padding: 6px 15px;
+      margin-bottom: 15px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
     /* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
     footer {
       text-align: center;
@@ -248,7 +261,7 @@
 
       <div class="pdf-card">
         <div class="sous-titre">
-          Aperçu du document — cliquez sur le bouton pour l’ouvrir en grand
+          Aperçu du document — cliquez sur le bouton pour l'ouvrir en grand
         </div>
 
         <iframe class="pdf-frame" src="../doc/MODELE DE TABLEAU DE SYNTHESE Benlamferred Ayoub-BTS SIO 2026.pdf"
@@ -262,6 +275,30 @@
           </a>
         </div>
       </div>
+
+      <!-- ===== NOUVELLE SECTION ATTESTATION E5 ===== -->
+      <h2>📋 Attestation de présence en entreprise - E5</h2>
+
+      <div class="pdf-card">
+        <div class="attestation-badge">
+          <i class="fas fa-building"></i> Épreuve E5 - BTS SIO
+        </div>
+        <div class="sous-titre">
+          Attestation de présence en entreprise pour les stages de première et seconde année
+        </div>
+
+        <iframe class="pdf-frame" src="../doc/attestations de stage de première et deuxième année.pdf"
+          title="Aperçu de l'attestation E5">
+          Ce navigateur ne prend pas en charge l'affichage du PDF.
+        </iframe>
+
+        <div class="pdf-actions">
+          <a href="../doc/attestations de stage de première et deuxième année.pdf" target="_blank" class="pdf-btn">
+            <i class="fas fa-up-right-from-square"></i> Ouvrir l'attestation
+          </a>
+        </div>
+      </div>
+
     </section>
   </main>
 

@@ -667,12 +667,151 @@
       color: #a0c7d9 !important;
     }
 
+    /* ===== SECTION DOSSIER E6 ===== */
+    .dossier-e6 {
+      background: linear-gradient(135deg, rgba(0, 40, 80, 0.4), rgba(0, 20, 40, 0.6));
+      border: 2px solid var(--primary);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    [data-theme="light"] .dossier-e6 {
+      background: linear-gradient(135deg, rgba(230, 242, 255, 0.8), rgba(200, 220, 250, 0.6));
+    }
+
+    .dossier-e6 h3 {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    .dossier-e6 p {
+      color: var(--text-lighter);
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+    }
+
+    .dossier-e6 .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--primary);
+      color: #001f3f;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+
+    [data-theme="light"] .dossier-e6 .btn-download {
+      box-shadow: 0 0 15px rgba(0, 136, 204, 0.4);
+    }
+
+    .dossier-e6 .btn-download:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+      background: var(--primary-dark);
+      color: white;
+    }
+
+    [data-theme="light"] .dossier-e6 .btn-download:hover {
+      box-shadow: 0 0 25px rgba(0, 136, 204, 0.6);
+    }
+
+    .dossier-e6 .badge-e6 {
+      display: inline-block;
+      background: rgba(0, 255, 255, 0.2);
+      border: 1px solid var(--primary);
+      border-radius: 30px;
+      padding: 6px 15px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .realisations-list {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .realisation-item {
+      background: rgba(0, 60, 120, 0.3);
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+    }
+
+    [data-theme="light"] .realisation-item {
+      background: rgba(0, 136, 204, 0.1);
+    }
+
+
+
+
+
+
+/* Ajustements pour la section E6 */
+.dossier-e6 {
+  margin-bottom: 5rem !important; /* Plus d'espace sous la section */
+  padding: 35px 30px !important;
+}
+
+.dossier-e6 p {
+  margin-bottom: 30px;
+}
+
+.realisations-list {
+  margin-bottom: 35px; /* Espace entre les badges et le bouton */
+  gap: 25px; /* Plus d'espace entre les badges */
+}
+
+.btn-e6-container {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.dossier-e6 .btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--primary);
+  color: #001f3f;
+  padding: 14px 35px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+[data-theme="light"] .dossier-e6 .btn-download {
+  box-shadow: 0 0 15px rgba(0, 136, 204, 0.4);
+}
+
+.dossier-e6 .btn-download:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+  background: var(--primary-dark);
+  color: white;
+}
+
+
+
 
 
   </style>
-
-
-
 
 </head>
 
@@ -705,12 +844,34 @@
 
   <!-- Contenu principal -->
   <main>
+  
+ <!-- ===== NOUVELLE SECTION DOSSIER E6 ===== -->
+<section id="dossier-e6" class="dossier-e6" aria-label="Dossier E6 - Réalisations professionnelles">
+  <div class="badge-e6">
+    <i class="fas fa-graduation-cap"></i> Épreuve E6 - BTS SIO
+  </div>
+  <h3><i class="fas fa-folder-open"></i> Dossier Réalisations Professionnelles - E6</h3>
+  <p>
+  Ce dossier regroupe mes deux réalisations professionnelles effectuées durant ma formation en BTS SIO,<br>
+  conformément aux annexes VII-1-A du référentiel de l'épreuve E6 (option SISR).
+</p>
+  
+  <div class="realisations-list">
+    <span class="realisation-item"><i class="fas fa-code-branch"></i> Projet AP3 - Infrastructure Réseau</span>
+    <span class="realisation-item"><i class="fas fa-shield-alt"></i> Projet AP4 - Sécurisation SI</span>
+  </div>
+  
+  <div class="btn-e6-container">
+    <a href="../doc/Dossier E6 - Réalisations Professionnelles.pdf" class="btn-download" target="_blank">
+      <i class="fas fa-eye"></i> Voir le dossier E6
+    </a>
+  </div>
+</section>
+
   <section id="situation-pro" aria-label="Situation professionnelle">
   <h2><i class="fas fa-briefcase"></i> Parcours Professionnel BTS SIO</h2>
 
   <div class="experience-cards">
-
-
 
    <div class="exp-card">
   <div class="exp-header">
@@ -720,7 +881,7 @@
   <ul class="exp-tasks">
     <li>Installation de logiciels sur postes informatiques (Microsoft Office, EBP).</li>
     <li>Installation de serveurs Ubuntu/Debian (GUI-CORE) et gestion des utilisateurs.</li>
-    <li>Réalisation de câblage RJ45 et vérification du bon fonctionnement à l’aide d’un testeur de câble.</li>
+    <li>Réalisation de câblage RJ45 et vérification du bon fonctionnement à l'aide d'un testeur de câble.</li>
     <li>Installation Windows/Linux avec clé bootables .</li>
   </ul>
 
@@ -728,10 +889,6 @@
     <a href="../doc/stage-annee1.pdf" target="_blank" class="btn">Voir les activités réalisées</a>
   </div>
 </div>
-
-
-
-
 
 <div class="exp-card">
   <div class="exp-header">
@@ -750,22 +907,16 @@
   </div>
 </div>
 
-
-
-
 <div class="exp-card summary">
   <h3>Bilan des stages (12 semaines)</h3>
   <ul class="exp-tasks">
     <li><strong>Première année :</strong> Découverte du milieu professionnel, missions de support, installation de postes et interventions simples en systèmes et réseaux.</li>
     
-    <li><strong>Deuxième année :</strong> Approfondissement des notions avec plus d’autonomie, utilisation de Windows Server, pfSense (VPN, pare-feu, portail captif) et découverte de PingCastle.</li>
+    <li><strong>Deuxième année :</strong> Approfondissement des notions avec plus d'autonomie, utilisation de Windows Server, pfSense (VPN, pare-feu, portail captif) et découverte de PingCastle.</li>
     
-    <li><strong>Progression :</strong> Évolution globale au cours des deux années, avec certaines notions encore en cours d’apprentissage.</li>
+    <li><strong>Progression :</strong> Évolution globale au cours des deux années, avec certaines notions encore en cours d'apprentissage.</li>
   </ul>
 </div>
-
-
-
 
   <!-- Section unifiée pour tous les projets -->
 <section id="projets-scolaires" class="projects-container" aria-label="Projets Scolaires">
@@ -775,20 +926,19 @@
     <h3>Mes Projets Réalisés (AP3, AP4)</h3>
 
     <!-- Onglets projets -->
-  
-      <div class="project-tab" data-project="ap3">
+    <div class="project-tabs">
+      <div class="project-tab active" data-project="ap3">
         <i class="fas fa-server"></i> Projet AP3
       </div>
       <div class="project-tab" data-project="ap4">
         <i class="fas fa-lock"></i> Projet AP4
       </div>
     </div>
-
     
     <!-- AP3 -->
-    <div class="project-content" id="project-ap3">
+    <div class="project-content active" id="project-ap3">
       <p class="project-desc">
-        Déploiement d’une infrastructure réseau sécurisée incluant Active Directory, gestion des utilisateurs et services essentiels.
+        Déploiement d'une infrastructure réseau sécurisée incluant Active Directory, gestion des utilisateurs et services essentiels.
       </p>
       <div class="project-docs">
         <h4><i class="fas fa-folder-open"></i> Documents du Projet AP3</h4>
@@ -805,7 +955,7 @@
           </div>
           <div class="doc-item">
             <h5>Documentation technique</h5>
-            <p>Procédures AD, scripts, plan d’adressage, configuration des services</p>
+            <p>Procédures AD, scripts, plan d'adressage, configuration des services</p>
             <a class="doc-link" href="../doc/TemplateAP3 Livrable2 .pdf">Voir →</a>
           </div>
           <div class="doc-item">
@@ -813,15 +963,13 @@
             <p>Topologie complète et organisation VLAN</p>
             <a class="doc-link" href="../images/Chemin SISR.drawio.png">Voir →</a>
           </div>
-          <!-- Nouveau : PowerPoint -->
           <div class="doc-item">
             <h5>Présentation PowerPoint</h5>
             <p>Présentation du projet sous format diaporama</p>
             <a class="doc-link" href="../doc/POWERPOINT AP3 ORAL2.pptx" download>
-    <i class="fas fa-download"></i> Télécharger
-</a>
+              <i class="fas fa-download"></i> Télécharger
+            </a>
           </div>
-          <!-- Nouveau : Diagramme de Gantt -->
           <div class="doc-item">
             <h5>Diagramme de Gantt</h5>
             <p>Planification et étapes du projet</p>
@@ -831,62 +979,53 @@
       </div>
     </div>
 
+    <!-- AP4 -->
+    <div class="project-content" id="project-ap4">
+      <p class="project-desc">
+        Sécurisation et fiabilisation du système d'information avec administration avancée et contrôle des accès.
+      </p>
 
+      <div class="project-docs">
+        <h4><i class="fas fa-folder-open"></i> Documents du Projet AP4</h4>
 
+        <div class="docs-grid">
+          <div class="doc-item">
+            <h5>Cahier des charges</h5>
+            <p>Contexte du projet et besoins de sécurité</p>
+            <a class="doc-link" href="../doc/AP4_cas_securite_civile-2025_IFIDE.pdf">Voir →</a>
+          </div>
 
- <!-- AP4 -->
-  <div class="project-content" id="project-ap4">
-  <p class="project-desc">
-    Sécurisation et fiabilisation du système d’information avec administration avancée et contrôle des accès.
-  </p>
+          <div class="doc-item">
+            <h5>Documentation technique</h5>
+            <p>Procédures d'administration, scripts, plan d'adressage et sécurité</p>
+            <a class="doc-link" href="../doc/DOCUMENTATION TECHNIQUE AP4.pdf">Voir →</a>
+          </div>
 
-  <div class="project-docs">
-    <h4><i class="fas fa-folder-open"></i> Documents du Projet AP4</h4>
-
-    <div class="docs-grid">
-
-      <div class="doc-item">
-        <h5>Cahier des charges</h5>
-        <p>Contexte du projet et besoins de sécurité</p>
-        <a class="doc-link" href="../doc/AP4_cas_securite_civile-2025_IFIDE.pdf">Voir →</a>
+          <div class="doc-item">
+            <h5>Schéma réseau et architecture</h5>
+            <p>Topologie, VLAN, firewall et organisation des services</p>
+            <a class="doc-link" href="../images/Diagramme AP4.drawio.png">Voir →</a>
+          </div>
+        </div>
       </div>
-
-      <div class="doc-item">
-        <h5>Documentation technique</h5>
-        <p>Procédures d’administration, scripts, plan d’adressage et sécurité</p>
-        <a class="doc-link" href="../doc/DOCUMENTATION TECHNIQUE AP4.pdf">Voir →</a>
-      </div>
-
-      <div class="doc-item">
-        <h5>Schéma réseau et architecture</h5>
-        <p>Topologie, VLAN, firewall et organisation des services</p>
-        <a class="doc-link" href="../images/Diagramme AP4.drawio.png">Voir →</a>
-      </div>
-
     </div>
   </div>
-</div>
 </section>
-
-
-
-
-
 
   </main>
 
-
   <!-- BOUTONS DE CONTRÔLE DE PAGE -->
-<div class="page-controls">
-  <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
-    <i class="fas fa-moon"></i>
-    <span class="sr-only">Changer le thème</span>
-  </button>
-  <button class="control-btn" id="backToTop" aria-label="Retour en haut de la page">
-    <i class="fas fa-arrow-up"></i>
-    <span class="sr-only">Retour en haut</span>
-  </button>
-</div>
+  <div class="page-controls">
+    <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
+      <i class="fas fa-moon"></i>
+      <span class="sr-only">Changer le thème</span>
+    </button>
+    <button class="control-btn" id="backToTop" aria-label="Retour en haut de la page">
+      <i class="fas fa-arrow-up"></i>
+      <span class="sr-only">Retour en haut</span>
+    </button>
+  </div>
+
   <!-- Script -->
   <script src="../js/script.js"></script>
   <script>
@@ -907,11 +1046,13 @@
     function setupMenu() {
       const toggleBtn = document.querySelector('.nav-toggle');
       const navMenu = document.getElementById('nav-menu');
-      toggleBtn.addEventListener('click', () => {
-        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-        navMenu.classList.toggle('active');
-        toggleBtn.setAttribute('aria-expanded', !isExpanded);
-      });
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+          navMenu.classList.toggle('active');
+          toggleBtn.setAttribute('aria-expanded', !isExpanded);
+        });
+      }
     }
 
     // Gestion des onglets des projets
@@ -931,7 +1072,8 @@
           // Ajouter la classe active à l'onglet cliqué
           tab.classList.add('active');
           // Afficher le contenu correspondant
-          document.getElementById(`project-${projectId}`).classList.add('active');
+          const targetContent = document.getElementById(`project-${projectId}`);
+          if (targetContent) targetContent.classList.add('active');
         });
       });
     }
@@ -961,12 +1103,9 @@
       setupMenu();
       setupProjectTabs();
       setupScrollAnimation();
-      document.getElementById('year').textContent = new Date().getFullYear();
+      const yearSpan = document.getElementById('year');
+      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
     });
-
-
-
-
   </script>
 
   <!-- Footer -->
