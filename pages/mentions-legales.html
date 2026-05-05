@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ayoub Benlamferred - Mentions légales</title>
-  <meta name="description" content="Mentions légales du portfolio de Ayoub Benlamferred, étudiant en BTS SIO SISR.">
-  <meta name="description" content="Portfolio de Ayoub Benlamferred, étudiant en BTS SIO">
+  <meta name="description" content="Mentions légales du portfolio de Ayoub Benlamferred, étudiant en BTS SIO SISR. Le code source est stocké sur GitHub et le site est hébergé en ligne avec Netlify.">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="icon" href="../fav/favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,7 +15,6 @@
     /* STYLES POUR LA PAGE MENTIONS LÉGALES - THÈME SEULEMENT */
     /* =========================================== */
 
-    /* Variables pour le thème (identique à contact.html) */
     :root {
       --primary: #00ffff;
       --primary-light: rgba(0, 255, 255, 0.1);
@@ -30,7 +28,6 @@
     }
 
     [data-theme="light"] {
-      /* Variables mode clair (identique à contact.html) */
       --primary: #0088cc;
       --primary-light: rgba(0, 136, 204, 0.1);
       --primary-dark: #006699;
@@ -41,13 +38,11 @@
       --footer-border: #0088cc;
     }
 
-    /* Application du thème clair au body */
     [data-theme="light"] body {
       background-color: var(--bg-dark);
       color: var(--text-light);
     }
 
-    /* 1. Navigation - Change la couleur selon le thème */
     .nav-brand {
       color: var(--primary);
     }
@@ -56,7 +51,6 @@
       color: var(--primary);
     }
 
-    /* Navigation thème clair */
     [data-theme="light"] nav {
       background: linear-gradient(90deg, #e6f2ff, #d9e8ff);
       border-bottom: 2px solid var(--primary);
@@ -78,14 +72,12 @@
       box-shadow: inset 0 0 60px rgba(0, 136, 204, 0.3), 0 0 20px rgba(0, 136, 204, 0.2);
     }
 
-    /* 2. Éléments de la page mentions légales */
     .legal-container {
       max-width: 1000px;
       margin: 3rem auto;
       padding: 0 2rem;
     }
 
-    /* Glass header */
     .glass-header {
       background: linear-gradient(135deg, rgba(0, 31, 63, 0.7), rgba(0, 51, 102, 0.5));
       backdrop-filter: blur(10px);
@@ -131,7 +123,6 @@
       opacity: 0.9;
     }
 
-    /* Timeline */
     .timeline {
       position: relative;
       max-width: 800px;
@@ -203,7 +194,6 @@
       margin-bottom: 1rem;
     }
 
-    /* Info grid */
     .info-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -245,7 +235,6 @@
       line-height: 1.6;
     }
 
-    /* Modern table */
     .modern-table {
       width: 100%;
       border-collapse: separate;
@@ -302,7 +291,6 @@
       width: 40%;
     }
 
-    /* Legal contact */
     .legal-contact {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -353,7 +341,6 @@
       line-height: 1.6;
     }
 
-    /* Legal links */
     .legal-links {
       display: flex;
       flex-direction: column;
@@ -404,7 +391,6 @@
       color: var(--primary);
     }
 
-    /* ===== FOOTER - TOUJOURS EN THÈME SOMBRE ===== */
     footer {
       text-align: center;
       padding: 1rem 0;
@@ -420,7 +406,6 @@
       color: #a0c7d9 !important;
     }
 
-    /* Boutons de contrôle */
     .page-controls {
       position: fixed;
       bottom: 20px;
@@ -472,7 +457,6 @@
       box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
     }
 
-    /* Texte invisible pour accessibilité */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -485,7 +469,6 @@
       border: 0;
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .timeline::before {
         left: 30px;
@@ -574,10 +557,6 @@
         font-size: 1rem;
       }
     }
-
-
-
-    
   </style>
 </head>
 
@@ -602,13 +581,11 @@
   <canvas id="networkCanvas"></canvas>
 
   <div class="legal-container">
-    <!-- En-tête avec effet glassmorphism -->
     <div class="glass-header">
       <h1><i class="fas fa-scale-balanced"></i> Mentions Légales</h1>
       <p>Informations légales et conformité RGPD de ce portfolio professionnel</p>
     </div>
 
-    <!-- Timeline verticale pour le parcours juridique -->
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-icon">
@@ -673,7 +650,6 @@
       </div>
     </div>
 
-    <!-- Grille d'informations principales -->
     <div class="info-grid">
       <div class="info-card">
         <h3><i class="fas fa-info-circle"></i> Informations générales</h3>
@@ -682,7 +658,7 @@
 
       <div class="info-card">
         <h3><i class="fas fa-server"></i> Hébergement</h3>
-        <p>Le site est hébergé sur GitHub Pages, service fourni par GitHub Inc. (États-Unis).</p>
+        <p>Le code source du portfolio est stocké sur GitHub, et le site est hébergé en ligne avec Netlify.</p>
       </div>
 
       <div class="info-card">
@@ -691,7 +667,6 @@
       </div>
     </div>
 
-    <!-- Tableau des informations techniques -->
     <table class="modern-table">
       <thead>
         <tr>
@@ -713,7 +688,7 @@
         </tr>
         <tr>
           <td>Hébergeur</td>
-          <td>GitHub Pages – GitHub Inc.</td>
+          <td>Netlify, Inc. — code source stocké sur GitHub</td>
         </tr>
         <tr>
           <td>Date de mise à jour</td>
@@ -726,7 +701,6 @@
       </tbody>
     </table>
 
-    <!-- Section contact -->
     <div class="legal-contact">
       <div class="contact-card">
         <div class="contact-icon">
@@ -754,7 +728,6 @@
     </div>
   </div>
 
-  <!-- BOUTONS DE CONTRÔLE -->
   <div class="page-controls">
     <button class="control-btn theme-toggle" id="themeToggle" aria-label="Changer le thème">
       <i class="fas fa-moon"></i>
@@ -772,55 +745,52 @@
   </footer>
 
   <script src="../js/script.js"></script>
-  
-<script>
-  function animateName() {
-    const fullName = "Ayoub Benlamferred";
-    const el = document.getElementById("animated-name");
-    if (!el) return;
 
-    el.textContent = "";
-    let i = 0;
+  <script>
+    function animateName() {
+      const fullName = "Ayoub Benlamferred";
+      const el = document.getElementById("animated-name");
+      if (!el) return;
 
-    function type() {
-      if (i < fullName.length) {
-        el.textContent += fullName.charAt(i);
-        i++;
-        setTimeout(type, 120);
+      el.textContent = "";
+      let i = 0;
+
+      function type() {
+        if (i < fullName.length) {
+          el.textContent += fullName.charAt(i);
+          i++;
+          setTimeout(type, 120);
+        }
       }
+
+      type();
     }
 
-    type();
-  }
+    document.addEventListener("DOMContentLoaded", () => {
+      animateName();
 
-  document.addEventListener("DOMContentLoaded", () => {
-    animateName();
+      const yearEl = document.getElementById("year");
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
 
-    const yearEl = document.getElementById("year");
-    if (yearEl) {
-      yearEl.textContent = new Date().getFullYear();
-    }
+      const currentDateEl = document.getElementById("currentDate");
+      if (currentDateEl) {
+        const today = new Date();
+        currentDateEl.textContent = today.toLocaleDateString("fr-FR");
+      }
 
-    const currentDateEl = document.getElementById("currentDate");
-    if (currentDateEl) {
-      const today = new Date();
-      currentDateEl.textContent = today.toLocaleDateString("fr-FR");
-    }
+      const toggleBtn = document.querySelector(".nav-toggle");
+      const navMenu = document.getElementById("nav-menu");
 
-    const toggleBtn = document.querySelector(".nav-toggle");
-    const navMenu = document.getElementById("nav-menu");
-
-    if (toggleBtn && navMenu) {
-      toggleBtn.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-      });
-    }
-  });
-</script>
-
-
-
-
-
+      if (toggleBtn && navMenu) {
+        toggleBtn.addEventListener("click", () => {
+          const isExpanded = toggleBtn.getAttribute("aria-expanded") === "true";
+          navMenu.classList.toggle("active");
+          toggleBtn.setAttribute("aria-expanded", String(!isExpanded));
+        });
+      }
+    });
+  </script>
 </body>
 </html>
