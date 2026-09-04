@@ -16,8 +16,7 @@ Bienvenue sur mon portfolio professionnel, présentant mes projets, compétences
 - `doc/` : documents PDF et autres supports
 
 ##  Déploiement
-Ce portfolio est hébergé sur ayoub-benlamferred-portfolio-sisr.netlify.app
-
+Ce portfolio est hébergé sur https://ayoub-benlamferred-portfolio-sisr.netlify.app/pages/accueil.html
 ##  Auteur
 **Ayoub Benlamferred**  
 Étudiant en BTS SIO
