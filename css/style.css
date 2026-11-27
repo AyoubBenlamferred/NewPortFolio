@@ -15,8 +15,9 @@ body, html {
   display: flex;
   flex-direction: column;
   background: #121212;
-  color: #e0f7ff;
+  color: #ffffff; /* Blanc pur par défaut en mode sombre */
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Liens */
@@ -45,6 +46,7 @@ nav {
   justify-content: space-between;
   padding: 0 2rem;
   z-index: 1000;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .nav-brand {
@@ -66,9 +68,10 @@ nav ul li {
   position: relative;
 }
 nav ul li a {
-  color: #22d8f8;
+  color: #ffffff;
   font-size: 1rem;
   position: relative;
+  transition: color 0.3s ease;
 }
 nav ul li.active a,
 nav ul li a:hover {
@@ -127,7 +130,7 @@ section {
   scroll-margin-top: 70px;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.3s ease;
   text-align: left;
 }
 section.visible {
@@ -140,16 +143,19 @@ section h2 {
   color: #00ffff;
   border-left: 5px solid #00ffff;
   padding-left: 12px;
+  text-shadow: none;
 }
 section p {
   font-size: 1.1rem;
-  color: #a0c7d9;
+  color: #ffffff;
   line-height: 1.6;
+  transition: color 0.3s ease;
 }
 section ul {
-  color: #70cfff;
+  color: #ffffff;
   margin-top: 1rem;
   list-style: disc inside;
+  transition: color 0.3s ease;
 }
 section li {
   margin-bottom: 0.5rem;
@@ -180,8 +186,9 @@ section li {
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 0 15px #00ffff88;
-  color: #a0c7d9;
+  color: #ffffff;
   box-sizing: border-box;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 .contact-info h3, #contact-form h3 {
   color: #00ffff;
@@ -208,10 +215,10 @@ section li {
   border-radius: 6px;
   border: none;
   background: #003048;
-  color: #a0c7d9;
+  color: #ffffff;
   font-size: 1rem;
   box-shadow: 0 0 8px #00ffff33 inset;
-  transition: background 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 #contact-form input:focus, #contact-form textarea:focus {
   background: #005a87;
@@ -235,8 +242,9 @@ section li {
 }
 #contact-form .rgpd-notice {
   font-size: 0.85rem;
-  color: #70cfff;
+  color: #ffffff;
   margin-bottom: 1rem;
+  transition: color 0.3s ease;
 }
 
 /* Map */
@@ -254,12 +262,13 @@ section li {
    ============================================ */
 footer {
   background: #0a192f;
-  color: #00ffff;
+  color: #ffffff;
   padding: 1rem 0;
   text-align: center;
   margin-top: auto;
   font-size: 0.9rem;
   box-shadow: inset 0 1px 10px #00ffff44;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ============================================
@@ -270,8 +279,8 @@ footer {
   --primary-light: rgba(0, 255, 255, 0.1);
   --primary-dark: #00a8ff;
   --bg-dark: #001a2a;
-  --text-light: #a0c7d9;
-  --text-lighter: #cce7ff;
+  --text-light: #ffffff;
+  --text-lighter: #ffffff;
   --transition-speed: 0.3s;
 }
 
@@ -280,7 +289,7 @@ footer {
   --primary-light: rgba(0, 136, 204, 0.1);
   --primary-dark: #006699;
   --bg-dark: #f0f8ff;
-  --text-light: #333333;
+  --text-light: #000000;
   --text-lighter: #000000;
 }
 
@@ -428,7 +437,7 @@ footer {
   }
 
   nav ul li a {
-    color: #00ffff;
+    color: #ffffff;
     font-weight: 500;
     font-size: 1rem;
     padding: 0.5rem 1rem;
@@ -452,6 +461,7 @@ footer {
     height: 180px;
   }
 
+  /* Sur mobile, on cache le curseur perso et on remet la souris normale */
   .cursor-outer,
   .cursor-inner {
     display: none !important;
@@ -489,4 +499,122 @@ footer {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+}
+
+/* ============================================
+   CORRECTIF ULTIME : GESTION DES TEXTES (SOMBRE/CLAIR)
+   ============================================ */
+
+/* --- MODE SOMBRE (Par défaut) --- */
+/* Cible TOUTES les balises de texte possibles, même avec des styles inline */
+p, li, span, div, section, article, aside, main, 
+.projet-card p, .cert-card p, 
+.contact-info, .contact-info p, 
+.exp-tasks, .exp-tasks li, .exp-company,
+.timeline-text, .timeline-date,
+.doc-item p, .doc-item h5,
+.option-desc, .skill-text, .stat-label,
+table, th, td, label, small, strong, b, i:not(.fas):not(.fab) {
+  color: #ffffff !important;
+}
+
+/* Titres en Cyan */
+h1, h2, h3, h4, h5, h6, 
+.nav-brand, section h2, .bts-card h3, .formation-card h3, .pro-block h3, .exp-header h3,
+.contact-info h3, #contact-form h3 {
+  color: #00ffff !important;
+}
+
+/* --- MODE CLAIR (Quand on clique sur le bouton) --- */
+[data-theme="light"] p, 
+[data-theme="light"] li, 
+[data-theme="light"] span, 
+[data-theme="light"] div, 
+[data-theme="light"] section, 
+[data-theme="light"] article, 
+[data-theme="light"] aside, 
+[data-theme="light"] main, 
+[data-theme="light"] .projet-card p, 
+[data-theme="light"] .cert-card p, 
+[data-theme="light"] .contact-info, 
+[data-theme="light"] .contact-info p, 
+[data-theme="light"] .exp-tasks, 
+[data-theme="light"] .exp-tasks li, 
+[data-theme="light"] .exp-company,
+[data-theme="light"] .timeline-text, 
+[data-theme="light"] .timeline-date,
+[data-theme="light"] .doc-item p, 
+[data-theme="light"] .doc-item h5,
+[data-theme="light"] .option-desc, 
+[data-theme="light"] .skill-text, 
+[data-theme="light"] .stat-label,
+[data-theme="light"] table, 
+[data-theme="light"] th, 
+[data-theme="light"] td, 
+[data-theme="light"] label, 
+[data-theme="light"] small, 
+[data-theme="light"] strong, 
+[data-theme="light"] b, 
+[data-theme="light"] i:not(.fas):not(.fab) {
+  color: #000000 !important; /* Noir pur absolu en mode clair */
+}
+
+/* Titres en Bleu foncé en mode clair */
+[data-theme="light"] h1, 
+[data-theme="light"] h2, 
+[data-theme="light"] h3, 
+[data-theme="light"] h4, 
+[data-theme="light"] h5, 
+[data-theme="light"] h6, 
+[data-theme="light"] .nav-brand, 
+[data-theme="light"] section h2, 
+[data-theme="light"] .bts-card h3, 
+[data-theme="light"] .formation-card h3, 
+[data-theme="light"] .pro-block h3, 
+[data-theme="light"] .exp-header h3,
+[data-theme="light"] .contact-info h3, 
+[data-theme="light"] #contact-form h3 {
+  color: #0088cc !important;
+}
+
+/* On s'assure que le fond des sections change bien en mode clair */
+[data-theme="light"] main > section,
+[data-theme="light"] .bts-card, 
+[data-theme="light"] .formation-card, 
+[data-theme="light"] .option-card, 
+[data-theme="light"] .stat-item, 
+[data-theme="light"] .skill-item, 
+[data-theme="light"] .timeline-content, 
+[data-theme="light"] .pdf-card, 
+[data-theme="light"] .pro-block, 
+[data-theme="light"] .exp-card,
+[data-theme="light"] .contact-info, 
+[data-theme="light"] #contact-form {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* On s'assure que le body change bien en mode clair */
+[data-theme="light"] body {
+  background-color: #f8faff !important;
+}
+
+/* La navigation en mode clair */
+[data-theme="light"] nav {
+  background: #ffffff !important;
+  border-bottom: 2px solid #0088cc !important;
+}
+[data-theme="light"] nav ul li a {
+  color: #000000 !important;
+}
+[data-theme="light"] nav ul li.active a,
+[data-theme="light"] nav ul li a:hover {
+  color: #0088cc !important;
+}
+
+/* Le footer en mode clair */
+[data-theme="light"] footer {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-top: 1px solid #e2e8f0 !important;
 }

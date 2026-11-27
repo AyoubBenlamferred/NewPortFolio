@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Veille technologique sur la sécurité des mots de passe et la gestion des identités dans Active Directory." />
-  <meta name="keywords" content="cybersécurité, Active Directory, mots de passe, GPO, BTS SIO, Ayoub Benlamferred, MFA, veille technologique" />
+  <meta name="keywords" content="cybersécurité, Active Directory, mots de passe, GPO, BTS SIO, Ayoub Benlamferred, MFA, veille technologique, ANSSI, CNIL, IT-Connect" />
   <meta property="og:title" content="Veille Technologique - Sécurité Active Directory" />
   <meta property="og:description" content="Étude sur la sécurité des mots de passe, la gestion des identités et la veille technologique en environnement Active Directory." />
   <meta property="og:type" content="website" />
@@ -197,13 +197,13 @@
     .section-card {
       background: var(--bg-card);
       border-radius: 12px;
-      padding: 1.8rem;
+      padding: 2.2rem;
       border: 1px solid rgba(0, 255, 255, 0.1);
       transition: all var(--transition-speed) ease;
       height: 100%;
       position: relative;
       overflow: hidden;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
     }
 
     .section-card::before {
@@ -243,10 +243,10 @@
       align-items: center;
       gap: 0.8rem;
       margin-top: 0;
-      margin-bottom: 1.2rem;
-      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
       border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-      padding-bottom: 0.8rem;
+      padding-bottom: 1rem;
     }
 
     body[data-theme="light"] .section-card h2 {
@@ -389,12 +389,11 @@
       font-size: 0.85rem;
       color: var(--text-light);
     }
-
     .benefits {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
     }
 
     .benefit {
@@ -444,6 +443,207 @@
       z-index: 1;
     }
 
+    /* ===== NOUVELLE SECTION REDESIGN : QU'EST-CE QUE LA VEILLE ===== */
+    .veille-intro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .veille-intro-card {
+      position: relative;
+      background: linear-gradient(160deg, rgba(0, 255, 255, 0.08) 0%, rgba(138, 43, 226, 0.06) 100%);
+      border: 1px solid rgba(0, 255, 255, 0.18);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem 1.5rem;
+      text-align: left;
+      overflow: hidden;
+      transition: all 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .veille-intro-card::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      right: -60%;
+      width: 160%;
+      height: 160%;
+      background: radial-gradient(circle, rgba(0, 255, 255, 0.12) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .veille-intro-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: var(--primary);
+      box-shadow: 0 15px 35px rgba(0, 255, 255, 0.18), 0 0 0 1px rgba(0, 255, 255, 0.1);
+    }
+
+    .veille-intro-card:hover::before {
+      opacity: 1;
+    }
+
+    body[data-theme="light"] .veille-intro-card {
+      background: linear-gradient(160deg, rgba(0, 136, 204, 0.08) 0%, rgba(123, 104, 238, 0.06) 100%);
+      border: 1px solid rgba(0, 136, 204, 0.2);
+    }
+
+    body[data-theme="light"] .veille-intro-card:hover {
+      box-shadow: 0 15px 35px rgba(0, 136, 204, 0.15);
+    }
+
+    .veille-intro-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #001a2a;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      box-shadow: 0 6px 16px rgba(0, 255, 255, 0.35);
+      flex-shrink: 0;
+      transition: transform 0.35s ease;
+    }
+
+    .veille-intro-card:hover .veille-intro-icon {
+      transform: rotate(-8deg) scale(1.08);
+    }
+
+    .veille-intro-card:nth-child(2) .veille-intro-icon {
+      background: linear-gradient(135deg, var(--secondary) 0%, #5a189a 100%);
+      box-shadow: 0 6px 16px rgba(138, 43, 226, 0.35);
+    }
+
+    .veille-intro-card:nth-child(3) .veille-intro-icon {
+      background: linear-gradient(135deg, var(--accent) 0%, #00a86b 100%);
+      box-shadow: 0 6px 16px rgba(0, 255, 136, 0.35);
+    }
+
+    .veille-intro-card:nth-child(4) .veille-intro-icon {
+      background: linear-gradient(135deg, var(--warning) 0%, #e67e22 100%);
+      box-shadow: 0 6px 16px rgba(255, 165, 2, 0.35);
+    }
+
+    .veille-intro-card h4 {
+      color: var(--text-lighter);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 0.3px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .veille-intro-card p {
+      color: var(--text-light);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .veille-intro-card p strong {
+      color: var(--primary);
+    }
+
+    .veille-intro-card ul {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .veille-intro-card ul li {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.35rem;
+      line-height: 1.45;
+    }
+
+    .veille-intro-card ul li::before {
+      content: '✦';
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+      font-size: 0.75rem;
+      top: 0.15rem;
+    }
+
+    .veille-intro-card ul li:last-child {
+      margin-bottom: 0;
+    }
+
+    .veille-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+
+    .veille-stat {
+      position: relative;
+      background: linear-gradient(145deg, rgba(0, 255, 255, 0.08), rgba(0, 255, 255, 0.02));
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-radius: 14px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .veille-stat::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 3px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      opacity: 0.6;
+    }
+
+    .veille-stat:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 8px 20px rgba(0, 255, 255, 0.15);
+    }
+
+    body[data-theme="light"] .veille-stat {
+      background: linear-gradient(145deg, rgba(0, 136, 204, 0.08), rgba(0, 136, 204, 0.02));
+      border: 1px solid rgba(0, 136, 204, 0.2);
+    }
+
+    .veille-stat-number {
+      font-size: 2.3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+
+    .veille-stat-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    /* ===== FIN NOUVELLE SECTION REDESIGN ===== */
     .password-strength-section {
       margin: 2rem 0;
       padding: 2rem;
@@ -811,54 +1011,73 @@
       gap: 1rem;
     }
 
-    .cert-alerts {
-      display: grid;
-      gap: 1rem;
-      margin-top: 1.5rem;
+    .timeline-container {
+      position: relative;
+      padding-left: 2rem;
+      margin-top: 2rem;
     }
 
-    .cert-source-title {
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 9px;
+      height: 100%;
+      width: 2px;
+      background: rgba(0, 255, 255, 0.2);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2rem;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      z-index: 1;
+    }
+
+    .timeline-content {
+      background: rgba(0, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      border-left: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      background: rgba(0, 255, 255, 0.1);
+      transform: translateX(5px);
+      border-left-color: var(--primary);
+    }
+
+    .timeline-content h4 {
       color: var(--primary);
-      margin: 1.7rem 0 0.8rem;
-      font-size: 1.15rem;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
       gap: 0.6rem;
+      font-size: 1.1rem;
     }
 
-    .cert-alert {
-      background: rgba(255, 71, 87, 0.08);
-      border-left: 4px solid var(--danger);
-      border-radius: 10px;
-      padding: 1rem;
-    }
-
-    .cert-alert strong { color: var(--danger); }
-    .cert-alert small { color: var(--text-light); }
-
-    .cert-alert a {
-      color: var(--primary);
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .cert-alert a:hover { text-decoration: underline; }
-
-    .cert-new {
-      margin-bottom: 1rem;
-      padding: 1rem;
-      border-radius: 10px;
-      background: rgba(255, 165, 2, 0.12);
-      border: 1px solid var(--warning);
-      color: var(--warning);
-      font-weight: 600;
-    }
-
-    .cert-alert-fallback {
-      padding: 1rem;
-      border-radius: 10px;
-      border: 1px dashed rgba(0, 255, 255, 0.3);
-      background: rgba(0, 255, 255, 0.04);
+    .timeline-content p {
+      color: var(--text-light);
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.5;
     }
 
     @keyframes fadeInUp {
@@ -913,8 +1132,8 @@
       main { padding: 1rem; }
     }
   </style>
+  
 </head>
-
 <body>
   <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
@@ -927,7 +1146,7 @@
       <li><a href="bts-sio.html">BTS SIO</a></li>
       <li><a href="formation.html">Formation</a></li>
       <li><a href="situation-professionnelle.html">Situation Professionnelle</a></li>
-      <li><a href="tableau-synthese.html">Tableau de synthèse</a></li>
+      <li><a href="tableau-attestation.html" data-i18n="nav_gestion">Tableau-Attestation</a></li>
       <li><a href="certificat.html" data-i18n="nav_gestion">Certificat</a></li>
       <li class="active"><a href="veille-technologique.html">Veille Technologique</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -943,62 +1162,100 @@
       <p>Sécurité des mots de passe et gestion des identités dans un environnement Active Directory</p>
       <span class="veille-badge">
         <i class="fas fa-microchip"></i>
-        BTS SIO – Option SISR | Ayoub Benlamferred
+        BTS SIO – Option SISR | Épreuve E5 | Ayoub Benlamferred
       </span>
     </header>
 
+    <!-- ===== SECTION REDESIGNÉE : QU'EST-CE QUE LA VEILLE ===== -->
     <div class="section-card animate-in">
       <h2><i class="fas fa-question-circle" aria-hidden="true"></i> Qu’est-ce que la veille technologique ?</h2>
-      <div class="benefits">
-        <div class="benefit">
-          <h4><i class="fas fa-search"></i> Définition</h4>
-          <p>La <strong>veille technologique</strong> consiste à suivre régulièrement l’évolution d’un domaine informatique afin d’identifier les nouveautés, les bonnes pratiques, les risques et les changements importants.</p>
+      <p style="margin-bottom: 0.5rem;">La veille technologique est une démarche continue qui me permet de rester informé, compétent et réactif face aux évolutions du domaine de la cybersécurité.</p>
+
+      <div class="veille-intro-grid">
+        <!-- Carte 1 : Définition -->
+        <div class="veille-intro-card">
+          <div class="veille-intro-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h4>Définition</h4>
+          <p>Suivre régulièrement les évolutions d’un domaine informatique pour identifier les <strong>nouveautés</strong>, les <strong>risques</strong> et les <strong>bonnes pratiques</strong>.</p>
         </div>
-        <div class="benefit">
-          <h4><i class="fas fa-cogs"></i> Objectif</h4>
-          <p>En <strong>BTS SIO option SISR</strong>, la veille permet de montrer que l’on reste à jour sur les technologies utilisées en entreprise, notamment en matière de <strong>sécurité</strong> et d’<strong>administration système et réseau</strong>.</p>
+
+        <!-- Carte 2 : Objectif -->
+        <div class="veille-intro-card">
+          <div class="veille-intro-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h4>Objectif</h4>
+          <p>Montrer en <strong>BTS SIO SISR</strong> que je reste à jour sur les technologies utilisées en entreprise et que je sais analyser les évolutions du métier.</p>
         </div>
-        <div class="benefit">
-          <h4><i class="fas fa-bullseye"></i> Intérêt professionnel</h4>
-          <p>• Anticiper les menaces informatiques<br>• Comprendre les évolutions des outils<br>• Adapter les pratiques d’administration<br>• Améliorer la sécurité des utilisateurs et des données</p>
+
+        <!-- Carte 3 : Intérêt professionnel -->
+        <div class="veille-intro-card">
+          <div class="veille-intro-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h4>Intérêt professionnel</h4>
+          <ul>
+            <li>Anticiper les menaces</li>
+            <li>Comprendre les outils</li>
+            <li>Adapter les pratiques</li>
+            <li>Protéger les données</li>
+          </ul>
         </div>
-        <div class="benefit">
-          <h4><i class="fas fa-tools"></i> Méthode</h4>
-          <p>Une veille crédible repose sur des <strong>sources fiables</strong>, un <strong>suivi régulier</strong>, une <strong>analyse des nouveautés</strong> et une <strong>mise à jour de la synthèse</strong>.</p>
+
+        <!-- Carte 4 : Méthode -->
+        <div class="veille-intro-card">
+          <div class="veille-intro-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h4>Méthode</h4>
+          <p>Des <strong>sources fiables</strong>, un <strong>suivi régulier</strong> et une <strong>synthèse mise à jour</strong> pour garder une longueur d'avance.</p>
         </div>
       </div>
 
-      <div class="stats-display">
-        <div class="stat-item"><div class="stat-number">1-2x</div><div class="stat-label">Consultation / semaine</div></div>
-        <div class="stat-item"><div class="stat-number">4+</div><div class="stat-label">Sources officielles</div></div>
-        <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Sujet lié au BTS</div></div>
+      <!-- Statistiques redesignées -->
+      <div class="veille-stats">
+        <div class="veille-stat">
+          <div class="veille-stat-number">1-2x</div>
+          <div class="veille-stat-label">Consultation / semaine</div>
+        </div>
+        <div class="veille-stat">
+          <div class="veille-stat-number">3</div>
+          <div class="veille-stat-label">Sources principales</div>
+        </div>
+        <div class="veille-stat">
+          <div class="veille-stat-number">100%</div>
+          <div class="veille-stat-label">Sujet lié au BTS</div>
+        </div>
       </div>
     </div>
+    <!-- ===== FIN SECTION REDESIGNÉE ===== -->
 
     <div class="section-card animate-in">
       <h2><i class="fas fa-info-circle" aria-hidden="true"></i> Pourquoi ce sujet est important</h2>
-      <p>Les <strong>mots de passe</strong> restent un élément central de la sécurité des comptes utilisateurs. Dans un environnement d’entreprise, un mot de passe faible ou réutilisé peut favoriser l’accès non autorisé à des comptes, des serveurs ou des ressources sensibles.</p>
+      <p>Les <strong>mots de passe</strong> restent la première cible des attaques. Un mot de passe faible ou réutilisé peut donner accès à des comptes, des serveurs ou des données sensibles.</p>
 
       <div class="password-strength-section">
         <h3><i class="fas fa-lock"></i> Exemples de robustesse de mots de passe</h3>
         <div class="password-example-item">
           <p><strong>"admin123"</strong> <span class="badge-high">Très faible</span></p>
           <div class="password-strength"><div class="strength-bar weak active"></div><div class="strength-bar"></div><div class="strength-bar"></div><div class="strength-bar"></div><div class="strength-bar"></div></div>
-          <p><i class="fas fa-exclamation-triangle"></i> Mot de passe simple, très exposé aux attaques par dictionnaire ou brute force.</p>
+          <p><i class="fas fa-exclamation-triangle"></i> Simple, exposé au brute force et au dictionnaire.</p>
         </div>
         <div class="password-example-item">
           <p><strong>"P@ssword2023"</strong> <span class="badge-medium">Moyen</span></p>
           <div class="password-strength"><div class="strength-bar medium active"></div><div class="strength-bar medium active"></div><div class="strength-bar medium active"></div><div class="strength-bar"></div><div class="strength-bar"></div></div>
-          <p><i class="fas fa-exclamation-circle"></i> Plus complexe, mais encore prévisible car construit sur un schéma courant.</p>
+          <p><i class="fas fa-exclamation-circle"></i> Plus complexe, mais prévisible (schéma courant).</p>
         </div>
         <div class="password-example-item">
           <p><strong>"V3ry$tr0ngP@ss!2024"</strong> <span class="badge-low">Plus robuste</span></p>
           <div class="password-strength"><div class="strength-bar active"></div><div class="strength-bar active"></div><div class="strength-bar active"></div><div class="strength-bar active"></div><div class="strength-bar active"></div></div>
-          <p><i class="fas fa-check-circle"></i> Mot de passe plus long et plus varié, offrant une meilleure résistance aux attaques classiques.</p>
+          <p><i class="fas fa-check-circle"></i> Long et varié, meilleure résistance aux attaques.</p>
         </div>
       </div>
 
-      <p>Dans un environnement <strong>Active Directory</strong>, la sécurité des mots de passe s’inscrit dans une logique plus large de <strong>gestion des identités</strong>, de protection des comptes à privilèges et d’évolution vers des mécanismes comme le <strong>MFA</strong> ou le <strong>passwordless</strong>.</p>
+      <p>Dans <strong>Active Directory</strong>, les mots de passe s’inscrivent dans la <strong>gestion des identités</strong> et évoluent vers le <strong>MFA</strong> et le <strong>passwordless</strong>.</p>
       <div class="tech-stack">
         <span class="tech-badge"><i class="fas fa-server"></i> Active Directory</span>
         <span class="tech-badge"><i class="fas fa-shield-alt"></i> GPO</span>
@@ -1011,12 +1268,12 @@
     <div class="section-card animate-in">
       <h2><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Problèmes liés aux mots de passe faibles</h2>
       <div class="benefits">
-        <div class="benefit"><h4><i class="fas fa-user-secret"></i> Mauvaises pratiques</h4><p>• Mots de passe trop courts<br>• Réutilisation du même mot de passe<br>• Partage entre utilisateurs<br>• Schémas trop prévisibles</p></div>
-        <div class="benefit"><h4><i class="fas fa-bug"></i> Risques pour l’entreprise</h4><p>• Accès non autorisé aux ressources<br>• Compromission de comptes sensibles<br>• Vol ou perte de données<br>• Mouvement latéral dans le réseau</p></div>
+        <div class="benefit"><h4><i class="fas fa-user-secret"></i> Mauvaises pratiques</h4><p>• Mots de passe courts<br>• Réutilisation<br>• Partage<br>• Schémas prévisibles</p></div>
+        <div class="benefit"><h4><i class="fas fa-bug"></i> Risques</h4><p>• Accès non autorisé<br>• Comptes compromis<br>• Perte de données<br>• Mouvement latéral</p></div>
         <div class="benefit"><h4><i class="fas fa-robot"></i> Attaques courantes</h4><p>• Brute force<br>• Password spraying<br>• Phishing<br>• Credential stuffing</p></div>
       </div>
       <div class="stats-display">
-        <div class="stat-item"><div class="stat-number">AD</div><div class="stat-label">Cible fréquente en entreprise</div></div>
+        <div class="stat-item"><div class="stat-number">AD</div><div class="stat-label">Cible fréquente</div></div>
         <div class="stat-item"><div class="stat-number">MFA</div><div class="stat-label">Renforcement recommandé</div></div>
         <div class="stat-item"><div class="stat-number">Zero Trust</div><div class="stat-label">Évolution actuelle</div></div>
       </div>
@@ -1024,7 +1281,7 @@
 
     <div class="section-card animate-in">
       <h2><i class="fas fa-network-wired" aria-hidden="true"></i> Gestion des mots de passe avec Active Directory</h2>
-      <p><strong>Active Directory</strong> permet une gestion centralisée des comptes utilisateurs. Grâce aux <strong>stratégies de groupe (GPO)</strong>, l’administrateur peut imposer des règles de sécurité sur l’ensemble du domaine.</p>
+      <p><strong>Active Directory</strong> centralise les comptes utilisateurs. Grâce aux <strong>GPO</strong>, l’administrateur impose des règles de sécurité à tout le domaine.</p>
       <div class="architecture-visual">
         <div class="arch-node"><i class="fas fa-users" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;"></i><h4 style="margin: 0;">Utilisateurs</h4><p style="font-size: 0.9rem; margin: 0.5rem 0 0;">Comptes AD</p></div>
         <div class="arch-node" style="background: rgba(0, 255, 255, 0.1);"><i class="fas fa-server" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;"></i><h4 style="margin: 0;">Contrôleur de domaine</h4><p style="font-size: 0.9rem; margin: 0.5rem 0 0;">Active Directory</p></div>
@@ -1032,98 +1289,102 @@
       </div>
       <h3><i class="fas fa-sliders-h"></i> Paramètres de sécurité étudiés</h3>
       <ul>
-        <li><strong>Longueur minimale :</strong> politique renforcée pour limiter les mots de passe trop simples</li>
-        <li><strong>Complexité :</strong> combinaison de plusieurs types de caractères</li>
-        <li><strong>Historique :</strong> éviter la réutilisation immédiate des anciens mots de passe</li>
-        <li><strong>Verrouillage :</strong> limiter les tentatives successives</li>
-        <li><strong>Comptes sensibles :</strong> exigences plus strictes pour les administrateurs</li>
-        <li><strong>Évolution :</strong> complément avec MFA, passkeys et authentification moderne</li>
+        <li><strong>Longueur minimale :</strong> éviter les mots de passe trop courts</li>
+        <li><strong>Complexité :</strong> plusieurs types de caractères</li>
+        <li><strong>Historique :</strong> éviter la réutilisation immédiate</li>
+        <li><strong>Verrouillage :</strong> limiter les tentatives</li>
+        <li><strong>Comptes sensibles :</strong> exigences plus strictes pour les admins</li>
+        <li><strong>Évolution :</strong> complément avec MFA et passwordless</li>
       </ul>
       <div class="tech-stack"><span class="tech-badge">Gérer</span><span class="tech-badge">Automatiser</span><span class="tech-badge">Surveiller</span><span class="tech-badge">Sécuriser</span></div>
     </div>
-
+    <!-- TIMELINE -->
     <div class="section-card animate-in">
       <h2><i class="fas fa-rss" aria-hidden="true"></i> Comment je fais ma veille</h2>
-      <p>Une veille technologique ne consiste pas seulement à présenter un thème. Elle doit montrer que l’on suit <strong>régulièrement</strong> les évolutions d’un sujet et que l’on sait identifier les informations importantes.</p>
-      <div class="benefits">
-        <div class="benefit"><h4><i class="fas fa-calendar-alt"></i> Rythme de suivi</h4><p>Consultation régulière des publications techniques, suivi des mises à jour sécurité et lecture des recommandations officielles plusieurs fois par semaine.</p></div>
-        <div class="benefit"><h4><i class="fas fa-filter"></i> Sélection des informations</h4><p>Je conserve uniquement les informations utiles pour mon sujet : Active Directory, politiques de mot de passe, MFA, comptes à privilèges, authentification moderne.</p></div>
-        <div class="benefit"><h4><i class="fas fa-bell"></i> Mises à jour et notifications</h4><p>Je suis les publications officielles, les alertes CERT-FR et les actualités de sécurité via des flux RSS ou des pages de référence.</p></div>
-        <div class="benefit"><h4><i class="fas fa-save"></i> Mise à jour de la synthèse</h4><p>Quand une nouveauté importante apparaît, je mets à jour ma synthèse de veille afin de garder un contenu cohérent et actuel dans mon portfolio.</p></div>
+      <p>Ma veille est <strong>simple et régulière</strong>. Je suis une méthode en 4 étapes pour m'assurer de ne rien rater.</p>
+
+      <div class="timeline-container">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4><i class="fas fa-calendar-alt"></i> 1. Rythme de suivi</h4>
+            <p>Je consulte les sites de référence 1 à 2 fois par semaine. Je fais une veille globale sur la cybersécurité (actualités réglementaires de la CNIL et bonnes pratiques techniques de l'ANSSI).</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4><i class="fas fa-filter"></i> 2. Analyse et Application</h4>
+            <p>Au lieu de me limiter à un seul sujet, j'analyse les publications dans leur globalité. Ensuite, j'applique ces connaissances à mon contexte : comment ces règles de sécurité impactent-elles Active Directory, les mots de passe, le MFA et les comptes à privilèges ?</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4><i class="fas fa-bell"></i> 3. Sources de référence</h4>
+            <p>Je m'appuie sur 3 sources complémentaires : <strong>ANSSI</strong> (sécurité de l'État), <strong>CNIL</strong> (cadre légal/RGPD) et <strong>IT-Connect</strong> (veille technique et tutoriels pour appliquer tout ça sur le terrain).</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4><i class="fas fa-save"></i> 4. Synthèse professionnelle</h4>
+            <p>Je consigne mes analyses et mes recherches directement dans ce portfolio. Cela me permet de structurer ma réflexion technique et de garder une trace claire de mon travail sur la sécurisation des identités.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="section-card animate-in">
-      <h2><i class="fas fa-bell" aria-hidden="true"></i> Alertes et nouveautés des sources officielles</h2>
-      <p>Cette section affiche uniquement des informations récupérées depuis des sources officielles. Les dates affichées correspondent aux dates de publication indiquées par les organismes officiels.</p>
-      <div id="cert-alerts" class="cert-alerts">Chargement des alertes et nouveautés...</div>
+    <!-- SYNTHÈSE DES SOURCES -->
+    <div class="sources-summary">
+      <h3><i class="fas fa-table"></i> Synthèse des sources utilisées</h3>
+      <table class="sources-table">
+        <thead>
+          <tr><th>Source</th><th>Type</th><th>Contribution principale</th><th>Fréquence</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ANSSI</strong><br><small><a class="source-link-inline" href="https://messervices.cyber.gouv.fr/guides/recommandations-relatives-lauthentification-multifacteur-et-aux-mots-de-passe" target="_blank" rel="noopener noreferrer">messervices.cyber.gouv.fr</a></small></td>
+            <td>Autorité nationale</td>
+            <td>Recommandations officielles sur les mots de passe et le MFA</td>
+            <td><span class="source-tag"><i class="fas fa-clock"></i> 1x / semaine</span></td>
+          </tr>
+          <tr>
+            <td><strong>CNIL</strong><br><small><a class="source-link-inline" href="https://www.cnil.fr/fr/mot-de-passe" target="_blank" rel="noopener noreferrer">cnil.fr</a></small></td>
+            <td>Autorité légale</td>
+            <td>Obligations du RGPD sur la sécurisation des accès</td>
+            <td><span class="source-tag"><i class="fas fa-clock"></i> 1x / mois</span></td>
+          </tr>
+          <tr>
+            <td><strong>IT-Connect</strong><br><small><a class="source-link-inline" href="https://www.it-connect.fr/politique-de-mot-de-passe-comment-appliquer-les-bonnes-pratiques-de-lanssi/" target="_blank" rel="noopener noreferrer">it-connect.fr</a></small></td>
+            <td>Site technique</td>
+            <td>Tutoriels et configurations GPO pour Active Directory</td>
+            <td><span class="source-tag"><i class="fas fa-clock"></i> 1x / semaine</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <div class="section-card animate-in">
-      <h2><i class="fas fa-check-circle" aria-hidden="true"></i> Bonnes pratiques en entreprise</h2>
-      <div class="benefits">
-        <div class="benefit"><h4><i class="fas fa-user-tie"></i> Administrateur système</h4><p>• Définir des politiques adaptées au contexte<br>• Séparer les comptes d’administration et les comptes standards<br>• Surveiller les événements liés à l’authentification<br>• Renforcer les comptes sensibles</p></div>
-        <div class="benefit"><h4><i class="fas fa-users"></i> Utilisateurs finaux</h4><p>• Utiliser des mots de passe robustes et uniques<br>• Ne jamais partager ses identifiants<br>• Être sensibilisé au phishing<br>• Utiliser le MFA lorsqu’il est disponible</p></div>
-      </div>
-      <div class="stats-display">
-        <div class="stat-item"><div class="stat-number">MFA</div><div class="stat-label">Mesure complémentaire</div></div>
-        <div class="stat-item"><div class="stat-number">GPO</div><div class="stat-label">Pilotage centralisé</div></div>
-        <div class="stat-item"><div class="stat-number">AD</div><div class="stat-label">Gestion des identités</div></div>
-      </div>
-    </div>
-
-    <div class="sources-summary"><h3><i class="fas fa-table"></i> Synthèse des sources utilisées</h3></div>
-    <table class="sources-table">
-      <thead>
-        <tr><th>Source</th><th>Type</th><th>Contribution principale</th><th>Tags</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Microsoft Security Response Center</strong><br><small><a class="source-link-inline" href="https://msrc.microsoft.com/update-guide" target="_blank" rel="noopener noreferrer">msrc.microsoft.com</a></small></td>
-          <td>Source officielle Microsoft</td>
-          <td>Suivi des vulnérabilités, correctifs de sécurité et mises à jour Microsoft</td>
-          <td><span class="source-tag"><i class="fab fa-microsoft"></i> Microsoft</span><span class="source-tag"><i class="fas fa-bug"></i> CVE</span></td>
-        </tr>
-        <tr>
-          <td><strong>Microsoft Learn</strong><br><small><a class="source-link-inline" href="https://learn.microsoft.com/fr-fr/security/" target="_blank" rel="noopener noreferrer">learn.microsoft.com</a></small></td>
-          <td>Documentation officielle</td>
-          <td>Authentification, Active Directory, MFA, sécurité des identités Microsoft</td>
-          <td><span class="source-tag"><i class="fab fa-microsoft"></i> Microsoft</span><span class="source-tag"><i class="fas fa-server"></i> AD</span></td>
-        </tr>
-        <tr>
-          <td><strong>ANSSI</strong><br><small><a class="source-link-inline" href="https://cyber.gouv.fr/nous-connaitre/publications" target="_blank" rel="noopener noreferrer">cyber.gouv.fr</a></small></td>
-          <td>Autorité nationale</td>
-          <td>Guides, recommandations, bonnes pratiques françaises et publications institutionnelles</td>
-          <td><span class="source-tag"><i class="fas fa-shield-alt"></i> Sécurité</span><span class="source-tag"><i class="fas fa-flag"></i> France</span></td>
-        </tr>
-        <tr>
-          <td><strong>CERT-FR</strong><br><small><a class="source-link-inline" href="https://www.cert.ssi.gouv.fr/alerte/" target="_blank" rel="noopener noreferrer">cert.ssi.gouv.fr</a></small></td>
-          <td>Centre d’alerte officiel</td>
-          <td>Alertes de vulnérabilités, avis de sécurité, menaces et incidents</td>
-          <td><span class="source-tag"><i class="fas fa-bell"></i> Alertes</span><span class="source-tag"><i class="fas fa-rss"></i> Veille</span></td>
-        </tr>
-        <tr>
-          <td><strong>OWASP</strong><br><small><a class="source-link-inline" href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer">owasp.org</a></small></td>
-          <td>Référence internationale</td>
-          <td>Top 10 vulnérabilités web, bonnes pratiques sécurité applicative et authentification</td>
-          <td><span class="source-tag"><i class="fas fa-lock"></i> Authentification</span><span class="source-tag"><i class="fas fa-globe"></i> International</span></td>
-        </tr>
-      </tbody>
-    </table>
 
     <div class="sources-summary"><h3><i class="fas fa-robot"></i> Outils d’intelligence artificielle utilisés</h3></div>
     <div class="ai-tools">
       <div class="ai-tool"><div class="ai-tool-header"><div class="ai-tool-icon"><i class="fas fa-comment-alt"></i></div><div class="ai-tool-title">ChatGPT</div></div><div class="ai-tool-description">Utilisé pour aider à reformuler, structurer le contenu et clarifier certaines notions techniques.</div></div>
       <div class="ai-tool"><div class="ai-tool-header"><div class="ai-tool-icon"><i class="fas fa-brain"></i></div><div class="ai-tool-title">DeepSeek</div></div><div class="ai-tool-description">Utilisé en appui pour la structuration du contenu et la reformulation de certains passages.</div></div>
-      <div class="ai-tool"><div class="ai-tool-header"><div class="ai-tool-icon"><i class="fas fa-search"></i></div><div class="ai-tool-title">Google Gemini</div></div><div class="ai-tool-description">Utilisé ponctuellement pour comparer certaines formulations et explorer des pistes de recherche.</div></div>
     </div>
 
+    <!-- MÉTHODOLOGIE DE VEILLE -->
     <div class="sources-summary"><h3><i class="fas fa-chart-line"></i> Méthodologie de veille appliquée</h3></div>
     <div class="benefits">
-      <div class="benefit"><h4><i class="fas fa-calendar-alt"></i> Rythme de suivi</h4><p>Consultation régulière des sources officielles et suivi des actualités sécurité en lien avec l’authentification et Active Directory.</p></div>
-      <div class="benefit"><h4><i class="fas fa-filter"></i> Sélection des informations</h4><p>Je me concentre sur les informations applicables en entreprise et utiles dans le cadre du BTS SIO SISR.</p></div>
-      <div class="benefit"><h4><i class="fas fa-save"></i> Organisation</h4><p>Je conserve les éléments importants, je note les changements utiles et j’actualise ma synthèse de veille dans le portfolio.</p></div>
-      <div class="benefit"><h4><i class="fas fa-users"></i> Application pratique</h4><p>J’utilise cette veille pour mieux comprendre les politiques de sécurité, les pratiques d’administration et les évolutions du monde professionnel.</p></div>
+      <div class="benefit">
+        <h4><i class="fas fa-calendar-alt"></i> Rythme et Sélection</h4>
+        <p>Consultation régulière des sources officielles (1 à 2 fois par semaine). Je me concentre uniquement sur les informations applicables en entreprise et utiles pour mon sujet : AD, mots de passe, MFA et comptes à privilèges.</p>
+      </div>
+      <div class="benefit">
+        <h4><i class="fas fa-save"></i> Organisation et Application</h4>
+        <p>Je conserve les éléments importants, je note les changements utiles et j'actualise ma synthèse dans le portfolio. Cela me permet de mieux comprendre les politiques de sécurité et les évolutions du monde professionnel.</p>
+      </div>
     </div>
 
     <div class="section-card animate-in">
@@ -1251,129 +1512,6 @@
           this.style.boxShadow = '';
         });
       });
-
-      const officialSources = [
-        {
-          name: "CERT-FR - Alertes et avis",
-          icon: "fa-bell",
-          rss: "https://www.cert.ssi.gouv.fr/feed/",
-          officialUrl: "https://www.cert.ssi.gouv.fr/"
-        },
-        {
-          name: "ANSSI - Actualités",
-          icon: "fa-shield-alt",
-          rss: "https://cyber.gouv.fr/actualites/feed",
-          officialUrl: "https://cyber.gouv.fr/actualites/"
-        },
-        {
-          name: "Microsoft Security Response Center",
-          icon: "fa-microsoft",
-          rss: "https://msrc.microsoft.com/update-guide/rss",
-          officialUrl: "https://msrc.microsoft.com/update-guide"
-        },
-        {
-          name: "OWASP - News",
-          icon: "fa-lock",
-          rss: "https://owasp.org/news/index.xml",
-          officialUrl: "https://owasp.org/news/"
-        }
-      ];
-
-      function escapeHtml(value) {
-        return String(value || "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#039;");
-      }
-
-      async function fetchRssItems(source) {
-        const apiUrl = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(source.rss);
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error("Erreur HTTP " + response.status);
-        const data = await response.json();
-        if (!data.items || !Array.isArray(data.items)) return [];
-        return data.items.slice(0, 3);
-      }
-
-      async function loadOfficialAlerts() {
-        const container = document.getElementById("cert-alerts");
-        if (!container) return;
-
-        container.innerHTML = "Chargement des alertes et nouveautés...";
-        let globalHtml = "";
-        let newContentDetected = false;
-
-        for (const source of officialSources) {
-          try {
-            const items = await fetchRssItems(source);
-            const latestTitle = items[0]?.title || "";
-            const storageKey = "lastSourceAlert_" + source.name;
-            const oldTitle = localStorage.getItem(storageKey);
-
-            if (oldTitle && latestTitle && oldTitle !== latestTitle) {
-              newContentDetected = true;
-            }
-
-            if (latestTitle) {
-              localStorage.setItem(storageKey, latestTitle);
-            }
-
-            globalHtml += `
-              <h3 class="cert-source-title"><i class="fas ${source.icon}"></i> ${escapeHtml(source.name)}</h3>
-            `;
-
-            if (!items.length) {
-              globalHtml += `
-                <div class="cert-alert-fallback">
-                  Aucune donnée RSS récupérée pour cette source.<br>
-                  <a href="${source.officialUrl}" target="_blank" rel="noopener noreferrer">Consulter la source officielle</a>
-                </div>
-              `;
-              continue;
-            }
-
-            items.forEach(item => {
-              const title = escapeHtml(item.title || "Publication officielle");
-              const link = item.link || source.officialUrl;
-              const date = item.pubDate
-                ? "Publié officiellement le " + new Date(item.pubDate).toLocaleDateString("fr-FR")
-                : "Date officielle non disponible";
-
-              globalHtml += `
-                <div class="cert-alert">
-                  <strong>${title}</strong><br>
-                  <small>${date}</small><br>
-                  <small>Source officielle : ${escapeHtml(source.name)}</small><br>
-                  <a href="${link}" target="_blank" rel="noopener noreferrer">Voir la publication officielle</a>
-                </div>
-              `;
-            });
-          } catch (error) {
-            globalHtml += `
-              <h3 class="cert-source-title"><i class="fas ${source.icon}"></i> ${escapeHtml(source.name)}</h3>
-              <div class="cert-alert-fallback">
-                Le flux automatique n’est pas disponible actuellement.<br>
-                <a href="${source.officialUrl}" target="_blank" rel="noopener noreferrer">Consulter la source officielle</a>
-              </div>
-            `;
-          }
-        }
-
-        if (newContentDetected) {
-          globalHtml = `
-            <div class="cert-new">
-              🚨 Nouvelle publication officielle détectée depuis votre dernière visite.
-            </div>
-          ` + globalHtml;
-        }
-
-        container.innerHTML = globalHtml;
-      }
-
-      loadOfficialAlerts();
-      setInterval(loadOfficialAlerts, 300000);
     });
   </script>
 </body>

@@ -432,12 +432,22 @@
       width: 45%;
     }
 
+    /* 1er bloc : Gauche */
     .timeline-item:nth-child(odd) {
       margin-left: 0;
       margin-right: auto;
     }
 
+    /* 2ème bloc : Droite */
     .timeline-item:nth-child(even) {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    /* 3ème bloc (et suivants impairs) : Forcé à DROITE */
+    .timeline-item:nth-child(3),
+    .timeline-item:nth-child(5),
+    .timeline-item:nth-child(7) {
       margin-left: auto;
       margin-right: 0;
     }
@@ -470,12 +480,22 @@
       border: 3px solid #ffffff;
     }
 
+    /* Le point (rond) pour le 1er bloc (à gauche) */
     .timeline-item:nth-child(odd) .timeline-content::before {
       right: -46px;
     }
 
+    /* Le point (rond) pour le 2ème bloc (à droite) */
     .timeline-item:nth-child(even) .timeline-content::before {
       left: -46px;
+    }
+
+    /* Le point (rond) pour le 3ème bloc (forcé à droite) */
+    .timeline-item:nth-child(3) .timeline-content::before,
+    .timeline-item:nth-child(5) .timeline-content::before,
+    .timeline-item:nth-child(7) .timeline-content::before {
+      left: -46px;
+      right: auto;
     }
 
     .timeline-date {
@@ -579,34 +599,30 @@
       border-top: 2px solid #00ffff !important;
       color: #a0c7d9 !important;
     }
+
+    /* ===== RESPONSIVE TIMELINE ===== */
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 20px;
+      }
+      .timeline-item {
+        width: 100%;
+        margin-left: 40px !important;
+        margin-right: 0 !important;
+      }
+      .timeline-item:nth-child(odd) .timeline-content::before,
+      .timeline-item:nth-child(even) .timeline-content::before,
+      .timeline-item:nth-child(3) .timeline-content::before {
+        left: -46px;
+        right: auto;
+      }
+    }
   </style>
+ 
+
 </head>
 
 <body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   <nav>
     <div class="nav-brand" id="animated-name"></div>
 
@@ -618,9 +634,9 @@
       <li><a href="accueil.html">Accueil</a></li>
       <li><a href="profil.html">Profil</a></li>
       <li class="active"><a href="bts-sio.html">BTS SIO</a></li>
-        <li><a href="formation.html">Formation</a></li>
+      <li><a href="formation.html">Formation</a></li>
       <li><a href="situation-professionnelle.html">Situation Professionnelle</a></li>
-      <li><a href="tableau-synthese.html">Tableau de synthèse</a></li>
+       <li><a href="tableau-attestation.html" data-i18n="nav_gestion">Tableau-Attestation</a></li>
        <li><a href="certificat.html" data-i18n="nav_gestion">Certificat</a></li>
       <li><a href="veille-technologique.html">Veille Technologique</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -851,11 +867,17 @@
         </div>
       </div>
     </div>
+    <!-- 3e bloc (2e année bis) -->
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-date"><i class="fas fa-calendar"></i> 2e année (2026-2027)</div>
+        <div class="timeline-text">
+          Approfondissement cybersécurité, projets complexes, stage de 6 semaines, préparation aux certifications et obtention du diplôme.
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-
-
    
   </div>
 <!-- BOUTONS DE CONTRÔLE DE PAGE -->
